@@ -1,0 +1,266 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 271px;">
+      <!-- Content Header (Page header) -->
+      
+          <section class="content-header">
+        <h1>Advocate      </h1>
+      </section>
+      <section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/advocate">
+                <div class="box-body">
+                                  <div class="form-group col-md-4">
+                    <label>State</label>
+                    <select class="form-control select2-hidden-accessible" id="state_id" name="state_id" tabindex="-1" aria-hidden="true">
+                       <option value="">Select</option>
+                        
+                      <option value="1">Andaman and Nicobar </option>
+                       
+                      <option value="2">Andhra Pradesh </option>
+                       
+                      <option value="3">Arunachal Pradesh </option>
+                       
+                      <option value="4">Assam </option>
+                       
+                      <option value="5">Bihar </option>
+                       
+                      <option value="6">Chandigarh </option>
+                       
+                      <option value="7">Chhattisgarh </option>
+                       
+                      <option value="8">Dadra and Nagar Haveli </option>
+                       
+                      <option value="9">Daman and Diu </option>
+                       
+                      <option value="10">Delhi </option>
+                       
+                      <option value="11">Goa </option>
+                       
+                      <option value="12">Gujarat </option>
+                       
+                      <option value="13">Haryana </option>
+                       
+                      <option value="14">Himachal Pradesh </option>
+                       
+                      <option value="15">Jammu &amp; Kashmir </option>
+                       
+                      <option value="16">Jharkhand </option>
+                       
+                      <option value="17">Karnataka </option>
+                       
+                      <option value="18">Kerala </option>
+                       
+                      <option value="19">Lakshadweep </option>
+                       
+                      <option value="20">Maharashtra </option>
+                       
+                      <option value="21">Madhya Pradesh</option>
+                       
+                      <option value="22">Orissa </option>
+                       
+                      <option value="23">Punjab</option>
+                       
+                      <option value="24">Pondicherry </option>
+                       
+                      <option value="25">Rajasthan </option>
+                       
+                      <option value="26">Tamil Nadu </option>
+                       
+                      <option value="27">Uttar Pradesh</option>
+                       
+                      <option value="28">Uttarakhand</option>
+                       
+                      <option value="29">West Bengal </option>
+                       
+                      <option value="30">Telangana</option>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 388px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-state_id-container"><span class="select2-selection__rendered" id="select2-state_id-container"><span class="select2-selection__placeholder">Select State</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>City</label>
+                    <select class="form-control select2-hidden-accessible" id="city_id" name="city_id" tabindex="-1" aria-hidden="true">
+                       <option value="">Select</option>
+                                         </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 388px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-city_id-container"><span class="select2-selection__rendered" id="select2-city_id-container"><span class="select2-selection__placeholder">Select City</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                  
+                      
+                </div>
+                <div class="box-footer">
+                    <input type="hidden" name="con_val" id="con_val" value="1">
+                    <button type="submit" class="btn btn-primary ">Search</button>
+                  <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/advocate';" class="btn btn-default">Reset</button>
+                  
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      <!-- Main content -->
+      <section class="content">
+          <div class="row">
+              <div class="col-xs-12">
+                <div class="box box-primary">
+                  
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-bordered">
+                      <tbody><tr class="bal-col">
+                          <th style="width: 5%;">Sr.</th>
+                                          
+                          <th style="width: 10%;">Name</th>					
+                              
+                          <th style="width: 10%;">State</th>
+                          <th style="width: 10%;">District</th>
+                                                  <th style="width: 10%;">Status</th>
+                                              </tr>
+                                              <tr class="gradeA"><td colspan="5">No Record found</td></tr>
+                                        </tbody></table>
+                  </div>
+                  <!-- /.box-body -->
+                  
+                  <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                                          <input type="hidden" id="controller" value="advocate">
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.box -->
+              
+                </div>
+                <!-- /.box -->
+              </div>
+            </section></div>
+          
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+   <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script> 
+  <script>
+     $(document).ready(function(){
+        $('.pagination > li > a').on('click', function(){
+           link = $(this).attr('href');  
+           $('#searchFrm').attr('action', link);
+           $('#searchFrm').submit();
+           return false; 
+        });
+        
+        $("#state_id").change(function(){
+          var state_id=$("#state_id").val();		
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/advocate/getCitysByStateId",
+              type:"post",
+              data:{'state_id':state_id},
+              success:function(data)
+              {		
+                                                   
+                  $("#city_id").html(data);
+              }
+          });
+      });
+      
+        $("#state_id").select2({
+              placeholder: "Select State"
+          });
+      
+        $("#city_id").select2({
+              placeholder: "Select City"
+          });
+     });
+  </script>
+  <footer class="main-footer">
+      
+  </footer>
+  
+  
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  
+  {% include "include_footerjs.html" %}
+  </body></html>

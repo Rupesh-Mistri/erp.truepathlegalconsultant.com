@@ -1,0 +1,79 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+
+      <!-- Content Wrapper -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        <section class="content-header">
+          <h1>
+            Proposal List
+          </h1>
+        </section>
+        {% comment %} <a href="/diagnostic_centre_reg" class="btn btn-primary"> New Registration </a> {% endcomment %}
+        {% comment %} <a href="/proposal_reg/create/" class="btn btn-primary"> New Proposal </a> {% endcomment %}
+        <a href="/proposal_registration/create/" class="btn btn-primary"> New Proposal </a>
+        <section class="mt-30">
+          <div class="container">
+            <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+              <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    {% comment %} <th>Registration Number</th> {% endcomment %}
+                    <th>S.N.</th>
+                    <th>Member Type</th>
+                    <th>Member Name</th>
+                    <th>Hospital Name</th>
+                    <th>Specialization</th>
+                    <th>Mobile Number</th>
+                    {% comment %} <th>District</th>
+                    <th>State</th>{% endcomment %}
+                    {% if user.is_superuser %}
+                    <th>Edit</th>
+                    {% endif %}
+                  <th>View</th>  
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in po_list %}
+                  <tr>
+                    {% comment %} <td>{{ data.app_registration_no }}</td> {% endcomment %}
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ data.member_type }}</td>
+                    <td>{{ data.member_name }}</td>
+                    <td>{{ data.hospital_name }}</td>
+                    <td>{{ data.specialization }}</td>
+                    <td>{{ data.mobile }}</td>
+                    {% comment %} <td>{{ data.district }}</td>
+                    <td>{{ data.state }}</td>{% endcomment %}
+                    {% if user.is_superuser %}
+                     <td>
+                      <a href="/proposal_registration/edit/{{data.id}}" class="btn btn-primary"> Edit </a>
+                    </td>  
+                    {% endif %}
+                    <td>
+                      <a href="{% url 'proposal_registration_details' data.id %}" class="btn btn-info btn-sm">View</a>
+   
+                    </td> 
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="8" class="text-center">No registrations found.</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div> <!-- .content-wrapper -->
+
+      <footer class="main-footer">
+        <!-- Footer content -->
+      </footer>
+    </div> <!-- .wrapper -->
+    {% include "include_footerjs.html" %}
+  </body>
+</html>

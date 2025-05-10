@@ -1,0 +1,590 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+  
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        <section class="content-header">
+          <h1>
+            <small>Doctor Registration</span></small>
+          </h1>
+        </section>
+        
+        <section class="mt-30">
+          <div class="div-width">
+            <div class="container">
+              
+              {% comment %} <form class="m-3" method="post" id="iform" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  {% for field in form %}
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <div class="form-text text-muted">{{ field.help_text }}</div>
+                    {% endif %}
+                    
+                    <!-- Display errors for this field -->
+                    {% if field.errors %}
+                    <div class="text-danger mt-1">
+                      {% for error in field.errors %}
+                      <p class="mb-0">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="text-center mt-4">
+                  
+                  <button class="btn btn-primary btn-lg px-5 ">Submit</button>
+                </div>
+              </form> {% endcomment %}
+              <form  method="post" id="iform" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+            
+                    <!-- Doctor's Name Field -->
+                    <div class="col-12 form-group col-lg-12 mb-3">
+                        <label for="id_doctor_name" class="form-label font-weight-bold">Name of Doctor / Medical Establishment*</label>
+                        {{ form.doctor_name }}
+                        <!-- Display errors for this field -->
+                    </div>
+            
+                    <!-- Residence Address Section -->
+                    <div class="col-12 form-group col-lg-12 mb-3 border border-primary ">
+                        <h4 class="mb-3">Residence Address</h4>
+                        <div class="row g-3">
+                               <!-- House No. / Flat No. / Block -->
+                               <div class="col-12 form-group col-lg-12 mb-3">
+                                <label for="id_house_no" class="form-label font-weight-bold">House No./ Flat No. / Block</label>
+                                {{ form.house_no }}
+                                <!-- Display errors for this field -->
+                            </div>
+            
+                            <!-- Street / Road / Locality -->
+                            <div class="col-12 form-group col-lg-12 mb-3">
+                                <label for="id_street" class="form-label font-weight-bold">Street / Road / Locality</label>
+                                {{ form.street }}
+                                <!-- Display errors for this field -->
+                            </div>
+            
+                            <!-- District -->
+                            <div class="col-md-6 mb-3">
+                                <label for="id_district" class="form-label font-weight-bold">District</label>
+                                {{ form.district }}
+                                <!-- Display errors for this field -->
+                            </div>
+            
+                           
+
+                            <!-- State -->
+                            <div class="col-md-6 mb-3">
+                                <label for="id_state" class="form-label font-weight-bold">State</label>
+                                {{ form.state }}
+                                <!-- Display errors for this field -->
+                            </div>
+            
+                            <!-- Pin Code -->
+                            <div class="col-12 form-group col-lg-12 mb-3">
+                                <label for="id_pin_code" class="form-label font-weight-bold">Pin Code</label>
+                                {{ form.pin_code }}
+                                <!-- Display errors for this field -->
+                            </div>
+            
+                        </div>
+                      </div>
+              
+                  
+                      <div class="col-12 form-group col-lg-12 mb-3 border border-primary ">
+                        <h4 class="mb-3">Hospital Address</h4>
+                        <div class="row g-3">
+                          <div class="col-12 form-group col-lg-12 mb-3">
+                            <label for="id_hospital_house_no" class="form-label font-weight-bold">House No./ Flat No. / Block</label>
+                            {{form.hospital_house_no}}
+                            
+                            
+                            <!-- Display errors for this field -->
+                            
+                          </div>
+                          
+                          <div class="col-12 form-group col-lg-12 mb-3">
+                            <label for="id_hospital_street" class="form-label font-weight-bold">Street / Road / Locality</label>
+                            {{form.hospital_street}}
+                            
+                            
+                            <!-- Display errors for this field -->
+                            
+                          </div>
+                          
+                          <div class="col-md-6 mb-3">
+                            <label for="id_hospital_district" class="form-label font-weight-bold">District</label>
+                            {{form.hospital_district}}
+                            
+                            
+                            <!-- Display errors for this field -->
+                            
+                          </div>
+                          
+                          <div class="col-md-6 mb-3">
+                            <label for="id_hospital_state" class="form-label font-weight-bold">State</label>
+                            {{form.hospital_state}}
+                            
+                            
+                            <!-- Display errors for this field -->
+                            
+                          </div>
+                          
+                          <div class="col-12 form-group col-lg-12 mb-3">
+                            <label for="id_hospital_pin_code" class="form-label font-weight-bold">Pin Code</label>
+                            {{form.hospital_pin_code}}
+                        </div>
+                      </div>
+
+                         
+                 
+           
+            
+
+
+                  
+                  
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+
+                  <div class="col-12 form-group col-lg-12 mb-3 border border-primary ">
+                    
+                    <div class="row g-3">
+                  <div class="col-md-6 mb-3">
+                    <label for="id_mobile_number" class="form-label font-weight-bold">Mobile Number*</label>
+                    {{form.mobile_number}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-md-6 mb-3">
+                    <label for="id_alternate_mobile_number" class="form-label font-weight-bold">Alternate Mobile Number</label>
+                    {{form.alternate_mobile_number}}
+                  </div>
+                </div>
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_email" class="form-label font-weight-bold">E-mail*</label>
+                    {{form.email}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_dob" class="form-label font-weight-bold">Date of Birth*</label>
+                    {{form.dob}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_wedding_date" class="form-label font-weight-bold">Wedding Date</label>
+                    {{form.wedding_date}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_id_proof" class="form-label font-weight-bold">ID Proof (Choose Option)*</label>
+                    {{form.id_proof}}
+     
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_id_number" class="form-label font-weight-bold">ID Number*</label>
+                    {{form.id_number}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_speciality" class="form-label font-weight-bold">Speciality*</label>
+                    {{form.speciality}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_other_speciality" class="form-label font-weight-bold">Other Speciality</label>
+                    {{form.other_speciality}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_qualification" class="form-label font-weight-bold">Qualification / Degree*</label>
+                    {{form.qualification}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_registration_number" class="form-label font-weight-bold">Registration Number*</label>
+                    {{form.registration_number}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_registration_year" class="form-label font-weight-bold">Year*</label>
+                    {{form.registration_year}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_medical_council" class="form-label font-weight-bold">Medical Council*</label>
+                    {{form.medical_council}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_visiting_physician" class="form-label font-weight-bold">Are You a Visiting Physician / Consultant?*</label>
+                    {{form.visiting_physician}}                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_associated_hospitals" class="form-label font-weight-bold">Name the Hospitals / Clinics you are associated with*</label>
+                    {{form.associated_hospitals}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_legal_claims" class="form-label font-weight-bold">Have any claims been made upon you or legal proceedings instituted or likely to be instituted?*</label>
+                    {{form.legal_claims}}" 
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_practice_duration" class="form-label font-weight-bold">How long you have been practising?*</label>
+                    {{form.practice_duration}}" 
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_avg_patients_per_day" class="form-label font-weight-bold">State the average no. of patients you are attending per day*</label>
+                    {{form.avg_patients_per_day}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_unqualified_staff_extension" class="form-label font-weight-bold">Extension for unqualified staff required?*</label>
+                    {{form.unqualified_staff_extension}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_annual_income" class="form-label font-weight-bold">Your estimated annual income in Rs.</label>
+                    {{form.annual_income}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_insurance_cover" class="form-label font-weight-bold">Insurance Cover required*</label>
+                    {{form.insurance_cover}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_ref_doctor_1_name" class="form-label font-weight-bold">Doctor's Name (Reference 1)</label>
+                    {{form.ref_doctor_1_name}}
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_ref_doctor_1_contact" class="form-label font-weight-bold">Contact Number (Reference 1)</label>
+                    {{form.ref_doctor_1_contact}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_ref_doctor_1_location" class="form-label font-weight-bold">Location (Reference 1)</label>
+                    {{form.ref_doctor_1_location}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_ref_doctor_2_name" class="form-label font-weight-bold">Doctor's Name (Reference 2)</label>
+                    {{form.ref_doctor_2_name}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_ref_doctor_2_contact" class="form-label font-weight-bold">Contact Number (Reference 2)</label>
+                    {{form.ref_doctor_2_contact}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_ref_doctor_2_location" class="form-label font-weight-bold">Location (Reference 2)</label>
+                    {{form.ref_doctor_2_location}}
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_docland_rep_name" class="form-label font-weight-bold">Docland's Representative Name*</label>
+                    {{form.docland_rep_name}}
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_docland_rep_email" class="form-label font-weight-bold">Email id of Docland's Representative</label>
+                    {{form.docland_rep_email}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_total_amount_paid" class="form-label font-weight-bold">Total Amount Paid</label>
+                    {{form.total_amount_paid}}
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_payment_details" class="form-label font-weight-bold">Mode of Payment and Cheque / Ref. No.</label>
+                    {{form.payment_details}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_registration_certificate" class="form-label font-weight-bold">Upload Registration Certificate</label>
+                    {{form.registration_certificate}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_selfie" class="form-label font-weight-bold">Take a Selfie</label>
+                    {{form.selfie}}
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+
+                  <div class="col-12 form-group col-lg-12 mb-3 border border-primary ">
+                    <h4 class="mb-3">Declaration</h4>
+                    <div class="row g-3">
+                      <div class="col-12 form-group col-lg-12 mb-3">
+                        <input type="checkbox" name="declaration" >
+                        I agree and hereby declare that the above statement and particulars are true and I have not suppressed or mis-stated any material and that at the present time I have no reason to anticipate any claim being brought against me for any negligence, etc. error or omission on my part and agree that this negligence, error or omission or mis-conduct is committed prior to the commencement of this insurance. I have also understood the terms and conditions of membership of {{COMPANY_NAME}}.
+                      </div>
+                    </div>
+                  <div>
+                  
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_signature" class="form-label font-weight-bold">Signature</label>
+                    
+                    {% comment %} <canvas id="signatureCanvas" width="200" height="100"  style="background-color: white;"></canvas> {% endcomment %}
+                    
+                    {{form.signature}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_submission_date_time" class="form-label font-weight-bold">Date and Time of Submission</label>
+                    {{form.submission_date_time}}
+                    
+                    
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="id_place_of_submission" class="form-label font-weight-bold">Place of Submission*</label>
+                    {{form.place_of_submission}}
+                    <!-- Display errors for this field -->
+                    
+                  </div>
+                  
+                </div>
+                <div class="text-center mt-4">
+                  
+                  <button class="btn btn-primary btn-lg px-5 ">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        
+      </div> <!-- .content-wrapper -->
+  
+      <footer class="main-footer">
+        <!-- Footer content can be added here -->
+      </footer>
+  
+    </div> <!-- .wrapper -->
+    <script>
+      const canvas = document.getElementById("signatureCanvas");
+      const ctx = canvas.getContext("2d");
+      const clearButton = document.getElementById("clearButton");
+      const saveButton = document.getElementById("saveButton");
+      const signatureInput = document.getElementById("signatureInput");
+      const signatureForm = document.getElementById("signatureForm");
+
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      // Helper function to get the current position (handles both mouse and touch)
+      function getPosition(event) {
+          if (event.touches) {
+              const touch = event.touches[0];
+              return { x: touch.clientX - canvas.offsetLeft, y: touch.clientY - canvas.offsetTop };
+          }
+          return { x: event.offsetX, y: event.offsetY };
+      }
+
+      // Start drawing
+      function startDrawing(event) {
+          event.preventDefault();
+          const pos = getPosition(event);
+          isDrawing = true;
+          [lastX, lastY] = [pos.x, pos.y];
+      }
+
+      // Draw on canvas
+      function draw(event) {
+          if (!isDrawing) return;
+
+          const pos = getPosition(event);
+          ctx.beginPath();
+          ctx.moveTo(lastX, lastY);
+          ctx.lineTo(pos.x, pos.y);
+          ctx.strokeStyle = "black";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          [lastX, lastY] = [pos.x, pos.y];
+      }
+
+      // Stop drawing
+      function stopDrawing() {
+          isDrawing = false;
+          ctx.beginPath(); // Reset path
+      }
+
+      // Event listeners for mouse events
+      canvas.addEventListener("mousedown", startDrawing);
+      canvas.addEventListener("mousemove", draw);
+      canvas.addEventListener("mouseup", stopDrawing);
+      canvas.addEventListener("mouseout", stopDrawing);
+
+      // Event listeners for touch events
+      canvas.addEventListener("touchstart", startDrawing);
+      canvas.addEventListener("touchmove", draw);
+      canvas.addEventListener("touchend", stopDrawing);
+      canvas.addEventListener("touchcancel", stopDrawing);
+
+      // Clear button functionality
+      clearButton.addEventListener("click", () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+
+      // Save button functionality
+      saveButton.addEventListener("click", () => {
+          const dataURL = canvas.toDataURL("image/png");
+          const link = document.createElement("a");
+          link.href = dataURL;
+          link.download = "signature.png";
+          link.click();
+      });
+
+      // Attach signature to hidden input on form submit
+      signatureForm.addEventListener("submit", (event) => {
+          const dataURL = canvas.toDataURL("image/png");
+          signatureInput.value = dataURL; // Attach Base64 image data to the hidden input
+      });
+  </script>
+
+
+    {% include "include_footerjs.html" %}
+
+
+  </body>
+</html>

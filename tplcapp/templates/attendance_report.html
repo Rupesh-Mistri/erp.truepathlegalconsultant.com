@@ -1,0 +1,685 @@
+<html>
+
+{% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 271px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Location Report      <a href="javascript:;" class="btn btn-primary pull-right" onclick="clock_in()"><strong>Clock In</strong></a></h1>
+      </section>
+  
+      <section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/attendance_report" novalidate="novalidate">
+                  <div class="box-body">
+                      <div class="form-group col-md-3">
+                        <label>Employee</label>
+                                              
+                        <select class="form-control select2-hidden-accessible" name="employe_id" id="employe_id" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" value="">--Select--</option>
+                              
+                              <option value="3198">Ashok Mishra</option>
+                                                               <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                                     <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                                                
+                              <option value="3251">Rakesh Kumar Sinha</option>
+                                                          
+                              <option value="3272">SAKET KUMAR</option>
+                                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 280px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-employe_id-container"><span class="select2-selection__rendered" id="select2-employe_id-container"><span class="select2-selection__placeholder">Select Employe</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                      </div>
+                      
+                      <div class="form-group col-md-3">
+                          <label>From Date</label>
+                          <input type="text" class="form-control" name="from_date" id="from_date" value="" autocomplete="off">
+                      </div>
+              
+                      <div class="form-group col-md-3">
+                          <label>To Date</label>
+                          <input type="text" class="form-control" name="to_date" id="to_date" value="" autocomplete="off">
+                      </div>
+                  </div>
+                  <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                      <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/attendance_report';" class="btn btn-default">Reset</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      <!-- Main content -->
+      <section class="content">
+          <div class="row">
+              <div class="col-xs-12">
+                <div class="box box-primary">
+                  
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-bordered">
+                      <tbody><tr class="bal-col">
+                          <th style="width: 5%;">Sr.</th>
+                          <th style="width: 5%;">Date</th>
+                          <th style="width: 5%;">Reporting Status</th>
+                          <th style="width: 5%;">Employe Name</th>
+                          <th style="width: 5%;">Reporting Location</th>	
+                          <th style="width: 10%;">Clock In</th>
+                          
+                          <th style="width: 10%;">Clock Out</th>	
+                          <th style="width: 10%;">Remarks</th>	
+                          <th style="width: 10%;">Created At</th>
+                          
+                          <th style="width: 10%;">Updated At</th>	
+                          <th>Action</th>
+                      </tr>
+                                              <tr class="gradeA">
+                              <td>1</td>
+                              <td style="width: 5%;">22/11/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>07:16 am</td>
+                              <td></td>
+                              <td style="width: 5%;"></td>
+                              <td style="width: 5%;">2024-11-22 07:16:02</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="8347"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>2</td>
+                              <td style="width: 5%;">18/11/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>10:01 am</td>
+                              <td></td>
+                              <td style="width: 5%;">Self working in ranchi</td>
+                              <td style="width: 5%;">2024-11-18 10:01:46</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="8130"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>3</td>
+                              <td style="width: 5%;">29/10/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>09:55 am</td>
+                              <td></td>
+                              <td style="width: 5%;">self working in ranchi</td>
+                              <td style="width: 5%;">2024-10-29 09:55:05</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="7219"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>4</td>
+                              <td style="width: 5%;">25/10/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>10:00 am</td>
+                              <td></td>
+                              <td style="width: 5%;">In ranchi </td>
+                              <td style="width: 5%;">2024-10-25 10:00:04</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="7048"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>5</td>
+                              <td style="width: 5%;">24/10/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>08:36 am</td>
+                              <td></td>
+                              <td style="width: 5%;">self working in ranchi </td>
+                              <td style="width: 5%;">2024-10-24 08:36:37</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6964"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>6</td>
+                              <td style="width: 5%;">23/10/2024</td>
+                              <td>Working with subordinate </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>07:43 am</td>
+                              <td></td>
+                              <td style="width: 5%;">Working with rakesh kumar sinha patna located </td>
+                              <td style="width: 5%;">2024-10-23 07:43:01</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6905"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>7</td>
+                              <td style="width: 5%;">17/10/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>06:16 am</td>
+                              <td></td>
+                              <td style="width: 5%;">in ranchi </td>
+                              <td style="width: 5%;">2024-10-17 06:16:41</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6594"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>8</td>
+                              <td style="width: 5%;">14/10/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>02:00 pm</td>
+                              <td></td>
+                              <td style="width: 5%;">Self working in ranchi </td>
+                              <td style="width: 5%;">2024-10-14 02:00:30</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6464"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>9</td>
+                              <td style="width: 5%;">07/10/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>09:14 am</td>
+                              <td></td>
+                              <td style="width: 5%;">follow up j sharan membership and dr nilotpal and dr diwakar nidan hospital </td>
+                              <td style="width: 5%;">2024-10-07 09:14:10</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6088"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>10</td>
+                              <td style="width: 5%;">06/10/2024</td>
+                              <td>Team meeting </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>09:52 pm</td>
+                              <td></td>
+                              <td style="width: 5%;">In meeting Friday Saturday and Sunday </td>
+                              <td style="width: 5%;">2024-10-06 09:52:14</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6086"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>11</td>
+                              <td style="width: 5%;">06/10/2024</td>
+                              <td>Team meeting </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>09:52 pm</td>
+                              <td></td>
+                              <td style="width: 5%;">In meeting Friday Saturday and Sunday </td>
+                              <td style="width: 5%;">2024-10-06 09:52:03</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="6085"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>12</td>
+                              <td style="width: 5%;">16/09/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>09:00 am</td>
+                              <td></td>
+                              <td style="width: 5%;">IN RANCHI </td>
+                              <td style="width: 5%;">2024-09-16 09:00:50</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="5049"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>13</td>
+                              <td style="width: 5%;">16/09/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>09:00 am</td>
+                              <td></td>
+                              <td style="width: 5%;">IN RANCHI </td>
+                              <td style="width: 5%;">2024-09-16 09:00:16</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="5048"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>14</td>
+                              <td style="width: 5%;">02/09/2024</td>
+                              <td>Self Working </td>
+                              <td style="width: 5%;">Ashok Mishra</td>
+                              <td></td>
+                              <td>06:18 am</td>
+                              <td></td>
+                              <td style="width: 5%;">TODAY WORK IN RANCHI REGADING SOME LEGAL ISSUE AND PRIMUM COLLECT </td>
+                              <td style="width: 5%;">2024-09-02 06:18:11</td>
+                              <td style="width: 5%;">0000-00-00 00:00:00</td>
+                              <td>
+                                                                      <a href="#" class="clockoutBtn" data-ref="4275"><strong>Clockout</strong></a>
+                                                              </td>
+                          </tr>
+                                        </tbody></table>
+                  </div>
+                  <!-- /.box-body -->
+                  
+                  <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                                          <input type="hidden" id="controller" value="candidates">
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.box -->
+              
+                </div>
+                <!-- /.box -->
+              </div>
+            </section></div>
+          
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    
+    <style>
+        .modal-header {
+              display: -ms-flexbox;
+              display: flex;
+              -ms-flex-align: start;
+              /*align-items: flex-start;*/
+              -ms-flex-pack: justify;
+              justify-content: space-between;
+              padding: 1rem 1rem;
+              border-bottom: 1px solid #dee2e6;
+              border-top-left-radius: calc(0.3rem - 1px);
+              border-top-right-radius: calc(0.3rem - 1px);
+          }
+          
+          .modal-title {
+              margin-bottom: 0;
+              line-height: 1.5;
+              margin-right: 469px;
+              font-size: 20px;
+                  font-weight: bold;
+          }
+          .h4, h4 {
+              font-size: 1.5rem;
+          }
+    </style>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog ">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Clock In</h4>
+              <button type="button" class="close clse-model" data-dismiss="modal">×</button>
+            </div>
+          <div class="modal-body" id="model-result">
+              <div class="box-body" style="padding:0px">
+                  <div class="form-group col-md-12">
+                      <label>Reporting Status : </label>
+                      <select class="form-control" id="reporting_status" name="reporting_status">
+                          <option value="">--Select Reporting Status--</option>
+                          <option value="Self Working">Self Working</option>
+                          <option value="Working with subordinate">Working with subordinate</option>
+                          <option value="Working with Senior">Working with Senior</option>
+                          <option value="Team meeting">Team meeting</option>
+                          <option value="At Office">At Office</option>
+                          <option value="Apply for Leave">Apply for Leave</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group col-md-12 leave_status" style="display:none">
+                      <label>Leave type : </label>
+                      <select class="form-control leave_status" id="reporting_status" name="reporting_status">
+                          <option value="">--Select Leave Type--</option>
+                          <option value="Sick Leave">Sick Leave</option>
+                          <option value="Casual Leave">Casual Leave</option>
+                          <option value="Unpaid Leave">Unpaid Leave</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group col-md-6 leave_status" style="display:none">
+                      <label>Leave Start Date</label>
+                      <input type="text" class="form-control leave_status" name="leave_start_date" id="leave_start_date" placeholder="Leave Start Date" value="">
+                  </div> 
+                  <div class="form-group col-md-6 leave_status" style="display:none">
+                      <label>Leave End Date</label>
+                      <input type="text" class="form-control leave_status" name="leave_end_date" id="leave_end_date" placeholder="Leave End Date" value="">
+                  </div>
+                  
+                  <div class="form-group col-md-12">
+                      <label>Remarks : </label>
+                      <textarea class="form-control" id="remarks" name="remarks"></textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <input type="hidden" class="form-control" name="lat" id="lat" value="">
+              <input type="hidden" class="form-control" name="long" id="long" value="">
+              
+            <div class="box-footer"><button type="button" id="submit_btn" class="btn btn-default" onclick="submitData()" style="background-color:#007bff; color:#fff">Save</button>
+            <button type="button" class="btn btn-default clse-model" data-dismiss="modal">Close</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  <script>
+     $(document).ready(function(){
+        $('.pagination > li > a').on('click', function(){
+           link = $(this).attr('href');  
+           $('#searchFrm').attr('action', link);
+           $('#searchFrm').submit();
+           return false; 
+        });
+     });
+     
+  </script>
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  <script>
+  $(document).ready(function(){
+      $("#from_date ,#to_date").datepicker({
+          format: 'dd/mm/yyyy',
+          clickInput:true, 
+          changeMonth: true,
+          changeYear: true,
+          numberOfMonths: 1,
+          autoclose: true
+      }); 
+      
+      $("#leave_start_date ,#leave_end_date").datepicker({
+          format: 'yyyy-mm-dd',
+          clickInput:true, 
+          changeMonth: true,
+          changeYear: true,
+          numberOfMonths: 1,
+          autoclose: true
+      }); 
+      
+      $('#reporting_status').change(function(){
+          if($(this).val() == "Apply for Leave") {
+              $('.leave_status').attr('style',"display:block");
+          } else {
+              $('.leave_status').attr('style',"display:none");
+          }
+      });
+  });
+  </script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+      getLocation();
+      function getLocation() {
+        if(navigator.geolocation) {
+          navigator.geolocation.watchPosition(showPosition);
+        } 
+      }
+      
+      function showPosition(position) {
+        $("#lat").val(position.coords.latitude);
+        $("#long").val(position.coords.longitude);
+      }
+  
+      $.validator.addMethod("greaterThanDate", function(value, max, min){
+          return (value == '' || $(min).datepicker("getDate") < $(max).datepicker("getDate"));
+      });
+      $(function() {
+          $("form[name='search_data_view']").validate({
+              rules: {
+                  from_date: {
+                  },
+                  to_date: {
+                  //greaterThanDate:"#from_date"
+                  }
+              },
+              messages: {
+                  from_date: {
+                  },
+                  to_date: {
+                  //greaterThanDate:"Your End Date must be greater than From Date"
+                  }
+              },
+              submitHandler: function(form) {
+                  form.submit();
+              }
+          });
+      });	
+  });
+  
+  $("#employe_id").select2({
+      placeholder: "Select Employe"
+  });
+  
+  
+  function clock_in(){
+      $('#myModal').addClass('in');
+      $('#myModal').attr('style','display: block; padding-right: 16px;padding-top: 150px');
+  }
+  
+  $('.clse-model').click(function() { 
+      $('#myModal').removeClass('in');
+      $('#myModal').attr('style','display: none;');
+  })
+  
+  
+  function submitData(){
+      
+      // Check if Geolocation API is available
+      if (!navigator.geolocation) {
+          alert("Geolocation is not supported by your browser.");
+          return;
+      }
+      
+      var statusElement = "";
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+              (position) => {
+                  
+                  $("#lat").val(position.coords.latitude);
+                  $("#long").val(position.coords.longitude);
+                  
+                  if($('#reporting_status').val()==="") {
+                      alert("Please Select Attendance Status");
+                      return;
+                  }
+                  var reporting_status_val = $('#reporting_status').val();
+                  var lattitudeVal = $("#lat").val();
+                  var longitudeVal = $("#long").val();
+                  
+                  $.ajax({
+                      url:'https://prescriibe.com/docland/admin/attendance_report/save',
+                      type:'POST',
+                      dataType: "json",
+                      data:{reporting_status:reporting_status_val, remarks:$('#remarks').val(), latitude : lattitudeVal, longitude : longitudeVal},
+                      success:function(response)
+                      {   
+                          if(response.success) {
+                              alert("Log in data save successfully.");
+                              $('#myModal').removeClass('in');
+                              $('#myModal').attr('style','display: none;');
+                          }else{
+                              alert("Somethink went wrong. Please contact with admin.");
+                              $('#myModal').removeClass('in');
+                              $('#myModal').attr('style','display: none;');
+                          }
+                          setTimeout(function () {
+                              location.reload();
+                          }, 500); // 2-second delay
+                      }
+                  });
+              },
+              (error) => {
+                          // Handle location errors
+                  switch (error.code) {
+                      case error.PERMISSION_DENIED:
+                          alert("Location access is blocked. Please enable location services in your browser settings.");
+                          break;
+                      case error.POSITION_UNAVAILABLE:
+                          alert("We couldn't determine your location. Please check your network or GPS and try again.");
+                          break;
+                      case error.TIMEOUT:
+                          alert("The request to get location timed out. Please try again.");
+                          break;
+                      default:
+                          alert("An unknown error occurred. Please try again later.");
+                          break;
+                      }
+              },
+              {
+                  enableHighAccuracy: true, // Use GPS if available
+                  timeout: 10000, // Timeout after 10 seconds
+                  maximumAge: 0 // Do not use cached location data
+              }
+          );
+      } 
+  }
+  
+  $('.clockoutBtn').click(function(){
+      
+      if(confirm("Are you sure you want to clockout?")){
+          
+          var ref_id = $(this).attr('data-ref');
+          var lattitudeVal = $("#lat").val();
+          var longitudeVal = $("#long").val();
+      
+          $.ajax({
+          url:'https://prescriibe.com/docland/admin/attendance_report/clockout',
+          type:'POST',
+          dataType: "json",
+          data:{id:ref_id, latitude : lattitudeVal, longitude : longitudeVal},
+          success:function(response)
+          {  
+              if(response.success) {
+                  alert("Log out successfully.");
+                  $('#myModal').removeClass('in');
+                  $('#myModal').attr('style','display: none;');
+              }else{
+                  alert("Somethink went wrong. Please contact with admin");
+                  $('#myModal').removeClass('in');
+                  $('#myModal').attr('style','display: none;');
+              }
+              
+              window.location.reload();
+          }
+      });
+      }
+      
+  });
+  </script>
+  <footer class="main-footer">
+      
+  </footer>
+  
+  
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body></html>

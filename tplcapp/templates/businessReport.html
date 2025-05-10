@@ -1,0 +1,760 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <style>
+  /* Important part */
+  .modal-dialog{
+      overflow-y: initial !important
+  }
+  .modal-body{
+      /*height: 80vh;*/
+      overflow-y: auto;
+  }
+  .overlay{
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.8) url("https://www.tutorialrepublic.com/examples/images/loader.gif") center no-repeat;
+  }
+  /* Turn off scrollbar when body element has the loading class */
+  body.loading{
+      overflow: hidden;   
+  }
+  /* Make spinner image visible when body element has the loading class */
+  body.loading .overlay{
+      display: block;
+  }
+  
+  .table-wrapper {
+    position: relative;
+  }
+  
+  .scrolling-area {
+    overflow-x: auto;
+  }
+  
+  .scrolling-area#top-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 16px; /* Adjust this height to match the scrollbar height */
+    z-index: 1;
+  }
+  
+  .fake-table {
+    height: 1px;
+  }
+  
+  .scrolling-area:not(#top-scroll) {
+    margin-top: 16px; /* Adjust this margin to match the height of the top scrollbar */
+  }
+  
+  </style>
+  
+  <style>
+  /*    body {*/
+  /*  margin: 0;*/
+  /*  padding: 0;*/
+  /*  font-family: sans-serif;*/
+  /*  display: flex;*/
+  /*  justify-content: center;*/
+  /*  height: 100vh;*/
+  /*  background: #0d0c2d;*/
+  /*}*/
+  
+  /*.container {*/
+    /*display: grid;*/
+  /*  //grid-template-columns: repeat(1, 30px);*/
+    /*grid-gap: 80px;*/
+  /*  margin: auto 0;*/
+  /*      width: 64px;*/
+  /*}*/
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(1, 60px);
+    /*grid-gap: 80px;*/
+    margin: auto 0;
+  }
+  
+  @media (min-width: 420px) and (max-width: 659px) {
+    .container {
+      grid-template-columns: repeat(1, 60px);
+    }
+  }
+  
+  @media (min-width: 660px) and (max-width: 899px) {
+    .container {
+      grid-template-columns: repeat(1, 60px);
+    }
+  }
+  
+  @media (min-width: 900px) {
+    .container {
+      grid-template-columns: repeat(1, 60px);
+    }
+  }
+  
+  
+  .container .box1 {
+    width: 100%;
+  }
+  
+  .container .box1 h2 {
+    display: block;
+    text-align: center;
+  }
+  
+  .container .box1 .chart {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 60px;
+    /*height: 160px;*/
+  }
+  
+  .container .box1 canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    width: 100%;
+  }
+  
+  
+  </style>
+  
+   <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 271px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Business Report</h1>
+      </section>
+      
+          
+  <section style="margin-top: 22px;margin-bottom: 10px;">
+                  
+          <span class="alert alert-dismissible alert-success mb-4 display_message success-msg" style="margin-left: 17px; width: 100%; display: none;"></span>
+          <span class="alert alert-dismissible alert-error mb-4 display_message error-msg" style="margin-left: 17px; width: 100%; display: none;"></span>
+      </section>
+      <div class="overlay"></div>
+      
+      <div id="ShowMIS"></div>
+      <section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/member/businessReport/">
+                <div class="box-body">
+                <input type="hidden" name="searchID" id="searchID">     
+                                                  
+                      <div class="form-group col-md-3">
+                        <label>Reporting Head</label>
+                        <select class="form-control select2-hidden-accessible" name="reporting_head" id="reporting_head" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" value="">--Select--</option>
+                                                        <option value="3198">Ashok Mishra</option>
+                                                        <option value="3251">Rakesh Kumar Sinha</option>
+                                                        <option value="3272">SAKET KUMAR</option>
+                                                  </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 280px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-reporting_head-container"><span class="select2-selection__rendered" id="select2-reporting_head-container"><span class="select2-selection__placeholder">Select</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                      </div>
+                  
+                                  <div class="form-group col-md-3">
+                        <label>Collected By</label>
+                                              
+                        <select class="form-control select2-hidden-accessible" name="collected_by" id="collected_by" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" value="">--Select--</option>
+                              
+                              <option value="3198">Ashok Mishra</option>
+                                                               <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                                     <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                                                
+                              <option value="3251">Rakesh Kumar Sinha</option>
+                                                          
+                              <option value="3272">SAKET KUMAR</option>
+                                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 280px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-collected_by-container"><span class="select2-selection__rendered" id="select2-collected_by-container"><span class="select2-selection__placeholder">Select</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                  
+                                  
+                  <div class="form-group col-md-2 business" style="display:block">
+                      <label><b>Business Year</b></label>
+                      <select class="form-control" name="business_year[]" id="business_year" multiple="">
+                          <option value="" selected="">Select Year</option>
+                          <option value="blank">Blank</option>
+                         <option name="2025">2025</option><option name="2024">2024</option><option name="2023">2023</option><option name="2022">2022</option><option name="2021">2021</option><option name="2020">2020</option>    		        </select>  
+                  </div>
+                  
+                                  <div class="form-group col-md-2 business" style="display:block">
+                      <label><b>Business Month</b></label>
+                      <select class="form-control" name="business_month[]" id="business_month" multiple="">
+                          <option value="" selected="">Select Month</option>
+                          <option value="blank">Blank</option>
+                                                  <option value="01">January</option>
+                                                  <option value="02">February</option>
+                                                  <option value="03">March</option>
+                                                  <option value="04">April</option>
+                                                  <option value="05">May</option>
+                                                  <option value="06">June</option>
+                                                  <option value="07">July</option>
+                                                  <option value="08">August</option>
+                                                  <option value="09">September</option>
+                                                  <option value="10">October</option>
+                                                  <option value="11">November</option>
+                                                  <option value="12">December</option>
+                                              </select>  
+                  </div>
+                  
+              </div>
+  
+                <div class="box-footer" style="margin-top:20px;text-align: right;">
+                    <button type="button" class="btn btn-primary" onclick="searchMIS('1')" name="search">Search</button>
+                    <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/member/businessReport';" class="btn btn-default">Reset</button>
+                </div>
+              </form>
+                           </div>
+          </div>
+        </div>
+      </section>
+        <script>
+        function searchMIS(id){
+             document.getElementById("searchID").value=id;
+             document.getElementById("searchFrm").submit();
+        }
+        
+        </script>
+      
+      <!-- Main content -->
+      
+      <!-- <section>-->
+      <!--     <label  style="float:left; margin-left:20px; color:#d42a29;font-size:18px;margin-bottom: 10px;margin-top: -19px;"><b>Total Business : 103172</b></label>-->
+      <!-- -->
+      
+      <!--</section>-->
+       <section class="content">
+          <div class="row">
+                     
+                          <div class="col-xs-12">
+                <div class="box box-primary">
+                  <div class="box-body table-responsive no-padding">
+                      <form role="form" method="post" id="all_dataa" name="all_dataa" action="#">
+                          <div class="scrolling-area" id="top-scroll">
+                              <div class="fake-table" style="width: 1258px;"></div>
+                          </div>
+                          <div class="scrolling-area">
+                              <table class="table table-hover table-bordered " id="tableID">
+                              <thead>
+                                  <tr class="bal-col">
+                                      <th style="width: 5%;">Sr.</th>
+                                      <th style="width: 10%;">Collected By</th>
+                                      <th style="width: 10%;">Location</th>
+                                      <th style="width: 10%;">Collected Count</th>
+                                      <th style="width: 10%;">Total Membership Collection</th>
+                                      <th style="width: 10%;">Pending Membership Amount</th>
+                                      <th style="width: 10%;">Received Membership Amount</th>
+                                      <th style="width: 10%;">Total Insurance Premium Amount</th>
+                                                                      </tr>
+                              </thead>
+                              
+                              <tbody> 
+                                                              <tr class="gradeA">
+                                      <td>1</td>
+                                      <td>Ashok Mishra</td>
+                                      <td>Ranchi </td>
+                                      <td>14</td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?business_report=true&amp;collected_by=3198" target="_blank">1,03,172</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?collected_by=3198&amp;payment_status=Pending" target="_blank">0</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?collected_by=3198&amp;payment_status=Received" target="_blank">1,03,172</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?business_report=true&amp;collected_by=3198" target="_blank">58,484</a></td>
+                                                                      </tr>
+                                                              <tr class="gradeA">
+                                      <td>2</td>
+                                      <td>Rakesh Kumar Sinha</td>
+                                      <td>Patna </td>
+                                      <td>1</td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?business_report=true&amp;collected_by=3251" target="_blank">11,017</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?collected_by=3251&amp;payment_status=Pending" target="_blank">0</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?collected_by=3251&amp;payment_status=Received" target="_blank">11,017</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?business_report=true&amp;collected_by=3251" target="_blank">2,500</a></td>
+                                                                      </tr>
+                                                              <tr class="gradeA">
+                                      <td>3</td>
+                                      <td>SAKET KUMAR</td>
+                                      <td>Ranchi </td>
+                                      <td>0</td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?business_report=true&amp;collected_by=3272" target="_blank">0</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?collected_by=3272&amp;payment_status=Pending" target="_blank">0</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?collected_by=3272&amp;payment_status=Received" target="_blank">0</a></td>
+                                      <td><a href="https://prescriibe.com/docland/admin/member/ShowMis/?business_report=true&amp;collected_by=3272" target="_blank">0</a></td>
+                                                                      </tr>
+                                                              <tr>
+                                      <td><b>Sub Total</b></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td><b>1,14,189</b></td>
+                                      <td><b>0</b></td>
+                                      <td><b>1,14,189</b></td>
+                                      <td><b>60,984</b></td>
+                                                                      </tr>
+                              </tbody>
+                        </table>
+                          </div>
+                     </form>
+                  </div>
+                  
+              
+                  <!-- /.box-body -->
+                  
+                  <div class="box-footer clearfix">
+                    <span style="font-size:18px"><b>Total Record : 2</b></span>
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                                          <input type="hidden" id="controller" value="member">
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.box -->
+              
+                </div>
+                <!-- /.box -->
+              </div>
+            </section></div>
+          
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+     <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+      
+        <!-- Modal content-->
+        <div class="modal-content" style="overflow: unset">
+          <div class="modal-header">
+            <button type="button" class="close clse-model" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="model-result">
+                      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default clse-model" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+     <!-- Modal -->
+    <div class="modal fade" id="myModalUploadDoc" role="dialog">
+      <div class="modal-dialog">
+          <form action="" method="post" id="uploadForm" name="uploadForm" enctype="multipart/form-data">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <b>Upload Doc</b>
+                <button type="button" class="close clse-model" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body" id="model-result">
+                  <input type="hidden" name="mis_id" id="mis_id" value="">
+                  <input type="file" name="document_doc" id="document_doc">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default clse-model" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="frmUploadBtn">Upload</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+    
+    
+  <script>
+     $(document).ready(function(){
+        $('.pagination > li > a').on('click', function(){
+           link = $(this).attr('href');  
+           $('#searchFrm').attr('action', link);
+           $('#searchFrm').submit();
+           return false; 
+        });
+     });
+  </script>
+  
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#AllChecked').click(function (e) {
+          $(this).closest('table').find('td input:checkbox').prop('checked', this.checked);
+      });
+  
+      var $checkboxes = $('.checkbox-item');
+      $('.checkbox-item').change(function(){
+          var checkboxesLength = $checkboxes.length;
+          var checkedCheckboxesLength = $checkboxes.filter(':checked').length;
+          if(checkboxesLength == checkedCheckboxesLength) {
+              $('#AllChecked').prop('checked', true);
+          }else{
+              $('#AllChecked').prop('checked', false);
+          }
+      });
+  
+      $('.clse-model').click(function() { 
+          $('#myModal').removeClass('in');
+          $('#myModal').attr('style','display: none;');
+      })
+      
+      $(document).on({
+          ajaxStart: function(){
+              $("body").addClass("loading"); 
+          },
+          ajaxStop: function(){ 
+              $("body").removeClass("loading"); 
+          }
+      });
+      
+      $(document).click(function (e) {
+          if($(e.target).is('#myModal')) {
+                  $('#myModal').fadeOut(500);
+              }
+          });
+          
+          $(function() {
+              $(".display_message").hide(10000);
+         });
+      });	
+   
+      function view_record(id){
+          var url = "https://prescriibe.com/docland/admin/member/ShowMISdetails/"+id;
+          var alerta = $('#model-result');
+          alerta.load(url,function(){
+              $('#myModal').addClass('in');
+              $('#myModal').attr('style','display: block; padding-right: 16px;');
+          });
+      }
+      
+      function FreezeRecord(id){  
+          if(!confirm('Do You Want To Freeze this Record?')){
+              return false;
+          }
+          $.ajax( {
+              type: 'post',
+              url: "https://prescriibe.com/docland/admin/member/FreezeRecord/",
+              data: $('#all_dataa').serialize() + "&id=" + id,
+              success: function ( result ){
+                window.location = "https://prescriibe.com/docland/admin/member/ShowMIS/";
+              },
+              error: function ( result ){
+                  alert('fail');
+              }
+          });
+      } 
+      
+      function setPaymentStatus(id){  
+          if(!confirm('Do You Want To Change the Payment Status of this Record?')){
+              return false;
+          }
+          $.ajax( {
+              type: 'post',
+              url: "https://prescriibe.com/docland/admin/member/SetPaymentStatus/",
+              data: $('#all_dataa').serialize() + "&id=" + id,
+              success: function ( result ){
+                window.location = "https://prescriibe.com/docland/admin/member/ShowMIS/";
+              },
+              error: function ( result ){
+                  alert('fail');
+              }
+          });
+      } 
+      
+      function setPolicyStatus(id){
+          if(!confirm('Do You Want To Change the Payment Status of this Record?')){
+              return false;
+          }
+           $.ajax( {
+              type: 'post',
+              //our baseurl variable in action will call a method in our default controller
+              url: "https://prescriibe.com/docland/admin/member/setPolicyStatus/",
+              data: $('#all_dataa').serialize() + "&id=" + id,
+              success: function ( result ){
+                window.location = "https://prescriibe.com/docland/admin/member/ShowMIS/";
+              },
+              error: function ( result ){
+                  alert('fail');
+              }
+          });
+      }
+      
+      function FreezeRecordSelected(){  
+          var checked = $("#all_dataa input:checked").length > 0;
+          if (!checked){
+              alert("Please check at least one checkbox");
+              return false;
+          }
+          if(!confirm('Do You Want To Freeze The Selected Records?')){
+              return false;
+          }
+          $.ajax( {
+              type: 'post',
+              //our baseurl variable in action will call a method in our default controller
+              url: "https://prescriibe.com/docland/admin/member/FreezeRecordSelected/",
+              data: $('#all_dataa').serialize(),
+              success: function ( result ){
+                 window.location = "https://prescriibe.com/docland/admin/member/ShowMIS/";
+              },
+              error: function ( result ){
+                  alert('fail');
+              }
+          });
+      } 
+  
+  </script>
+   <script> 
+    
+         // Initialize the DataTable 
+          $(document).ready(function () { 
+              // $('#tableID').DataTable({ 
+              //     // of the DataTable 
+              //     pageLength : 50,
+              //     searching: true 
+              // }); 
+              
+              $('.uploadDocBtn').click(function() { 
+                  $('#mis_id').val($(this).attr('doc-id'));
+              });
+              $('#frmUploadBtn').click(function() { 
+                  var mis_id =  $('#mis_id').val();
+                  var fileInput = $('#document_doc').prop('files');   
+                  const file = fileInput[0];
+                  const formData = new FormData();
+                  formData.append('document_file', file);
+                  formData.append('mis_id', mis_id);
+  
+                  $.ajax({
+                      type: 'POST',
+                      url: "https://prescriibe.com/docland/admin/member/uploadMisFile",
+                      data: formData,
+                      dataType: 'json',
+                      contentType: false,
+                      cache: false,
+                      processData:false,
+                      success: function(response){
+                          $('#document_doc').val('');
+                          $('#mis_id').val("");
+                          $("#myModalUploadDoc .close").click();
+                          
+                          alert(response.message);
+                          if(response.status == "success") {
+                              $('.success-msg').text(response.message);
+                              $(".success-msg").css("display", "block");
+                              $(".error-msg").css("display", "none");
+                              $("#spanRr"+mis_id).attr("style", "display:block");
+                          } else {
+                              $('.error-msg').text(response.message);
+                              $(".error-msg").css("display", "block");
+                              $(".success-msg").css("display", "none");
+                              $("#spanRr"+mis_id).attr("style", "display:none");
+                          }
+                          $(".display_message").delay(5000).fadeOut(500);
+                      }
+                  });
+              });
+              
+              $('.sendFile').click(function(){
+                  //alert($(this).attr('data-ref'));
+              });
+              
+              $("#month_year_con").click(function(){
+                  var curVal = $(this).val();
+                  if(curVal == "business") {
+                      $(".business").attr("style", "display:block");
+                      $(".gst").attr("style", "display:none");
+                  } else if(curVal == "gst") {
+                      $(".gst").attr("style", "display:block");
+                      $(".business").attr("style", "display:none");
+                  } else {
+                      $(".business").attr("style", "display:none");
+                      $(".gst").attr("style", "display:none");
+                  }
+              });
+          }); 
+      </script> 
+   <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> 
+  <script> 
+      const chBoxes = 
+          document.querySelectorAll('.dropdown-menu input[type="checkbox"]'); 
+      const dpBtn = 
+          document.getElementById('multiSelectDropdown'); 
+      let mySelectedListItems = []; 
+  
+      function handleCB() { 
+          mySelectedListItems = []; 
+          let mySelectedListItemsText = ''; 
+  
+          chBoxes.forEach((checkbox) => { 
+              if (checkbox.checked) { 
+                  mySelectedListItems.push(checkbox.value); 
+                  mySelectedListItemsText += checkbox.value + ', '; 
+              } 
+          }); 
+  
+          dpBtn.innerText = 
+              mySelectedListItems.length > 0 
+                  ? mySelectedListItemsText.slice(0, -2) : 'Select'; 
+      } 
+  
+      chBoxes.forEach((checkbox) => { 
+          checkbox.addEventListener('change', handleCB); 
+      }); 
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var topScroll = document.getElementById('top-scroll');
+        var realTable = topScroll.nextElementSibling;
+      
+        topScroll.onscroll = function() {
+          realTable.scrollLeft = topScroll.scrollLeft;
+        };
+      
+        realTable.onscroll = function() {
+          topScroll.scrollLeft = realTable.scrollLeft;
+        };
+      
+        // Adjust the width of the fake table to match the real table
+        var fakeTable = topScroll.querySelector('.fake-table');
+        var realTableWidth = realTable.querySelector('table').offsetWidth;
+        fakeTable.style.width = realTableWidth + 'px';
+      });
+      
+      
+      
+      $("#collected_by, #reporting_head").select2({
+          placeholder: "Select"
+      });
+      
+      $("#branch_head").change(function(e) {
+          var reporting_ids = $(this).val();
+          
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/member/getReportingHeadByBranchHead",
+              type:"post",
+              data:{'reporting_ids':reporting_ids},
+              success:function(res){	
+                  var response = res.data;
+                  
+                  $('#reporting_head').val(null).empty().select2();
+                  $("#reporting_head").select2({data: [{id:null, text:"--Select--"}]}); 
+                  
+                  $.each(response, function(index, value) {
+                      $("#reporting_head").select2({data: [value]});  
+                  });
+              }
+          });
+      });
+  </script> 
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
+  <script>
+      $(function() {
+          $('.chart').easyPieChart({
+              size: 60,
+              barColor: "#17d3e6",
+              scaleLength: 0,
+              lineWidth: 15,
+              trackColor: "#373737",
+              lineCap: "circle",
+              animate: 2000,
+          });
+      });
+  </script>
+  <footer class="main-footer">
+      
+  </footer>
+  
+  
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body></html>

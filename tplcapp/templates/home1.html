@@ -1,0 +1,79 @@
+<html>
+    {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 370px;">
+      <section class="content-header">
+        <h1>
+          
+          <small>Welcome To<span> Dashboard</span></small>
+        </h1>
+      </section>
+      <section class="logo-mt"><img src="/static/images/logo_rectangle.webp " height='50px' width="200px" height='50px' width="200px"></section>
+      <section class="mt-30">
+          <div class="div-width">
+            <div class="container">
+              <!--<div class="row">
+                  <div class="col-md-3">
+                  <div class="box-dash"><span><i class="fa fa-user-md"></i></span>2 Lakh+ Memberships</div>	
+                  </div>
+                  <div class="col-md-3">
+                      <div class="box-dash1"><span><i class="fa fa-gavel"></i></span>600+ Cases</div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="box-dash2"><span><i class="fa fa-street-view"></i></i></span>600+ Experts</div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="box-dash3"><span><i class="fa fa-trophy"></i></span>98% Winning Ratio</div>
+                  </div>
+  
+              </div>
+              --->
+             
+                      </div>
+                      
+                   
+  
+                  </div>
+   </div>
+  
+  
+  
+  
+  
+              </div>
+          </div>
+      </section></div>
+           </div> 
+      
+      
+  
+   
+
+   
+  <footer class="main-footer">
+      
+  </footer>
+  
+  
+  {% include "include_footerjs.html" %}
+  
+  </body>
+  </html>

@@ -1,0 +1,631 @@
+<html>{% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <!-- Content Wrapper. Contains page content -->
+  <style>
+      .whatsapp_pdf_button {
+          background-color: transparent;
+          background-repeat: no-repeat;
+          border: none;
+          cursor: pointer;
+          overflow: hidden;
+          outline: none;
+      }
+      
+      
+      body { height: 1000px !important; }
+      thead{
+          background-color:white !important;
+      }
+  </style>
+      <div class="content-wrapper" style="min-height: 384px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Payment Form List <a href="https://prescriibe.com/docland/admin/member/payment_form_details"><button type="submit" class="btn btn-primary pull-right">Add New</button></a></h1>
+      </section>
+      
+      
+      <section style="margin-top: 22px;margin-bottom: 10px;">
+                  
+          <span class="alert alert-dismissible alert-success mb-4 display_message success-msg" style="margin-left: 17px; width: 100%; display: none;"></span>
+          <span class="alert alert-dismissible alert-error mb-4 display_message error-msg" style="margin-left: 17px; width: 100%; display: none;"></span>
+      </section>
+      
+      <section class="content" style="min-height:100px;margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/member/payment_form_list">
+                <div class="box-body">
+                  <div class="form-group col-md-4">
+                  <label>Search By Keyword</label>
+                  <input type="text" class="form-control" name="search_keyword" placeholder="Enter Keyword" id="search_keyword" value="" autocomplete="off"></div>
+                  <div class="form-group col-md-4">
+  
+                    <label>Employee</label>
+  
+                                      
+                    <select class="form-control" name="employe_id" id="employe_id">
+                        <option selected="selected" value="">--Select--</option>
+                          
+                          <option value="3198">Ashok Mishra</option>
+                                                       <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                         <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                                    
+                          <option value="3251">Rakesh Kumar Sinha</option>
+                                                  
+                          <option value="3272">SAKET KUMAR</option>
+                                              
+                      </select>
+                  </div>
+                   
+                  <div class="form-group col-md-4">
+                  <label>From Date</label>
+                  <input type="text" class="form-control" name="from_date" id="from_date" value="" autocomplete="off"></div>
+              
+                  <div class="form-group col-md-4">
+                   <label>To Date</label>
+                      <input type="text" class="form-control" name="to_date" id="to_date" value="" autocomplete="off"></div>
+                </div>
+                
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                  <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/leads';" class="btn btn-default">Reset</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!--	<section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/member/member_list">
+                <div class="box-body">
+              
+                  <div class="form-group col-md-4">
+                  <label>Member Id</label>
+                  <input type="text" class="form-control" name="member_id" id="member" value="" placeholder="Enter Member Id">
+                  </div>
+              
+                      
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                  <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/member/member_list';" class="btn btn-default">Reset</button>
+                  
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      -->
+      
+      
+      <!-- Main content -->
+      <section class="content">
+          <div class="row">
+              <div class="col-xs-12">
+                <div class="box box-primary">
+                  
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-bordered" id="maintable">
+                        <thead>
+                      <tr class="bal-col">
+                          <th style="width: 5%;">Sr.</th>
+                          <th style="width: 10%;">Submission Date</th>
+                          <th style="width: 10%;">Payment Id</th>
+                          <th style="width: 10%;">Member Status</th>
+                          <th style="width: 10%;">Member Name</th>
+                          <th style="width: 10%;">Total Amount</th>
+                          <th style="width: 10%;">Submited By </th>	
+                          <th style="width: 10%;">Collected By </th>
+                          <th style="width: 10%;">Modified By </th>
+                          <th style="width: 10%;">City</th>	
+                          <th style="width: 10%;">Action</th>
+                      </tr>
+                      </thead>
+                      
+                      <tbody>
+                                                  <tr class="gradeA">
+                                  <td>1</td>
+                                  <td>2025-01-06 01:11:24</td>
+                                  <td>2501022149</td>
+                                  <td>renewal</td>
+                                  <td>M/S VINAYAK NURSING HOME </td>
+                                  <td>6327.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1735803878PAYMENT_RECIPT_2149.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="2149"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>2</td>
+                                  <td>2024-12-30 05:32:36</td>
+                                  <td>2412302089</td>
+                                  <td>renewal</td>
+                                  <td>M/S JANTA HOSPITAL</td>
+                                  <td>3120.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ramgarh</td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1735550102PAYMENT_RECIPT_2089.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="2089"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>3</td>
+                                  <td>2024-12-19 08:50:15</td>
+                                  <td>2412161925</td>
+                                  <td>renewal</td>
+                                  <td>M/S RAJ HOSPITAL</td>
+                                  <td>15500.00</td>
+                                  <td>Rakesh Kumar Sinha</td>
+                                  <td>Rakesh Kumar Sinha</td>
+                                  <td></td>
+                                  <td>Gaya </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1734339119PAYMENT_RECIPT_1925.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1925"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>4</td>
+                                  <td>2024-11-27 08:19:48</td>
+                                  <td>2411251617</td>
+                                  <td>renewal</td>
+                                  <td>DR J SHARAN'S PATHOLOGICAL  LABORATORY</td>
+                                  <td>25000.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1732548710PAYMENT_RECIPT_1617.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1617"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>5</td>
+                                  <td>2024-12-03 10:27:02</td>
+                                  <td>2411231600</td>
+                                  <td>renewal</td>
+                                  <td>M/S JAGANNATH LIFE CARE PVT LTD. &amp; SHREE JAGANNATH HOSPITAL &amp;  RESEARCH CENTRE</td>
+                                  <td>30161.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1732331918PAYMENT_RECIPT_1600.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1600"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>6</td>
+                                  <td>2024-12-21 06:03:33</td>
+                                  <td>2411221592</td>
+                                  <td>renewal</td>
+                                  <td>DR. AJIT SAHAY</td>
+                                  <td>26120.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1732240432PAYMENT_RECIPT_1592.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1592"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>7</td>
+                                  <td>2024-11-06 05:53:40</td>
+                                  <td>2411031334</td>
+                                  <td>renewal</td>
+                                  <td>DR ABHILASHA ANAND</td>
+                                  <td>15500.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Patna </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1730615004PAYMENT_RECIPT_1334.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1334"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>8</td>
+                                  <td>2024-10-29 10:57:22</td>
+                                  <td>2410281297</td>
+                                  <td>renewal</td>
+                                  <td>DR. PRABHAT AKHAURY</td>
+                                  <td>15500.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Gaya </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1730101532PAYMENT_RECIPT_1297.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1297"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>9</td>
+                                  <td>2024-10-25 04:59:56</td>
+                                  <td>2410241244</td>
+                                  <td>renewal</td>
+                                  <td>DR RAMESH KUMAR KHARWAR</td>
+                                  <td>2655.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1729741363PAYMENT_RECIPT_1244.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1244"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>10</td>
+                                  <td>2024-10-24 06:39:47</td>
+                                  <td>2410221225</td>
+                                  <td>renewal</td>
+                                  <td>M/S LOHARDAGA NURSING HOME</td>
+                                  <td>30000.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1729604141PAYMENT_RECIPT_1225.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1225"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>11</td>
+                                  <td>2024-10-19 10:10:12</td>
+                                  <td>2410181173</td>
+                                  <td>renewal</td>
+                                  <td>DR RITESH KUMAR SINHA</td>
+                                  <td>2655.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1729226796PAYMENT_RECIPT_1173.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="1173"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>12</td>
+                                  <td>2024-10-14 11:19:32</td>
+                                  <td>2409260940</td>
+                                  <td>renewal</td>
+                                  <td>DR DEEP ANURAG</td>
+                                  <td>2655.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Jamshedpur </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1727366420PAYMENT_RECIPT_0940.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="940"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>13</td>
+                                  <td>2024-10-14 12:01:05</td>
+                                  <td>2409230877</td>
+                                  <td>renewal</td>
+                                  <td>DR BEAUTY BANERJEE</td>
+                                  <td>1062.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1727110070PAYMENT_RECIPT_0877.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="877"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>14</td>
+                                  <td>2024-10-15 01:44:44</td>
+                                  <td>2409010620</td>
+                                  <td>renewal</td>
+                                  <td>DR MANOJ KUMAR PRASAD </td>
+                                  <td>1770.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Ranchi </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1725205172PAYMENT_RECIPT_0620.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="620"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                                      <tr class="gradeA">
+                                  <td>15</td>
+                                  <td>2024-10-03 08:27:50</td>
+                                  <td>2409010619</td>
+                                  <td>renewal</td>
+                                  <td>DR CHANDAN KUMAR</td>
+                                  <td>17700.00</td>
+                                  <td>Ashok Mishra</td>
+                                  <td>Ashok Mishra</td>
+                                  <td></td>
+                                  <td>Kolkata </td>
+                                  <td>                              
+                                                                      
+                                      <a target="_blank" href="https://prescriibe.com/docland/public/uploads/payments_recipts/1725204534PAYMENT_RECIPT_0619.pdf"><strong> | Download pdf</strong></a> |<button class="whatsapp_pdf_button" data-ref="619"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:24px"></button> 
+                                      
+                                                                        
+                                  </td>
+                                  
+                              </tr>
+                                              </tbody>
+                    </table>
+                    <div id="bottom_anchor"></div>
+                  </div>
+                  <!-- /.box-body -->
+                  
+                  <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                                          <input type="hidden" id="controller" value="member">
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.box -->
+              
+                </div>
+                <!-- /.box -->
+              </div>
+            </section></div>
+          
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  <script>
+     $(document).ready(function(){
+         $("#from_date ,#to_date").datepicker({
+          format: 'dd/mm/yyyy',
+          clickInput:true, 
+          changeMonth: true,
+          changeYear: true,
+          numberOfMonths: 1,
+          autoclose: true
+      }); 
+        $('.pagination > li > a').on('click', function(){
+           link = $(this).attr('href');  
+           $('#searchFrm').attr('action', link);
+           $('#searchFrm').submit();
+           return false; 
+        });
+        $(function() {
+              $(".display_message").hide(10000);
+         });
+     });
+     
+     $(document).ready(function(){
+          $(".whatsapp_pdf_button").on("click", function() {
+              if (confirm("Are you sure you want to send pdf on whatsapp ? ")) {
+                  var data_id = $(this).attr("data-ref");
+                  $.ajax({
+                      type: "POST",
+                      url: "https://prescriibe.com/docland/admin/member/sendPdfOnWhatsapp",
+                      data: { data_id: data_id }, // Use an object for the data
+                      success: function(response) {
+                          if(response.status == "success") {
+                              $('.success-msg').text(response.message);
+                              $(".success-msg").css("display", "block");
+                              $(".error-msg").css("display", "none");
+                          } else {
+                              $('.error-msg').text(response.message);
+                              $(".error-msg").css("display", "block");
+                              $(".success-msg").css("display", "none");
+                          }
+                          $(".display_message").delay(5000).fadeOut(500);
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                          alert('Error: ' + textStatus + ' - ' + errorThrown);
+                      }
+                  });
+              }
+          });
+          
+          $(".delete_record").on("click", function() {
+              if (confirm("Are you sure you want to delete? ")) {
+                  var data_id = $(this).attr("data-ref");
+                  $.ajax({
+                      type: "POST",
+                      url: "https://prescriibe.com/docland/admin/member/deletePaymentRecord",
+                      data: { data_id: data_id }, // Use an object for the data
+                      success: function(response) {
+                          if(response.status == "success") {
+                              window.location.reload();
+                              $('.success-msg').text(response.message);
+                              $(".success-msg").css("display", "block");
+                              $(".error-msg").css("display", "none");
+                          } else {
+                              $('.error-msg').text(response.message);
+                              $(".error-msg").css("display", "block");
+                              $(".success-msg").css("display", "none");
+                          }
+                          $(".display_message").delay(5000).fadeOut(500);
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                          alert('Error: ' + textStatus + ' - ' + errorThrown);
+                      }
+                  });
+              }
+          });
+          
+          function moveScroll(){
+              var scroll = $(window).scrollTop();
+              var anchor_top = $("#maintable").offset().top;
+              var anchor_bottom = $("#bottom_anchor").offset().top;
+              if (scroll>anchor_top && scroll<anchor_bottom) {
+              clone_table = $("#clone");
+              if(clone_table.length == 0){
+                  clone_table = $("#maintable").clone();
+                  clone_table.attr('id', 'clone');
+                  clone_table.css({position:'fixed',
+                           'pointer-events': 'none',
+                           top:0});
+                  clone_table.width($("#maintable").width());
+                  $("#table-container").append(clone_table);
+                  $("#clone").css({visibility:'hidden'});
+                  $("#clone thead").css({visibility:'visible'});
+              }
+              } else {
+              $("#clone").remove();
+              }
+          }
+          $(window).scroll(moveScroll);
+      });
+    
+  
+  </script>
+  <footer class="main-footer">
+      
+  </footer>
+  
+  
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body></html>

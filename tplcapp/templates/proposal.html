@@ -1,0 +1,396 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <style>
+  /* Important part */
+  .modal-dialog{
+      overflow-y: initial !important
+  }
+  .modal-body{
+      /*height: 80vh;*/
+      overflow-y: auto;
+  }
+  .overlay{
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.8) url("https://www.tutorialrepublic.com/examples/images/loader.gif") center no-repeat;
+  }
+  /* Turn off scrollbar when body element has the loading class */
+  body.loading{
+      overflow: hidden;   
+  }
+  /* Make spinner image visible when body element has the loading class */
+  body.loading .overlay{
+      display: block;
+  }
+  
+  .table-wrapper {
+    position: relative;
+  }
+  
+  .scrolling-area {
+    overflow-x: auto;
+  }
+  
+  .scrolling-area#top-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 16px; /* Adjust this height to match the scrollbar height */
+    z-index: 1;
+  }
+  
+  .fake-table {
+    height: 1px;
+  }
+  
+  .scrolling-area:not(#top-scroll) {
+    margin-top: 16px; /* Adjust this margin to match the height of the top scrollbar */
+  }
+  
+  </style>
+  
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 464px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Proposal <a href="https://prescriibe.com/docland/admin/proposal/addeditProposal"><button type="submit" class="btn btn-primary pull-right">Add New</button></a></h1>
+      </section>
+  
+      <section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/proposal" novalidate="novalidate">
+                  <div class="box-body">
+                      <div class="form-group col-md-3">
+                        <label>Employee</label>
+                                              
+                        <select class="form-control select2-hidden-accessible" name="employe_id" id="employe_id" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" value="">--Select--</option>
+                              
+                              <option value="3198">Ashok Mishra</option>
+                                                               <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                                     <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                                                
+                              <option value="3251">Rakesh Kumar Sinha</option>
+                                                          
+                              <option value="3272">SAKET KUMAR</option>
+                                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 280px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-employe_id-container"><span class="select2-selection__rendered" id="select2-employe_id-container"><span class="select2-selection__placeholder">Select Employe</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                      </div>
+                      
+                      <div class="form-group col-md-3">
+                          <label>From Date</label>
+                          <input type="text" class="form-control" name="from_date" id="from_date" value="" autocomplete="off">
+                      </div>
+              
+                      <div class="form-group col-md-3">
+                          <label>To Date</label>
+                          <input type="text" class="form-control" name="to_date" id="to_date" value="" autocomplete="off">
+                      </div>
+                  </div>
+                  <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                      <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/proposal';" class="btn btn-default">Reset</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      <!-- Main content -->
+      <section class="content">
+          <div class="row">
+              <div class="col-xs-12">
+                <div class="box box-primary">
+                  
+                  <div class="box-body table-responsive no-padding">
+                          <div class="scrolling-area" id="top-scroll">
+                              <div class="fake-table" style="width: 1270px;"></div>
+                          </div>
+                          <div class="scrolling-area">
+                              <table class="table table-hover table-bordered" id="tableID">
+                                  <thead>
+                                      <tr class="bal-col">
+                                          <th style="width: 5%;">Sr.</th>
+                                          <th style="width: 5%;">Date</th>
+                                          <th style="width: 5%;">Employe Name</th>
+                                          <th style="width: 5%;">Member Type</th>	
+                                          <th style="width: 10%;">Member Name</th>
+                                          
+                                          <th style="width: 10%;">Hospital</th>	
+                                          <th style="width: 10%;">Specialization</th>	
+                                          <th style="width: 10%;">City</th>
+                                          
+                                          <th style="width: 10%;">Services Type</th>	
+                                          <th style="width: 10%;">Cover</th>	
+                                          <th style="width: 5%;">Premium Amount</th>
+                                          
+                                          <th style="width: 5%;">Membership Amount</th>	
+                                          <th style="width: 5%;">Total Amount</th>
+                                          <th style="min-width:12vw !important">Action</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody> 
+                                                                      <tr class="gradeA">
+                                          <td>1</td>
+                                          <td style="width: 5%;">20/11/2024</td>
+                                          <td> <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/54306/279">Ashok Mishra</a></td>
+                                          <td style="width: 5%;">hospital</td>
+                                          <td>M/S JAGANNATH LIFE CARE PVT LTD</td>
+                                          <td>BOOTY ROAD NEAR MACHLI GHAR RAJ BHAWAN RANCHI</td>
+                                          <td>Orthopaedic Surgeon</td>
+                                          <td>Ranchi </td>
+                                          <td>Membership + Indemnity Insurance</td>
+                                          
+                                          <td>1.5 Crores yearly</td>
+                                          <td style="width: 5%;">9181</td>
+                                          <td style="width: 5%;">20980</td>
+                                          <td style="width: 5%;">30161</td>
+                                          <td style="min-width:40% !important">
+                                               <a class="btn-sm btn-success mb-3" href="https://prescriibe.com/docland/admin/leads/leads_proposal/54306/279"><strong>View</strong></a>
+                                               <a class="btn-sm btn-warning mb-3" href="https://prescriibe.com/docland/public/uploads/payment/PROP_proposal_0279.pdf?1736174799" target="_blank"><strong>Pdf</strong></a>  <a class="btn-sm btn-primary" href="https://prescriibe.com/docland/admin/leads/send_proposal_email/504/54306/279">Mail</a>
+                                               <a href="https://prescriibe.com/docland/admin/leads/send_proposal_whatsapp/504/54306/279"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" style="width:40px"></a> 
+                                                
+                                           </td>
+                                      </tr>
+                                                                      <tr class="gradeA">
+                                          <td>2</td>
+                                          <td style="width: 5%;">27/09/2024</td>
+                                          <td> <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/48384/224">Ashok Mishra</a></td>
+                                          <td style="width: 5%;">diagnostic</td>
+                                          <td>Dr Nishant Sharan</td>
+                                          <td>Near RIMS, Dr.J.Sharans Gali (Buxi Avenue) Bariatu Ranchi-834009 Jharkhand</td>
+                                          <td>Pathologist</td>
+                                          <td>Ranchi </td>
+                                          <td>Membership + Indemnity Insurance</td>
+                                          
+                                          <td>50 Lacs Yearly</td>
+                                          <td style="width: 5%;">8750</td>
+                                          <td style="width: 5%;">15000</td>
+                                          <td style="width: 5%;">23750</td>
+                                          <td style="min-width:40% !important">
+                                               <a class="btn-sm btn-success mb-3" href="https://prescriibe.com/docland/admin/leads/leads_proposal/48384/224"><strong>View</strong></a>
+                                               <a class="btn-sm btn-warning mb-3" href="https://prescriibe.com/docland/public/uploads/payment/PROP_proposal_0224.pdf?1736174799" target="_blank"><strong>Pdf</strong></a>  
+                                           </td>
+                                      </tr>
+                                                                      <tr class="gradeA">
+                                          <td>3</td>
+                                          <td style="width: 5%;">26/09/2024</td>
+                                          <td> <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/46594/223">Ashok Mishra</a></td>
+                                          <td style="width: 5%;">hospital</td>
+                                          <td>Dr Rajesh Kumar</td>
+                                          <td>Balpan advance paediatric hospital pvt ltd</td>
+                                          <td>General Physician</td>
+                                          <td>Ranchi </td>
+                                          <td>Membership + Indemnity Insurance</td>
+                                          
+                                          <td>1 Crore Yearly</td>
+                                          <td style="width: 5%;">16000</td>
+                                          <td style="width: 5%;">25000</td>
+                                          <td style="width: 5%;">41000</td>
+                                          <td style="min-width:40% !important">
+                                               <a class="btn-sm btn-success mb-3" href="https://prescriibe.com/docland/admin/leads/leads_proposal/46594/223"><strong>View</strong></a>
+                                               <a class="btn-sm btn-warning mb-3" href="https://prescriibe.com/docland/public/uploads/payment/PROP_proposal_0223.pdf?1736174799" target="_blank"><strong>Pdf</strong></a>  
+                                           </td>
+                                      </tr>
+                                                                  </tbody> 
+                            </table>
+                          </div>
+                  </div>
+                  <!-- /.box-body -->
+                  
+                  <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                                          <input type="hidden" id="controller" value="candidates">
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.box -->
+              
+                </div>
+                <!-- /.box -->
+              </div>
+            </section></div>
+          
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    
+    <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  <script>
+     $(document).ready(function(){
+        $('.pagination > li > a').on('click', function(){
+           link = $(this).attr('href');  
+           $('#searchFrm').attr('action', link);
+           $('#searchFrm').submit();
+           return false; 
+        });
+     });
+     
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> 
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  <script>
+  $(document).ready(function(){
+      $("#from_date ,#to_date").datepicker({
+          format: 'dd/mm/yyyy',
+          clickInput:true, 
+          changeMonth: true,
+          changeYear: true,
+          numberOfMonths: 1,
+          autoclose: true
+      }); 
+  });
+  </script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+        var topScroll = document.getElementById('top-scroll');
+        var realTable = topScroll.nextElementSibling;
+      
+        topScroll.onscroll = function() {
+          realTable.scrollLeft = topScroll.scrollLeft;
+        };
+      
+        realTable.onscroll = function() {
+          topScroll.scrollLeft = realTable.scrollLeft;
+        };
+      
+        // Adjust the width of the fake table to match the real table
+        var fakeTable = topScroll.querySelector('.fake-table');
+        var realTableWidth = realTable.querySelector('table').offsetWidth;
+        fakeTable.style.width = realTableWidth + 'px';
+      });
+  $(document).ready(function() {
+      
+      $.validator.addMethod("greaterThanDate", function(value, max, min){
+          return (value == '' || $(min).datepicker("getDate") < $(max).datepicker("getDate"));
+      });
+      $(function() {
+          $("form[name='search_data_view']").validate({
+              rules: {
+                  from_date: {
+                  },
+                  to_date: {
+                  //greaterThanDate:"#from_date"
+                  }
+              },
+              messages: {
+                  from_date: {
+                  },
+                  to_date: {
+                  //greaterThanDate:"Your End Date must be greater than From Date"
+                  }
+              },
+              submitHandler: function(form) {
+                  form.submit();
+              }
+          });
+      });	
+      
+  });
+  
+  $("#employe_id").select2({
+      placeholder: "Select Employe"
+  });
+  
+  </script>
+  <footer class="main-footer">
+      
+  </footer>
+  
+  
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body></html>

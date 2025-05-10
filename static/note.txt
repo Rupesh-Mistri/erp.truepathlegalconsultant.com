@@ -1,0 +1,151 @@
+alter table tbl_doctor_registration add COLUMN  tenure_of_membership  varchar(200);
+alter table tbl_hospital_registration add COLUMN  tenure_of_membership  varchar(200);
+alter table tbl_diagnostic_center_reg add COLUMN  tenure_of_membership  varchar(200);
+
+alter table tbl_doctor_registration add COLUMN  tenure_of_indemnity  varchar(200);
+alter table tbl_hospital_registration add COLUMN  tenure_of_indemnity  varchar(200);
+alter table tbl_diagnostic_center_reg add COLUMN  tenure_of_indemnity  varchar(200);
+
+alter table tbl_payment_form_details add COLUMN  membership_tenure  varchar(200);
+alter table tbl_payment_form_details add COLUMN  indemnity_amount  varchar(200);
+alter table tbl_payment_form_details add COLUMN  indemnity_tenure  varchar(200);
+
+
+ALTER TABLE tbl_doctor_registration 
+MODIFY COLUMN submission_date_time DATE;
+
+ALTER TABLE tbl_hospital_registration 
+MODIFY COLUMN submission_date_time DATE;
+
+ALTER TABLE tbl_diagnostic_center_reg 
+MODIFY COLUMN submission_date_time DATE;
+
+---
+
+ALTER TABLE tbl_doctor_registration 
+MODIFY COLUMN submission_date_time DATETIME;
+
+ALTER TABLE tbl_hospital_registration 
+MODIFY COLUMN submission_date_time DATETIME;
+
+ALTER TABLE tbl_diagnostic_center_reg 
+MODIFY COLUMN submission_date_time DATETIME;
+
+
+SELECT CONCAT(
+    'INSERT INTO tbl_user (id, email, password, created_at, name) VALUES (',
+    id, ', ',
+    QUOTE(email), ', ',
+    QUOTE(password), ', ',
+    QUOTE(created_at), ', ',
+    IFNULL(QUOTE(name), 'NULL'),
+    ');'
+) AS insert_statement
+FROM tbl_user;
+
+
+alter table tbl_leads add COLUMN  hospital_name  varchar(200);
+
+alter table tbl_leads add COLUMN  diagnostic_name  varchar(200);
+
+
+
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN alternate_mobile_number VARCHAR(10) NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN legal_claims VARCHAR(255) NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN practice_duration INT NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN avg_patients_per_day INT NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN annual_income INT NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN payment_details VARCHAR(255) NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN registration_certificate BLOB NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN selfie VARCHAR(255) NULL;
+ALTER TABLE tbl_doctor_registration MODIFY COLUMN signature VARCHAR(255) NULL;
+
+
+
+ALTER TABLE tbl_hospital_registration MODIFY COLUMN alternate_mobile_number VARCHAR(10) NULL;
+ALTER TABLE tbl_hospital_registration MODIFY COLUMN registration_certificate VARCHAR(255) NULL;
+ALTER TABLE tbl_hospital_registration MODIFY COLUMN selfie VARCHAR(255) NULL;
+ALTER TABLE tbl_hospital_registration MODIFY COLUMN signature VARCHAR(255) NULL;
+
+
+
+ALTER TABLE tbl_diagnostic_center_reg MODIFY COLUMN alternate_mobile_number VARCHAR(10) NULL;
+ALTER TABLE tbl_diagnostic_center_reg MODIFY COLUMN registration_certificate VARCHAR(255) NULL;
+ALTER TABLE tbl_diagnostic_center_reg MODIFY COLUMN selfie VARCHAR(255) NULL;
+ALTER TABLE tbl_diagnostic_center_reg MODIFY COLUMN signature VARCHAR(255) NULL;
+
+
+
+--------------18jan-------------
+-- Table for ProposalDetailsModel
+CREATE TABLE tbl_proposal_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    mobile_no VARCHAR(10) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status INT DEFAULT 1
+);
+
+-- Table for ProposalExtraDetailsModel
+CREATE TABLE tbl_proposal_extra_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    member_type VARCHAR(50) NOT NULL,
+    member_name VARCHAR(255) NOT NULL,
+    hospital_name VARCHAR(255) NOT NULL,
+    specialization VARCHAR(255) NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    special_mentions TEXT NULL
+);
+
+-- Table for ProposalMultiRecordsModel
+CREATE TABLE tbl_proposal_multi_record (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    services_type VARCHAR(50) NOT NULL,
+    cover VARCHAR(50) NOT NULL,
+    premium_amount DECIMAL(10, 2) NOT NULL,
+    membership_amount DECIMAL(10, 2) NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    membership_tenure VARCHAR(50) NOT NULL,
+    policy_tenure VARCHAR(50) NOT NULL
+);
+
+
+-----------------
+CREATE TABLE tbl_proposal_extra_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    member_type VARCHAR(50) NOT NULL,
+    member_name VARCHAR(255) NOT NULL,
+    hospital_name VARCHAR(255) NOT NULL,
+    specialization VARCHAR(255) NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    special_mentions TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status INT DEFAULT 1
+);
+
+
+--
+CREATE TABLE tbl_proposal_multi_record (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    proposal_details_id INT NOT NULL,
+    services_type VARCHAR(50) NOT NULL,
+    cover VARCHAR(50) NOT NULL,
+    premium_amount DECIMAL(10, 2) NOT NULL,
+    membership_amount DECIMAL(10, 2) NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    membership_tenure VARCHAR(50) NOT NULL,
+    policy_tenure VARCHAR(50) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status INT DEFAULT 1,
+    FOREIGN KEY (proposal_details_id) REFERENCES tbl_proposal_extra_details(id) ON DELETE CASCADE
+);
+
+
+----------------------------------------
+alter table tbl_proposal_extra_details add COLUMN  proposal_no  varchar(200);

@@ -1,0 +1,80 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+  
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        <section class="content-header">
+          <h1>
+            <small>Doctor Registration - Preview</small>
+          </h1>
+        </section>
+        
+        <section class="mt-30">
+          <div class="div-width">
+            <div class="container">
+              
+              <form class="m-3" method="post" id="preview-form">
+                {% csrf_token %}
+                <div class="row">
+                  {% for field in form %}
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <strong><label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}</label></strong>
+                    
+                    <!-- Render the form field in read-only mode -->
+                    <div class="form-control bg-light text-dark">
+                      {{ field.value|default_if_none:"Not provided" }}
+                    </div>
+                    
+                    {% if field.name == 'doctor_name' %}
+                    <h2>Residence Address</h2>
+                    {% endif %}
+                    
+                    {% if field.name == 'pin_code' %}
+                    <h2>Hospital / Clinic Address</h2>
+                    {% endif %}
+                    
+                    {% if field.name == 'selfie' %}
+                    <div class="col-12 form-group col-lg-12 mb-3 border border-primary">
+                      <h4 class="mb-3">Declaration</h4>
+                      <div class="row g-3">
+                        <div class="col-12 form-group col-lg-12 mb-3">
+                          <label>
+                            I agree and hereby declare that the above statement and particulars are true and I have not suppressed or mis-stated any material and that at the present time I have no reason to anticipate any claim being brought against me for any negligence, etc., error, or omission on my part. I agree that this negligence, error, or omission or misconduct is committed prior to the commencement of this insurance. I have also understood the terms and conditions of membership of {{ COMPANY_NAME }}.
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    
+                  </div>
+                  {% endfor %}
+                </div>
+            
+                <!-- Edit and Confirm buttons -->
+                <div class="text-center mt-4">
+                  <button type="submit" name="edit" class="btn btn-secondary btn-lg px-5">Edit</button>
+                  <button type="submit" name="confirm" class="btn btn-primary btn-lg px-5">Confirm and Submit</button>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+        </section>
+        
+      </div> <!-- .content-wrapper -->
+  
+      <footer class="main-footer">
+        <!-- Footer content can be added here -->
+      </footer>
+  
+    </div> <!-- .wrapper -->
+  
+    {% include "include_footerjs.html" %}
+  
+  </body>
+</html>

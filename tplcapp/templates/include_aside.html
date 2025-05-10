@@ -1,0 +1,90 @@
+<aside class="main-sidebar" style="max-height: calc(100vh - 75px); overflow: auto; background-color: #333;">
+  <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+          {% for menu in request.session.menudict_by_user %}
+          <li class="treeview" id="id_{{ menu.title|slugify }}">
+              <a href="{{ menu.url|default:'javascript:void(0)' }}" onclick="func_open_parent_menu('{{ menu.title|slugify }}')">
+                  <i class="{{ menu.icon }}"></i>          
+                  <span>{{ menu.title }}</span>
+                  {% if menu.submenu %}
+                  <span class="pull-right-container"><i class="fa fa-angle-down pull-right"></i></span>
+                  {% endif %}
+              </a>
+              {% if menu.submenu %}
+              <ul class="treeview-menu">
+                  {% for submenu in menu.submenu %}
+                  <li id="id_{{ submenu.title|slugify }}" class="{% if request.path == submenu.url %} active {% endif %}">
+                      <a href="{{ submenu.url }}" onclick="func_open_submenu('{{ submenu.title|slugify }}', '{{ menu.title|slugify }}')">
+                          {{ submenu.title }}
+                      </a>
+                  </li>
+                  {% endfor %}
+              </ul>
+              {% endif %}
+          </li>	
+          {% endfor %}
+      </ul>
+  </section>
+</aside>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      let openMenu = sessionStorage.getItem("openMenu");
+      let activeSubmenu = sessionStorage.getItem("activeSubmenu");
+  
+      // Open the parent menu if stored in sessionStorage
+      if (openMenu) {
+          let menuItem = document.getElementById("id_" + openMenu);
+          if (menuItem) {
+              menuItem.classList.add("menu-open", "active"); // Keeps parent open & highlights it
+              let submenu = menuItem.querySelector(".treeview-menu");
+              
+              let menuLink = menuItem.querySelector("a");
+              if (menuLink) {
+                  menuLink.style.color = "yellow"; // Change parent menu text color
+              }
+              if (submenu) {
+                  submenu.style.display = "block";  // Ensure submenu remains open
+  
+                  // Change parent menu text color
+
+              }
+          }
+      }
+  
+      // Highlight the active submenu item
+      if (activeSubmenu) {
+          let submenuItem = document.getElementById("id_" + activeSubmenu);
+          if (submenuItem) {
+              submenuItem.classList.add("active"); // Apply active class
+  
+              // Ensure the submenu link inside has color applied
+              let submenuLink = submenuItem.querySelector("a");
+              if (submenuLink) {
+                  submenuLink.style.color = "#00dcfa"; // Active submenu link color
+                  //submenuLink.style.backgroundColor = "green"; // Background highlight
+              }
+          }
+      }
+  });
+  
+  // Function to store parent menu in sessionStorage
+  function func_open_parent_menu(menuId) {
+    if (menuId == 'logout'){
+      sessionStorage.clear(); // Clears al
+      //alert('hello')
+    }
+      else{
+        //alert('hellowe')
+        sessionStorage.setItem("openMenu", menuId);
+      }
+  }
+  
+  // Function to store submenu and parent menu in sessionStorage
+  function func_open_submenu(submenuId, menuId) {
+      sessionStorage.setItem("openMenu", menuId);
+      sessionStorage.setItem("activeSubmenu", submenuId);
+  }
+  </script>
+  

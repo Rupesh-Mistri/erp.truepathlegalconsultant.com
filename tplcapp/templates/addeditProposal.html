@@ -1,0 +1,339 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin :: Add Proposal</title>
+      <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/docland/assets/admin/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="/docland/assets/admin/plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="/docland/assets/css/adminstyle.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/docland/assets/admin/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="/docland/assets/admin/dist/css/skins/_all-skins.min.css">
+    
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/docland/assets/admin/plugins/datepicker/datepicker3.css">
+    <!-- jQuery 2.2.3 -->
+    <script src="/docland/assets/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  
+        <script src="/docland/assets/js/jquery.signature.min.js" type="text/javascript"></script>
+  <link type="text/css" href="/docland/assets/css/jquery.signature.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"> 
+    
+  
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="https://prescriibe.com/docland/admin/home" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><img src="https://prescriibe.com/docland/application/views/admin/img/logo_light11111.png" height="38px" width="auto"></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><img src="https://prescriibe.com/docland/application/views/admin/img/logo_light.png" height="38px" width="auto"></span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+          
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <a href="#" class="nav-u" style="color:#fff; float:right; font-size:16px; padding-top:13px;padding-right:10px;">
+          <b>Welcome:</b> {{request.session.user_name}}     </a>
+  
+      </nav>
+    </header>
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+    <aside class="main-sidebar" style="max-height: calc(100vh - 75px);overflow: auto; background-color: #333;">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar" style="height: auto;">
+        <ul class="sidebar-menu">
+  
+      <li class="treeview active">
+            <a href="#">
+              <i class="fa fa-file-text-o"></i>            <!--<i class="fa fa-angle-double-right"></i>-->
+     
+               <span>Leads</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class=""><a href="https://prescriibe.com/docland/admin/leads">
+              <!--<i class="fa fa-list"></i>-->Leads</a></li>
+                  <li class=""><a href="https://prescriibe.com/docland/admin/appointment">
+              <!--<i class="fa fa-list"></i>-->Appointment</a></li>
+                  <li class=""><a href="https://prescriibe.com/docland/admin/leads_report">
+              <!--<i class="fa fa-list"></i>-->Reports</a></li>
+                  <li class=""><a href="https://prescriibe.com/docland/admin/attendance_report">
+              <!--<i class="fa fa-list"></i>-->Location Reports</a></li>
+                  <li class="active"><a href="https://prescriibe.com/docland/admin/proposal">
+              <!--<i class="fa fa-list"></i>-->Proposal</a></li>
+          </ul></li>	<li class="treeview">
+            <a href="#">
+              <i class="fa fa-user"></i>            <!--<i class="fa fa-angle-double-right"></i>-->
+     
+               <span>Member Registration</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class=""><a href="https://prescriibe.com/docland/admin/member/payment_form_list">
+              <!--<i class="fa fa-list"></i>-->Payment Form Details</a></li>
+                  <li class=""><a href="https://prescriibe.com/docland/admin/member/ShowMIS">
+              <!--<i class="fa fa-list"></i>-->MIS Report</a></li>
+                  <li class=""><a href="https://prescriibe.com/docland/admin/member/businessReport">
+              <!--<i class="fa fa-list"></i>-->Business Report</a></li>
+          </ul></li>	<li class="treeview">
+            <a href="#">
+              <i class="fa fa-line-chart"></i>            <!--<i class="fa fa-angle-double-right"></i>-->
+     
+               <span>Case Management</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class=""><a href="https://prescriibe.com/docland/admin/advocate">
+              <!--<i class="fa fa-list"></i>-->Advocate</a></li>
+                  <li class=""><a href="https://prescriibe.com/docland/admin/advocate/case_detail">
+              <!--<i class="fa fa-list"></i>-->Case Detail</a></li>
+          </ul></li>	<li class="treeview">
+            <a href="#">
+              <i class="fa fa-user-md"></i>            <!--<i class="fa fa-angle-double-right"></i>-->
+     
+               <span>Query</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class=""><a href="https://prescriibe.com/docland/admin/query">
+              <!--<i class="fa fa-list"></i>-->Query</a></li>
+          </ul></li>
+  
+          <li class="treeview">
+           
+                <a href="#">
+           
+              <i class="fa fa-comments text-red"></i> <span>Contact Center</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-down pull-right"></i>
+                  </span>
+            </a>
+            
+             <ul class="treeview-menu">
+                 <li class=""><a href="https://prescriibe.com/docland/admin/contact">Whatsapp</a></li>
+                 <li class=""><a href="">SMS</a></li>
+                 <li class=""><a href="">Email</a></li>
+                 <li class=""><a href="">Calendar/Tasks</a></li>
+                 <li class=""><a href="">Contact</a></li>
+                 <li class=""><a href="">Create tickets</a></li>
+                 <li class=""><a href="">Feedback</a></li>
+             </ul>
+          </li>
+          
+              <li class="treeview">
+            
+                <a href="https://prescriibe.com/docland/admin/logout">
+              
+              <i class="fa fa-power-off text-red"></i> <span>Logout</span>
+            </a>
+          </li>
+          
+        </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+    
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 464px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header ">
+        <h1>Add Proposal</h1>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+  
+        <!-- general form elements disabled -->
+            <div class="box box-primary">
+              <!-- /.box-header -->
+              <form enctype="multipart/form-data" method="post" class="stdform" id="newsFrm" name="add_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/proposal/saveProposal" data-toggle="validator" novalidate="true">
+              <div class="box-body ">
+                  
+                  <div class="form-group col-md-6">
+                    <label>Name*</label>
+                    <input type="text" class="form-control " name="name" id="name" placeholder="Name" value="" required="">
+                  </div>
+                  
+                   <div class="form-group col-md-6">
+                    <label>Email*</label>
+                    <input type="text" class="form-control " name="email" id="email" autocomplete="off" placeholder="Email" value="" required="">
+                  </div>
+                  
+                   <div class="form-group col-md-6">
+                    <label>Mobile*</label>
+                    <input type="text" class="form-control " name="mobile" id="mobile" autocomplete="off" placeholder="Mobile No" value="" required="">
+                  </div>
+                            
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+              <button type="submit" class="btn btn-primary disabled">Submit</button>
+                <button type="button" class="btn btn-default" onclick="window.location='https://prescriibe.com/docland/admin/proposal';">Cancel</button>
+                
+                <input type="hidden" id="id" name="id" value="0">
+              </div>
+              </form>
+              
+            </div>
+            <!-- /.box -->
+  
+      </section>
+      <!-- /.content -->
+  
+  
+    </div>
+    <!-- /.content-wrapper -->
+  <script src="/docland/assets/admin/plugins/validator.js"></script>
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script>
+  $(document).ready(function(){
+     
+        $("form[name='add_data_view']").validate({
+              // Specify validation rules
+              rules: {
+                 email: {
+                  required:true,
+                  email:true,
+                  remote:"https://prescriibe.com/docland/admin/proposal/email_exists/0"
+                }
+              },
+              // Specify validation error messages
+              messages: {
+                  
+               email: {
+                  required:"this field required*",
+                  email:"enter valid email*",
+                  remote:"Email Name already in database.*"
+                }
+                
+              },
+              
+              submitHandler: function(form) {
+                form.submit();
+              }
+            });
+  
+     });
+  </script>
+  <footer class="main-footer">
+      
+  </footer>
+  
+  </div>
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  
+  </body></html>

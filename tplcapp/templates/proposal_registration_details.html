@@ -1,0 +1,544 @@
+{% load static %}
+
+<html>
+
+<head>
+
+    {% include "include_head.html" %}
+
+
+    <style>
+
+        .header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+        .header img {
+
+            height: 60px;
+
+        }
+
+        .title {
+
+            text-align: center;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+
+        }
+
+        .section {
+
+            margin-bottom: 20px;
+
+        }
+
+        .section-title {
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+        .info-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+        .info-table td {
+
+            padding: 8px;
+
+            vertical-align: top;
+
+        }
+
+        .info-table td:first-child {
+
+            font-weight: bold;
+
+            width: 30%;
+
+        }
+
+        .info-table td:nth-child(2) {
+
+            width: 70%;
+
+        }
+
+        #id_download_pdf {
+
+            margin: 0 auto;
+
+            padding: 20px;
+
+            border: 2px solid #ccc;
+
+            border-radius: 10px;
+
+            max-width: 800px;
+
+            background-color: #f9f9f9;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        @media print {
+
+            body {
+
+                margin: 0;
+
+                padding: 0;
+
+            }
+
+            #id_download_pdf {
+
+                display: block;
+
+                width: 100%;
+
+                max-width: 210mm;
+
+                margin: 0 auto;
+
+                padding: 0;
+
+                background: white;
+
+                overflow: hidden;
+
+            }
+
+
+
+            /* Page styling */
+
+            #id_download_pdf > div {
+
+                page-break-before: always; /* Start each div on a new page */
+
+                width: 100%; /* A4 width */
+
+                height: 297mm; /* A4 height */
+
+                margin: 0;
+
+                padding: 0;
+
+            }
+
+
+
+            #id_download_pdf > div:first-child {
+
+                page-break-before: auto; /* Don't apply page break before the first div */
+
+            }
+
+
+
+            #id_download_pdf > div:last-child {
+
+                page-break-after: auto; /* Don't force a break after the last div */
+
+            }
+
+
+
+            .page-content {
+
+                max-width: 210mm; /* Ensure content is within A4 */
+
+                margin: 0;
+
+                padding: 10px;
+
+            }
+
+
+
+            /* Optional: Remove unnecessary items from print */
+
+            .no-print {
+
+                display: none;
+
+            }
+
+        }
+
+        
+
+    </style>
+
+</head>
+
+<body class="skin-blue-light sidebar-mini">
+
+    <div class="wrapper">
+
+        {% include "include_header.html" %}
+
+        {% include "include_aside.html" %}
+
+
+
+        <!-- Content Wrapper -->
+
+        <div class="content-wrapper" style="min-height: 370px;">
+
+            <div id="id_download_pdf"> 
+
+                <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+
+                    <div   id ="child_div1" style="width: 100%; max-width: 800px;">
+
+                        <img src="{% static 'images/proposal_images/p1.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+            
+
+                    <div  id ="child_div2" style="width: 100%; max-width: 800px; ">
+
+                        <!-- Proposal Info -->
+
+                        <div style="margin-bottom: 20px;">
+
+                            <p style="font-size: 20px; font-weight: bold;">PROPOSAL NO. {{details_data.proposal_no}}</p>
+
+                            <p>{{details_data.member_name}}</p>
+
+                            <p>{{details_data.hospital_name}}</p>
+
+                            <p>{{details_data.city}}</p>
+
+                            <p>{{details_data.mobile}}</p>
+
+                        </div>
+
+                    
+
+                        <!-- Table -->
+
+                        <table class="table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+
+                            <tr>
+
+                                <th style="border: 1px solid #ddd; padding: 8px; font-weight: bold; text-align: left;">ID</th>
+
+                                <th style="border: 1px solid #ddd; padding: 8px; font-weight: bold; text-align: left;">SERVICE TYPE</th>
+
+                                <th style="border: 1px solid #ddd; padding: 8px; font-weight: bold; text-align: left;">COVER</th>
+
+                                <th style="border: 1px solid #ddd; padding: 8px; font-weight: bold; text-align: left;">MEMBERSHIP TENURE</th>
+
+                                <th style="border: 1px solid #ddd; padding: 8px; font-weight: bold; text-align: left;">POLICY TENURE</th>
+
+                                <th style="border: 1px solid #ddd; padding: 8px; font-weight: bold; text-align: left;">AMOUNT (INC. OF GST @18%)</th>
+
+                            </tr>
+
+                            {% for data in multiple_details_data %}
+
+                            <tr>
+
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{forloop.counter}}</td>
+
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{data.services_type}}</td>
+
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{data.cover}}</td>
+
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{data.membership_tenure}}</td>
+
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{data.policy_tenure}}</td>
+
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{data.total_amount}}</td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </table>
+
+                    
+
+                        <!-- Special Mentions & Notes -->
+
+                        <div style="margin-top: 30px;">
+
+                            <p style="font-size: 18px; font-weight: bold;">SPECIAL MENTIONS:</p>
+
+                            {% comment %} <p>ALL CASE COVER PREVIOUS AND CURRENT MEDICO AND NON-MEDICO ALSO</p> {% endcomment %}
+                            <p>{{details_data.special_mentions|linebreaks}}</p>
+                            
+
+                            <p style="font-size: 18px; font-weight: bold;">NOTE:</p>
+
+                            <ul style="padding-left: 20px;">
+
+                                <li>All the above prices are inclusive of all taxes/duties/government levies. Taxes/Duties/Government Levies, as per prevailing government rules, and charged as applicable to the customer account.</li>
+
+                                <li>The price shared is exclusive and confidential; it should not be shared or communicated with any third party.</li>
+
+                                <li>The Quote would be valid up to 10 days from the date of proposal.</li>
+
+                                <li>That any payment made through cash/self-cheque is strictly banned, and the Company shall not be responsible for it.</li>
+
+                            </ul>
+
+                    
+
+                            <p style="font-size: 18px; font-weight: bold;">Prepared by:</p>
+
+                            <p style="font-size: 18px; font-weight: bold;">Ashok Mishra</p>
+
+                            <p style="font-size: 18px; font-weight: bold;">National Head</p>
+
+                            <p style="font-size: 18px; font-weight: bold;">Mob : 7763809005</p>
+
+                        </div>
+
+                    </div>
+
+                    
+
+            
+
+                    <div id ="child_div3"  style="width: 100%; max-width: 800px;">
+
+                        <img src="{% static 'images/proposal_images/p2.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+                    <div id ="child_div4"  style="width: 100%; max-width: 800px;">
+
+                        <img src="{% static 'images/proposal_images/p3.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+                    <div  id ="child_div5"  style="width: 100%; max-width: 800px;">
+
+                        <img src="{% static 'images/proposal_images/p4.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+                    <div id ="child_div6"  style="width: 100%; max-width: 800px;">
+
+                        <img src="{% static 'images/proposal_images/p5.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+                    <div id ="child_div6"  style="width: 100%; max-width: 800px;">
+
+                        <img src="{% static 'images/proposal_images/p6.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+                    <div id ="child_div7"  style="width: 100%; max-width: 800px; ">
+
+                        <img src="{% static 'images/proposal_images/p7.png' %}" alt="image" style="width: 100%;">
+
+                        
+
+                    </div>
+
+                    <div  id ="child_div8"  style="width: 100%; max-width: 800px;">
+
+                        
+
+                        <img src="{% static 'images/proposal_images/p8.png' %}" alt="image" style="width: 100%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+
+
+
+            <div class="button-container text-center mt-4 mb-2">
+
+                {% comment %} <button onclick="printDiv('id_download_pdf')" class="btn btn-primary">Print</button> {% endcomment %}
+
+                <button onclick="downloadAsPDF('id_download_pdf')" class="btn btn-success">Download PDF</button>
+
+            </div>
+
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+            <script>
+
+                function downloadAsPDF(divID) {
+
+                    const { jsPDF } = window.jspdf;
+
+                
+
+                    const pdf = new jsPDF({
+
+                        orientation: 'portrait',
+
+                        unit: 'mm',
+
+                        format: 'a4',
+
+                    });
+
+                
+
+                    const divElements = [];
+
+                    for (let i = 1; i <= 8; i++) {
+
+                        const div = document.getElementById(`child_div${i}`);
+
+                        if (div) {
+
+                            divElements.push(div);
+
+                        }
+
+                    }
+
+                
+
+                    const processDivs = (index) => {
+
+                        if (index >= divElements.length) {
+
+                            pdf.save('proposal_registration.pdf');
+
+                            return;
+
+                        }
+
+                
+
+                        html2canvas(divElements[index], { scale: 1, useCORS: true })
+
+                            .then((canvas) => {
+
+                                const imgData = canvas.toDataURL('image/webp');
+
+                                const pageHeight = 297; // A4 page height in mm
+
+                                const pageWidth = 210;  // A4 page width in mm
+
+                
+
+                                // Calculate image height based on the canvas width and A4 page width
+
+                                const imgHeight = (canvas.height * pageWidth) / canvas.width;
+
+                
+
+                                // Apply padding (10mm on all sides)
+
+                                const padding = 10;
+
+                                const imgX = padding; // Left padding
+
+                                const imgY = padding; // Top padding
+
+                                const imgWidth = pageWidth - 2 * padding; // Width after padding
+
+                                const imgHeightWithPadding = imgHeight > (pageHeight - 2 * padding) ? (pageHeight - 2 * padding) : imgHeight;
+                
+
+                                // Add a new page if it's not the first div
+
+                                if (index > 0) {
+
+                                    pdf.addPage();
+
+                                }
+
+                
+
+                                // Add image to the PDF with padding
+
+                                pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth, imgHeightWithPadding);
+
+                                processDivs(index + 1);
+
+                            });
+
+                    };
+
+                
+
+                    processDivs(0);
+
+                }
+
+                
+
+
+
+                function printDiv(divID) {
+
+                    const idCard = document.getElementById(divID);
+
+                    const originalContents = document.body.innerHTML;
+
+                    
+
+                    // Temporarily hide other elements
+
+                    document.body.innerHTML = idCard.innerHTML;
+
+                    window.print();
+
+                
+
+                    // Restore the original content after printing
+
+                    document.body.innerHTML = originalContents;
+
+                }
+
+                            </script>
+
+
+
+        </div>
+
+
+
+        {% include "include_footerjs.html" %}
+
+    </div>
+
+</body>
+
+</html>
+

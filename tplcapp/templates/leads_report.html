@@ -1,0 +1,215 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 271px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Lead Report</h1>
+      </section>
+      <section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/leads_report">
+                <div class="box-body">
+              
+                      <div class="form-group col-md-4">
+      
+                    <label>Employee</label>
+      
+                                      <select class="form-control select2-hidden-accessible" name="employe_id" id="employe_id" tabindex="-1" aria-hidden="true">
+                        <option selected="selected" value="">--Select--</option>
+                          
+                          <option value="3198">Ashok Mishra</option>
+                                                       <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                         <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                                    
+                          <option value="3251">Rakesh Kumar Sinha</option>
+                                                  
+                          <option value="3272">SAKET KUMAR</option>
+                                                  
+                      </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 388px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-employe_id-container"><span class="select2-selection__rendered" id="select2-employe_id-container"><span class="select2-selection__placeholder">Select Employe</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                   
+                   <div class="form-group col-md-4">
+                  <label>From Date</label>
+                  <input type="text" class="form-control" name="from_date" id="from_date" value="" autocomplete="off"></div>
+              
+               <div class="form-group col-md-4">
+               <label>To Date</label>
+              <input type="text" class="form-control" name="to_date" id="to_date" value="" autocomplete="off"></div>
+                  
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                  <button type="button" onclick="" class="btn btn-default">Reset</button>
+                  
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content" style="min-height:0px;margin:0px 15px 10px 15px;!important;background:#FFF">
+      
+       
+            <div class="box box-primary">
+                 
+            
+          <div class="row" style="padding:10px">
+              
+              <div class="col-md-4" style="padding:10px">
+                  <div class="card  bg-primary">
+                      <div class="card-body" style="padding:10px">
+                          <h3 class="card-title">New Leads</h3>
+                          <p class="card-text">13561</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-4 " style="padding:10px">
+                  <div class="card bg-danger">
+                      <div class="card-body" style="padding:10px">
+                          <h3 class="card-title">Follow Up Leads</h3>
+                          <p class="card-text">824</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-4 " style="padding:10px">
+                  <div class="card bg-success">
+                      <div class="card-body" style="padding:10px">
+                          <h3 class="card-title">Total</h3>
+                          <p class="card-text">14385</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      
+            </div>
+            
+      </section>
+      </div>
+    <!-- /.content-wrapper -->
+  <script src="/docland/assets/admin/plugins/validator.js"></script>
+  <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  <script>
+  $("#employe_id").select2({
+      placeholder: "Select Employe"
+  });
+  </script>
+          
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  <script>
+  $(document).ready(function(){
+      $("#from_date ,#to_date").datepicker({
+          format: 'dd-mm-yyyy',
+          clickInput:true, 
+          changeMonth: true,
+          changeYear: true,
+          numberOfMonths: 1,
+          autoclose: true
+      }); 
+  });
+  </script>
+  
+  
+    
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <script>
+      $(document).ready( function () {
+          $('#myTable').DataTable();
+      } );
+  </script><footer class="main-footer">
+      
+  </footer>
+  
+  </div>
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body></html>

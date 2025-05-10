@@ -1,0 +1,631 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+  
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        <section class="content-header">
+          <h1>
+            <small>Add Payment Form Details</span></small>
+          </h1>
+        </section>
+        
+        <section class="mt-30">
+          <div class="div-width">
+            <div class="container">
+              
+              {% comment %} <form class="m-3" method="post" id="iform" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  {% for field in form %}
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <div class="form-text text-muted">{{ field.help_text }}</div>
+                    {% endif %}
+                    
+                    <!-- Display errors for this field -->
+                    {% if field.errors %}
+                    <div class="text-danger mt-1">
+                      {% for error in field.errors %}
+                      <p class="mb-0">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="text-center mt-4">
+                  
+                  <button class="btn btn-primary btn-lg px-5 ">Submit</button>
+                </div>
+              </form> {% endcomment %}
+              <form class="m-3" method="post" id="iform" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-12 form-group col-lg-12 mb-3">
+                      <strong> <label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}  {% if field.field.required %}<i style="color:red"> *</i>{% else %}<span style="color:red"> (Optional ,You can leave it blank) {% endif %} </span></label></strong>
+                        
+                        <!-- Render the form field -->
+                        {{ field }}
+                        
+                        {% if field.name == 'speciality' %}
+                        <h2>Communication Address <h2>
+                        {% endif %}
+                        {% if field.name == 'email' %}
+                        <hr>
+                        {% endif %}
+
+                        {% if field.name == 'total_amount' %}
+                        <h2>For KYC <h2>
+                        {% endif %}
+
+                        {% if field.name == 'additional_member_id' %}
+                        <h2>Multiple Records <h2>
+                            <table id="paymentTable"  border="2">
+                                <thead>
+                                  <tr>
+                                    <th>Payment mode <i style="color:red"> *</i></th>
+                                    <th>Add Transaction / Cheque date <i style="color:red"> *</i></th>
+                                    <th>Add Transaction Ref no. / Cheque no. <i style="color:red"> *</i></th>
+                                    <th>Add Transaction amount / Cheque amount <i style="color:red"> *</i></th>
+                                    <th>Bank Name <i style="color:red"> *</i></th>
+                                    <th>Payment Type <i style="color:red"> *</i></th>
+                                    <th><a href="javascript:void(0);" class="btn btn-success" onclick="addRow()">Add</a></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% if mul_table_data %}
+                                      {% for row in mul_table_data %}
+                                      <tr>
+                                          <td>
+                                              <select name="mul_tbl_payment_mode{{ forloop.counter }}" required="true">
+                                                  <option value=""> Please Select </option>
+                                                  <option value="Cheque" {% if row.payment_mode == "Cheque" %}selected{% endif %}>Cheque</option>
+                                                  <option value="Cash" {% if row.payment_mode == "Cash" %}selected{% endif %}>Cash</option>
+                                                  <option value="NEFT" {% if row.payment_mode == "NEFT" %}selected{% endif %}>NEFT</option>
+                                                  <option value="IMPS" {% if row.payment_mode == "IMPS" %}selected{% endif %}>IMPS</option>
+                                                  <option value="UPI" {% if row.payment_mode == "UPI" %}selected{% endif %}>UPI</option>
+                                                  <option value="CC avenue" {% if row.payment_mode == "CC avenue" %}selected{% endif %}>CC avenue</option>
+                                                  <option value="Razorpay" {% if row.payment_mode == "Razorpay" %}selected{% endif %}>Razorpay</option>
+                                                  <option value="Paytm" {% if row.payment_mode == "Paytm" %}selected{% endif %}>Paytm</option>
+                                                  <option value="Phonepe" {% if row.payment_mode == "Phonepe" %}selected{% endif %}>Phonepe</option>
+                                                  <option value="Google Pay" {% if row.payment_mode == "Google Pay" %}selected{% endif %}>Google Pay</option>
+                                              </select>
+                                          </td>
+                                          <td>
+                                              <input type="date" name="mul_tbl_trasaction_date{{ forloop.counter }}" value="{{ row.transaction_date }}" required="true">
+                                          </td>
+                                          <td>
+                                              <input type="text" name="mul_tbl_trasaction_refno{{ forloop.counter }}" value="{{ row.transaction_refno }}" placeholder="Transaction Ref no. / Cheque no." required="true">
+                                          </td>
+                                          <td>
+                                              <input type="number" name="mul_tbl_trasaction_amount{{ forloop.counter }}" value="{{ row.transaction_amount }}" placeholder="Transaction amount / Cheque amount" required="true">
+                                          </td>
+                                          <td>
+                                              <input type="text" name="mul_tbl_bank_name{{ forloop.counter }}" value="{{ row.bank_name }}" placeholder="Bank Name" required="true">
+                                          </td>
+                                          <td>
+                                              <select name="mul_tbl_payment_type{{ forloop.counter }}" required="true">
+                                                  <option value="">Please</option>
+                                                  <option value="Full" {% if row.payment_type == "Full" %}selected{% endif %}>Full Payment</option>
+                                                  <option value="Partial" {% if row.payment_type == "Partial" %}selected{% endif %}>Partial Payment</option>
+                                              </select>
+                                          </td>
+                                          <td>
+                                              <a href="javascript:void(0);" class="btn-remove" onclick="removeRow(this)">Remove</a>
+                                          </td>
+                                      </tr>
+                                      {% endfor %}
+                                  {% else %}
+                                  <tr>
+                                      <td>
+                                          <select name="mul_tbl_payment_mode1" required="true">
+                                              <option value=""> Please Select </option>
+                                              <option value="Cheque">Cheque</option>
+                                              <option value="Cash">Cash</option>
+                                              <option value="NEFT">NEFT</option>
+                                              <option value="IMPS">IMPS</option>
+                                              <option value="UPI">UPI</option>
+                                              <option value="CC avenue">CC avenue</option>
+                                              <option value="Razorpay">Razorpay</option>
+                                              <option value="Paytm">Paytm</option>
+                                              <option value="Phonepe">Phonepe</option>
+                                              <option value="Google Pay">Google Pay</option>
+                                          </select>
+                                      </td>
+                                      <td>
+                                          <input type="date" name="mul_tbl_trasaction_date1" required="true">
+                                      </td>
+                                      <td>
+                                          <input type="text" name="mul_tbl_trasaction_refno1" placeholder="Transaction Ref no. / Cheque no." required="true">
+                                      </td>
+                                      <td>
+                                          <input type="number" name="mul_tbl_trasaction_amount1" placeholder="Transaction amount / Cheque amount" required="true">
+                                      </td>
+                                      <td>
+                                          <input type="text" name="mul_tbl_bank_name1" placeholder="Bank Name" required="true">
+                                      </td>
+                                      <td>
+                                          <select name="mul_tbl_payment_type1" required="true">
+                                              <option value="">Please</option>
+                                              <option value="Full">Full Payment</option>
+                                              <option value="Partial">Partial Payment</option>
+                                          </select>
+                                      </td>
+                                      <td>
+                                          <a href="javascript:void(0);" class="btn-remove" onclick="removeRow(this)">Remove</a>
+                                      </td>
+                                  </tr>
+                                  {% endif %}
+                              </tbody>
+                              </table>
+                        {% endif %}
+
+                        <!-- Display help text if available -->
+                        {% if field.help_text %}
+                        <div class="form-text text-muted">{{ field.help_text }}</div>
+                        {% endif %}
+                        
+                        <!-- Display errors for this field -->
+                        {% if field.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in field.errors %}
+                            <p class="mb-0">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            
+                <!-- Submit button -->
+                <div class="text-center mt-4">
+                  <button  name="Submit" onclick="check_all_field_valid(event)" class="btn btn-primary btn-lg px-5">Submit</button>
+                    
+                  <button type="button" class="btn btn-primary btn-lg px-5" data-bs-toggle="modal" id="id_preview_modal_btn" data-bs-target="#previewModal" onclick="populatePreview()">Preview</button>
+                  <script>
+                      function check_all_field_valid(event) {
+                        //alert('gh')
+                        // Select the form element
+                        const form = document.getElementById('iform');
+                      
+                        // Check if the form is valid
+                        if (!form.checkValidity()) {
+                          // Prevent form submission if any field is invalid
+                          event.preventDefault();
+                      
+                          // Display an alert if the form is not valid
+                          alert('Please fill all required fields correctly.');
+                        } else {
+                          // If valid, you can proceed with form submission (optional)
+                          //alert('Form is valid. Submitting...');
+                          event.preventDefault();
+                          document.getElementById('id_preview_modal_btn').click();
+                        }
+                      }
+                    </script> 
+                    {% comment %} <script>
+                      function check_all_field_valid(event) {
+                        // Select the form element
+                        const form = document.getElementById('iform');
+                    
+                        // Find all invalid fields
+                        const invalidFields = Array.from(form.elements).filter((field) => !field.checkValidity());
+                    
+                        if (invalidFields.length > 0) {
+                          // Prevent form submission
+                          event.preventDefault();
+                    
+                          // Generate a list of invalid fields with their names or labels
+                          const invalidFieldMessages = invalidFields.map((field) => {
+                            const label = document.querySelector(`label[for="${field.id}"]`);
+                            const fieldName = label ? label.textContent.trim() : field.name || 'Unnamed Field';
+                            return `${fieldName}: ${field.validationMessage}`;
+                          });
+                    
+                          // Display the list of invalid fields
+                          alert(`Please correct the following errors:\n\n${invalidFieldMessages.join('\n')}`);
+                        } else {
+                          // If valid, trigger the preview modal or proceed
+                          event.preventDefault();
+                          document.getElementById('id_preview_modal_btn').click();
+                        }
+                      }
+                    </script> {% endcomment %}
+                    
+                </div>
+
+               <!-- Preview Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="previewModalLabel">Form Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="id_download_pdf">
+        <section class="logo-mt">
+          <img src="/static/images/logo_rectangle.webp" height="50px" width="200px" alt="Logo">
+        </section>
+
+        <section class="content-header">
+          <h1><small>REGISTRATION CUM INSURANCE PROPOSAL</small></h1>
+        </section>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody id="previewTableBody">
+            <!-- Preview data will be dynamically populated here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+        <button type="submit" class="btn btn-success" name="submit" form="iform">Submit</button>
+      </div>
+      <div class="button-container text-center mt-4 mb-2">
+        <button onclick="printDiv('id_download_pdf')" class="btn btn-primary">Print</button>
+        <!-- Uncomment this button if you plan to implement download functionality -->
+        <!-- <button onclick="downloadAsPDF('id_download_pdf')" class="btn btn-success">Download PDF</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!----->
+            </form>
+            {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <!-- jQuery Validation Plugin -->
+            <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+            
+            <script>
+              $(document).ready(function () {
+                  // jQuery Validation for the form
+                  $("#iform").validate({
+                      rules: {
+                          
+                      },
+                      messages: {
+                         
+                      },
+                      submitHandler: function (form) {
+                          form.submit();
+                      }
+                  });
+              });
+          </script> {% endcomment %}
+
+            <script>
+              function addRow() {
+                const table = document.getElementById('paymentTable').getElementsByTagName('tbody')[0];
+                const newRow = table.rows[0].cloneNode(true);
+            
+                // Reset the values of the cloned row
+                newRow.querySelectorAll('input').forEach(input => input.value = '');
+                newRow.querySelectorAll('select').forEach(select => select.value = '');
+            
+                // Update the name attributes based on the new row index
+                const rowIndex = table.rows.length + 1;
+                newRow.querySelectorAll('input, select').forEach(field => {
+                  if (field.name) {
+                    const nameParts = field.name.match(/^(.*?)(\d+)$/); // Match field name with a number suffix
+                    if (nameParts) {
+                      field.name = `${nameParts[1]}${rowIndex}`; // Update the suffix with the new row index
+                    }
+                  }
+                });
+            
+                // Append the new row to the table
+                table.appendChild(newRow);
+              }
+            
+              function removeRow(button) {
+                const table = document.getElementById('paymentTable').getElementsByTagName('tbody')[0];
+                if (table.rows.length > 1) {
+                  const row = button.closest('tr');
+                  row.remove();
+            
+                  // Update the name attributes after removal to maintain sequential numbering
+                  Array.from(table.rows).forEach((row, index) => {
+                    const rowIndex = index + 1;
+                    row.querySelectorAll('input, select').forEach(field => {
+                      if (field.name) {
+                        const nameParts = field.name.match(/^(.*?)(\d+)$/);
+                        if (nameParts) {
+                          field.name = `${nameParts[1]}${rowIndex}`;
+                        }
+                      }
+                    });
+                  });
+                } else {
+                  alert('Cannot remove the last row!');
+                }
+              }
+            </script>
+            
+
+<!-- JavaScript to Populate Modal -->
+<script>
+  function populatePreview() {
+      const tableBody = document.getElementById('previewTableBody');
+      tableBody.innerHTML = ''; // Clear the table body
+
+      // Table header for payment-related fields
+      const headerRow = `
+        <tr>
+          <th>Payment Mode</th>
+          <th>Transaction / Cheque Date</th>
+          <th>Transaction Ref No. / Cheque No.</th>
+          <th>Transaction Amount / Cheque Amount</th>
+          <th>Bank Name</th>
+          <th>Payment Type</th>
+        </tr>
+      `;
+
+      // Payment table element
+      let paymentTable = null;
+
+      // Loop through form fields
+      const form = document.getElementById('iform');
+      Array.from(form.elements).forEach((field) => {
+          // Include only required fields
+          if (field.required && field.type !== 'submit' && field.name !== 'csrfmiddlewaretoken') {
+              if (!field.name.startsWith('mul_tbl_')) {
+                  // For non-payment fields, add rows to the main preview table
+                  const row = document.createElement('tr');
+
+                  // Field name
+                  const fieldName = document.createElement('td');
+                  fieldName.textContent = field.labels?.[0]?.textContent || field.name;
+                  row.appendChild(fieldName);
+
+                  // Field value
+                  const fieldValue = document.createElement('td');
+                  fieldValue.textContent = field.value || 'Not provided';
+                  row.appendChild(fieldValue);
+
+                  tableBody.appendChild(row);
+              }
+          }
+
+          // Check for fields related to payments (e.g., "mul_tbl_...")
+          if (field.name.startsWith('mul_tbl_payment_mode') && field.required) {
+              const input = field.name;
+              const match = input.match(/\d+/); // Extract numeric part from the field name
+              const numberPart = match ? match[0] : null;
+
+              // Create a new payment table if it doesn't already exist
+              if (!paymentTable) {
+                  paymentTable = document.createElement('table');
+                  paymentTable.className = 'table table-bordered mt-3';
+                  paymentTable.innerHTML = headerRow; // Add table header
+              }
+
+              // Add a new row for payment details
+              const dataRow = `
+                <tr>
+                  <td>${field.value}</td>
+                  <td>${form.elements[`mul_tbl_trasaction_date${numberPart}`]?.value || 'Not provided'}</td>
+                  <td>${form.elements[`mul_tbl_trasaction_refno${numberPart}`]?.value || 'Not provided'}</td>
+                  <td>${form.elements[`mul_tbl_trasaction_amount${numberPart}`]?.value || 'Not provided'}</td>
+                  <td>${form.elements[`mul_tbl_bank_name${numberPart}`]?.value || 'Not provided'}</td>
+                  <td>${form.elements[`mul_tbl_payment_type${numberPart}`]?.value || 'Not provided'}</td>
+                </tr>
+              `;
+
+              // Append the data row to the payment table
+              paymentTable.innerHTML += dataRow;
+          }
+      });
+
+      // Append the payment table to the main table body if it exists
+      if (paymentTable) {
+          tableBody.appendChild(paymentTable);
+      }
+  }
+</script>
+
+<script>
+  // Initially hide the label and input field for coverage amount
+  document.querySelector('label[for="id_additional_member_id"]').style.display = 'none';
+  let additional_member = document.getElementById('id_additional_member_id');
+  additional_member.style.display = 'none';
+  additional_member.removeAttribute('required');
+  // Add an event listener for the 'id_insurance_cover' dropdown
+  //alert('hello')
+  document.getElementById('id_payment_type').addEventListener('change', function() {
+    //alert('hello')
+      if (this.value === 'Combined') {
+          // Show label and input field for coverage amount if 'Yes' is selected
+          document.querySelector('label[for="id_additional_member_id"]').style.display = 'block';
+          additional_member.style.display = 'block';
+          additional_member.setAttribute('required', true); // Correct use of setAttribute
+      } else {
+          // Hide label and input field for coverage amount if 'No' is selected
+          document.querySelector('label[for="id_additional_member_id"]').style.display = 'none';
+          additional_member.style.display = 'none';
+          additional_member.removeAttribute('required'); // Correct usage of removeAttribute
+      }
+  });
+
+  document.querySelector('label[for="id_proprietor_name"]').style.display = 'none';
+  let proprietor_name = document.getElementById('id_proprietor_name');
+  proprietor_name.style.display = 'none';
+  proprietor_name.removeAttribute('required');
+  // Add an event listener for the 'id_insurance_cover' dropdown
+  //alert('hello')
+  document.getElementById('id_insured_type').addEventListener('change', function() {
+    //alert('hello')
+      if (this.value === 'Hospital' || this.value==="Diagnostic") {
+          // Show label and input field for coverage amount if 'Yes' is selected
+          document.querySelector('label[for="id_proprietor_name"]').style.display = 'block';
+          proprietor_name.style.display = 'block';
+          proprietor_name.setAttribute('required', true); // Correct use of setAttribute
+      } else {
+          // Hide label and input field for coverage amount if 'No' is selected
+          document.querySelector('label[for="id_proprietor_name"]').style.display = 'none';
+          proprietor_name.style.display = 'none';
+          proprietor_name.removeAttribute('required'); // Correct usage of removeAttribute
+      }
+  });
+
+ 
+
+// Hide the membership tenure, indemnity amount, and indemnity tenure fields initially
+// Hide the membership tenure, indemnity amount, and indemnity tenure fields initially
+document.querySelector('label[for="id_membership_tenure"]').style.display = 'none';
+let membershipTenure = document.getElementById('id_membership_tenure');
+membershipTenure.style.display = 'none';
+membershipTenure.removeAttribute('required');
+
+document.querySelector('label[for="id_indemnity_amount"]').style.display = 'none';
+let indemnityAmount = document.getElementById('id_indemnity_amount');
+indemnityAmount.style.display = 'none';
+indemnityAmount.removeAttribute('required');
+
+document.querySelector('label[for="id_indemnity_tenure"]').style.display = 'none';
+let indemnityTenure = document.getElementById('id_indemnity_tenure');
+indemnityTenure.style.display = 'none';
+indemnityTenure.removeAttribute('required');
+
+// Add an event listener for the 'id_plan' dropdown
+document.getElementById('id_plan').addEventListener('change', function () {
+    // Check the selected value of the dropdown
+    if (this.value === 'Only Membership') {
+        // Show label and input field for membership tenure
+        document.querySelector('label[for="id_membership_tenure"]').style.display = 'block';
+        membershipTenure.style.display = 'block';
+        membershipTenure.setAttribute('required', true);
+
+        // Hide indemnity-related fields
+        document.querySelector('label[for="id_indemnity_amount"]').style.display = 'none';
+        indemnityAmount.style.display = 'none';
+        indemnityAmount.removeAttribute('required');
+
+        document.querySelector('label[for="id_indemnity_tenure"]').style.display = 'none';
+        indemnityTenure.style.display = 'none';
+        indemnityTenure.removeAttribute('required');
+    } else if (this.value === 'Membership + Indemnity Insurance') {
+        // Show all fields
+        document.querySelector('label[for="id_membership_tenure"]').style.display = 'block';
+        membershipTenure.style.display = 'block';
+        membershipTenure.setAttribute('required', true);
+
+        document.querySelector('label[for="id_indemnity_amount"]').style.display = 'block';
+        indemnityAmount.style.display = 'block';
+        indemnityAmount.setAttribute('required', true);
+
+        document.querySelector('label[for="id_indemnity_tenure"]').style.display = 'block';
+        indemnityTenure.style.display = 'block';
+        indemnityTenure.setAttribute('required', true);
+    } else if (this.value === 'Only Indemnity Insurance') {
+        // Show indemnity-related fields only
+        document.querySelector('label[for="id_indemnity_amount"]').style.display = 'block';
+        indemnityAmount.style.display = 'block';
+        indemnityAmount.setAttribute('required', true);
+
+        document.querySelector('label[for="id_indemnity_tenure"]').style.display = 'block';
+        indemnityTenure.style.display = 'block';
+        indemnityTenure.setAttribute('required', true);
+
+        // Hide membership tenure field
+        document.querySelector('label[for="id_membership_tenure"]').style.display = 'none';
+        membershipTenure.style.display = 'none';
+        membershipTenure.removeAttribute('required');
+    } else {
+        // Hide all fields if no relevant option is selected
+        document.querySelector('label[for="id_membership_tenure"]').style.display = 'none';
+        membershipTenure.style.display = 'none';
+        membershipTenure.removeAttribute('required');
+
+        document.querySelector('label[for="id_indemnity_amount"]').style.display = 'none';
+        indemnityAmount.style.display = 'none';
+        indemnityAmount.removeAttribute('required');
+
+        document.querySelector('label[for="id_indemnity_tenure"]').style.display = 'none';
+        indemnityTenure.style.display = 'none';
+        indemnityTenure.removeAttribute('required');
+    }
+});
+
+
+
+
+
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script type="text/javascript">
+        function downloadAsPDF(divID) {
+            const element = document.getElementById(divID);
+            html2canvas(element).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('Elabour_cooperative_card.pdf');
+            });
+        }
+
+        function printDiv(divID) {
+            const idCard = document.getElementById(divID);
+            const originalContents = document.body.innerHTML;
+            
+            // Temporarily hide other elements
+            document.body.innerHTML = idCard.innerHTML;
+            window.print();
+
+            // Restore the original content after printing
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+<script>
+  document.getElementById('id_member_reg_no').addEventListener('change', function () {
+    alert(this.value)
+    // Check the selected value of the dropdown
+   //if (this.value === 'Only Membership') {
+   //}
+  });
+</script>
+            </div>
+          </div>
+        </section>
+        
+      </div> <!-- .content-wrapper -->
+  
+      <footer class="main-footer">
+        <!-- Footer content can be added here -->
+      </footer>
+  
+    </div> <!-- .wrapper -->
+    
+    
+    
+    
+
+    {% include "include_footerjs.html" %}
+
+
+  </body>
+</html>

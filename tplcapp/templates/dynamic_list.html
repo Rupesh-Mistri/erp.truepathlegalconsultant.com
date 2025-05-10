@@ -1,0 +1,62 @@
+{% load custom_filters %}
+
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+
+      <!-- Content Wrapper -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        <section class="content-header">
+          <h1>
+            Hospital And Nursing Registration Details
+          </h1>
+        </section>
+        <section class="mt-30">
+          <div class="container">
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for field, value in registration.items %}
+                      {% if field != 'id' %}
+                        <tr>
+                          <td>{{ field|title|replace_underscore }}</td>
+                          <td>
+                            {% if field == 'selfie' or field == 'signature' or field == 'registration_certificate' %}
+                              <img src="/uploads/{{ value }}"  alt="{{ field|title }}" style="max-height: 100px; max-width: 100px;" />
+                            {% elif value %}
+                              {{ value }}
+                            {% else %}
+                              N/A
+                            {% endif %}
+                          </td>
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer text-right">
+                <a href="{% url 'hospital_and_nursing_home_list' %}" class="btn btn-secondary">Back to List</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div> <!-- .content-wrapper -->
+
+      <footer class="main-footer">
+        <!-- Footer content -->
+      </footer>
+    </div> <!-- .wrapper -->
+    {% include "include_footerjs.html" %}
+  </body>
+</html>

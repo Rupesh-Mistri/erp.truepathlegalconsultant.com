@@ -1,0 +1,1965 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+    
+  
+  <style>
+  
+  .error{color:#dd4b39}
+  
+  </style>
+  
+  <!-- Content Wrapper. Contains page content -->
+  
+    <div class="content-wrapper" style="min-height: 464px;">
+  
+      <!-- Content Header (Page header) -->
+  
+      <section class="content-header">
+  
+        <h1>Add Leads</h1>
+  
+      </section>
+  
+  
+  
+      <!-- Main content -->
+  
+      <section class="content">
+  
+  
+  
+        <!-- general form elements disabled -->
+  
+            <div class="box box-primary">
+  
+              <!-- /.box-header -->
+  
+              <form enctype="multipart/form-data" method="post" class="stdform" id="newsFrm" name="add_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/leads/saveLeads" data-toggle="validator" novalidate="true">
+  
+              <div class="box-body">
+                  
+                   <div class="form-group col-md-4">
+  
+                    <label>Lead date*</label>
+  
+                    <input type="text" class="form-control" name="lead_date" id="lead_date" placeholder="Lead date" value="" required="">
+  
+                  </div>
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Member Type*</label>
+  
+                    <select class="form-control" id="member_type" name="member_type" required="">
+  
+                     <option value="">Select Member Type</option>
+  
+                      <option value="1">Doctor</option>
+  
+                      <option value="2">Hospital</option>
+  
+                      <option value="3">Diagnostic Center</option>
+  
+                    </select>
+  
+  
+  
+                  </div>
+  
+                  <div class="form-group col-md-4">
+  
+                    <label><span class="member_type_name">Doctor</span> Name*</label>
+  
+                    <input type="text" class="form-control" name="doctor_name" id="doctor_name" placeholder="Doctor Name" value="" required="">
+  
+                  </div>
+  
+                  
+  
+                   <div class="form-group col-md-4" id="contact_person_div">
+  
+                    <label>Contact Person*</label>
+  
+                    <input type="text" class="form-control" name="contact_person" id="contact_person" placeholder="Contact Person" value="" required="">
+  
+                  </div>
+  
+  
+  
+                  <div class="form-group col-md-4">
+  
+                    <label id="category_label">Category</label>
+  
+                    <select class="form-control select2-hidden-accessible" id="category_id" name="category_id" required="" tabindex="-1" aria-hidden="true">
+  
+                       <option value="">Select</option>
+  
+                        
+  
+                      <option value="29">Acupuncturist</option>
+  
+                       
+  
+                      <option value="5">Anaesthetist</option>
+  
+                       
+  
+                      <option value="60">Anaesthetist and Critical Care Specialist</option>
+  
+                       
+  
+                      <option value="7">Bariatric Surgeon</option>
+  
+                       
+  
+                      <option value="28">Cancer Physician</option>
+  
+                       
+  
+                      <option value="6">Cancer Surgeon</option>
+  
+                       
+  
+                      <option value="30">Cardiologist</option>
+  
+                       
+  
+                      <option value="8">Cardiothoracic Surgeon</option>
+  
+                       
+  
+                      <option value="9">Cardiovascular Surgeon</option>
+  
+                       
+  
+                      <option value="31">Chest and TB Specialist</option>
+  
+                       
+  
+                      <option value="32">Child Specialist</option>
+  
+                       
+  
+                      <option value="33">Consultant Physician</option>
+  
+                       
+  
+                      <option value="2">Cosmetic Surgeon</option>
+  
+                       
+  
+                      <option value="10">Critical Care Specialist</option>
+  
+                       
+  
+                      <option value="11">Dental Surgeon</option>
+  
+                       
+  
+                      <option value="34">Dermatologist</option>
+  
+                       
+  
+                      <option value="3">Dermatologist and Cosmetic Surgeon</option>
+  
+                       
+  
+                      <option value="35">Diabetologist</option>
+  
+                       
+  
+                      <option value="37">Endocrinologist</option>
+  
+                       
+  
+                      <option value="36">ENT Physician</option>
+  
+                       
+  
+                      <option value="12">ENT Surgeon</option>
+  
+                       
+  
+                      <option value="13">Eye Surgeon</option>
+  
+                       
+  
+                      <option value="38">Gastroenterologist</option>
+  
+                       
+  
+                      <option value="14">Gastroenterosurgeon</option>
+  
+                       
+  
+                      <option value="62">General &amp; Laparoscopic Surgeon</option>
+  
+                       
+  
+                      <option value="39">General Physician</option>
+  
+                       
+  
+                      <option value="15">General Surgeon</option>
+  
+                       
+  
+                      <option value="40">Haematologist</option>
+  
+                       
+  
+                      <option value="4">Hair Transplant Surgeon</option>
+  
+                       
+  
+                      <option value="16">Interventional Cardiologist</option>
+  
+                       
+  
+                      <option value="58">Medical Establishment</option>
+  
+                       
+  
+                      <option value="41">Microbiologist</option>
+  
+                       
+  
+                      <option value="42">Neonatologist</option>
+  
+                       
+  
+                      <option value="43">Nephrologist</option>
+  
+                       
+  
+                      <option value="17">Nephrosurgeon</option>
+  
+                       
+  
+                      <option value="44">Neurologist</option>
+  
+                       
+  
+                      <option value="18">Neurosurgeon</option>
+  
+                       
+  
+                      <option value="19">Obstetrics &amp; Gynaecologist</option>
+  
+                       
+  
+                      <option value="45">Occupational Therapist</option>
+  
+                       
+  
+                      <option value="21">Oncologist</option>
+  
+                       
+  
+                      <option value="20">Oncosurgeon</option>
+  
+                       
+  
+                      <option value="22">Opthalmologist</option>
+  
+                       
+  
+                      <option value="23">Oral &amp; Maxillofacial Surgeon</option>
+  
+                       
+  
+                      <option value="59">Oral and Maxillofacial Surgeon with Cosmetic Surgery</option>
+  
+                       
+  
+                      <option value="24">Orthopaedic Surgeon</option>
+  
+                       
+  
+                      <option value="25">Paediatric Surgeon</option>
+  
+                       
+  
+                      <option value="46">Paediatrician</option>
+  
+                       
+  
+                      <option value="47">Pathologist</option>
+  
+                       
+  
+                      <option value="48">Physiotherapist</option>
+  
+                       
+  
+                      <option value="1">Plastic and Cosmetic Surgeon</option>
+  
+                       
+  
+                      <option value="61">Plastic Surgeon</option>
+  
+                       
+  
+                      <option value="49">Proctologist</option>
+  
+                       
+  
+                      <option value="50">Psychiatrist</option>
+  
+                       
+  
+                      <option value="51">Pulmonologist</option>
+  
+                       
+  
+                      <option value="52">Radiologist</option>
+  
+                       
+  
+                      <option value="53">Rheumatologist</option>
+  
+                       
+  
+                      <option value="54">Skin Specialist</option>
+  
+                       
+  
+                      <option value="26">Thoracic Surgeon</option>
+  
+                       
+  
+                      <option value="55">Ultrasonologist</option>
+  
+                       
+  
+                      <option value="56">Urologist</option>
+  
+                       
+  
+                      <option value="27">Urosurgeon</option>
+  
+                       
+  
+                      <option value="57">Venerologist</option>
+  
+                     
+                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-category_id-container"><span class="select2-selection__rendered" id="select2-category_id-container"><span class="select2-selection__placeholder">--Select--</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+  
+                  </div>
+  
+  
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Mobile*  <a href="javascript:;" id="send_otp"><b>Send Otp</b></a> </label>
+  
+                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile" value="" required="">
+  
+                  </div>
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Mobile2</label>
+  
+                    <input type="text" class="form-control" name="mobile2" id="mobile2" placeholder="Mobile2" value="">
+  
+                  </div>   
+                                
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Email  <a href="javascript:;" id="send_otp_email"><b>Send Otp</b></a> </label>
+  
+                    <input type="text" class="form-control" name="email" id="emailId" placeholder="Email" value="">
+  
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                  
+                    <label>Member Status</label>
+                    <select class="form-control" id="member_status" name="member_status" required="">
+                      <option value="">Select</option>
+                      <option value="fresh">Fresh</option>
+                      <option value="renewal">Renewal</option>
+                    </select>
+                  </div>
+                  
+                                  <div class="form-group col-md-4 memberIds" style="display:none">
+                    <label>Member Id For Renewal</label>
+                    <input type="text" class="form-control" name="member_id" id="member_id" placeholder="Member Id" value="">
+                  </div>
+  
+                                
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Landline</label>
+  
+                    <input type="text" class="form-control" name="landline" id="landline" placeholder="Landline" value="">
+  
+                  </div>
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Address 1 *</label>
+  
+                    <input type="text" class="form-control" name="hospital" id="hospital" placeholder="Hospital" value="" required="">
+  
+                  </div>   
+  
+                    
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>Address 2*</label>
+  
+                    <input type="text" class="form-control" name="address" id="address" placeholder="Address" value="" required="">
+  
+                  </div>
+  
+                                 
+  
+                  
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>State</label>
+  
+                    <select class="form-control select2-hidden-accessible" id="state_id" name="state_id" required="" tabindex="-1" aria-hidden="true">
+  
+                       <option value="">Select</option>
+  
+                        
+  
+                      <option value="1">Andaman and Nicobar </option>
+  
+                       
+  
+                      <option value="2">Andhra Pradesh </option>
+  
+                       
+  
+                      <option value="3">Arunachal Pradesh </option>
+  
+                       
+  
+                      <option value="4">Assam </option>
+  
+                       
+  
+                      <option value="5">Bihar </option>
+  
+                       
+  
+                      <option value="6">Chandigarh </option>
+  
+                       
+  
+                      <option value="7">Chhattisgarh </option>
+  
+                       
+  
+                      <option value="8">Dadra and Nagar Haveli </option>
+  
+                       
+  
+                      <option value="9">Daman and Diu </option>
+  
+                       
+  
+                      <option value="10">Delhi </option>
+  
+                       
+  
+                      <option value="11">Goa </option>
+  
+                       
+  
+                      <option value="12">Gujarat </option>
+  
+                       
+  
+                      <option value="13">Haryana </option>
+  
+                       
+  
+                      <option value="14">Himachal Pradesh </option>
+  
+                       
+  
+                      <option value="15">Jammu &amp; Kashmir </option>
+  
+                       
+  
+                      <option value="16">Jharkhand </option>
+  
+                       
+  
+                      <option value="17">Karnataka </option>
+  
+                       
+  
+                      <option value="18">Kerala </option>
+  
+                       
+  
+                      <option value="19">Lakshadweep </option>
+  
+                       
+  
+                      <option value="20">Maharashtra </option>
+  
+                       
+  
+                      <option value="21">Madhya Pradesh</option>
+  
+                       
+  
+                      <option value="22">Orissa </option>
+  
+                       
+  
+                      <option value="23">Punjab</option>
+  
+                       
+  
+                      <option value="24">Pondicherry </option>
+  
+                       
+  
+                      <option value="25">Rajasthan </option>
+  
+                       
+  
+                      <option value="26">Tamil Nadu </option>
+  
+                       
+  
+                      <option value="27">Uttar Pradesh</option>
+  
+                       
+  
+                      <option value="28">Uttarakhand</option>
+  
+                       
+  
+                      <option value="29">West Bengal </option>
+  
+                       
+  
+                      <option value="30">Telangana</option>
+  
+                     
+                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-state_id-container"><span class="select2-selection__rendered" id="select2-state_id-container"><span class="select2-selection__placeholder">Select State</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+  
+                  </div>
+  
+                  
+  
+                  <div class="form-group col-md-4">
+  
+                    <label>City</label>
+  
+                    <select class="form-control select2-hidden-accessible" id="city_id" name="city_id" required="" tabindex="-1" aria-hidden="true">
+  
+                       <option value="">Select</option>
+  
+                      
+                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-city_id-container"><span class="select2-selection__rendered" id="select2-city_id-container"><span class="select2-selection__placeholder">Select City</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+  
+                  </div>
+  
+                  
+  
+                      <div class="form-group col-md-4">
+                      <label>Employee</label>
+                      <select class="form-control select2-hidden-accessible valid" id="employe_id" name="employe_id" required="" tabindex="-1" aria-hidden="true">
+                       <option value="">Select</option>
+                            
+                              <option value="3198" selected="">Ashok Mishra</option>
+                            
+                              <option value="3251">Rakesh Kumar Sinha</option>
+                            
+                              <option value="3272">SAKET KUMAR</option>
+                                              </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-employe_id-container"><span class="select2-selection__rendered" id="select2-employe_id-container" title="Ashok Mishra">Ashok Mishra</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+  
+  
+                   <div class="form-group col-md-12">
+  
+                    <label>Remarks*</label>
+  
+                    <textarea class="form-control" name="remarks" id="remarks" placeholder="Remarks" required=""></textarea>
+  
+                  </div>
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label><b>Policy Details</b></label></div>
+                  
+                  <div class="form-group col-md-12 table-responsive no-padding" id="references_div">
+                      <table class="table table-hover table-bordered">
+                         <thead> <tr style="background-color:#e5eaf4;">
+                              <th></th>
+                              <th>Policy Type</th>
+                              <th>Expiry date</th>
+                              <th>Insurer / Company name</th>
+                              <th><button class="btn btn-md btn-primary" id="addBtn" type="button" style="background-color: green !important;color:white !important;">Add new Row </button></th>
+                          </tr></thead> 
+                          <tbody id="tbody">
+                                                             <tr id="R1" class="1">
+                                   <td>1</td>
+                                   <td>
+                                       <select class="form-control payment_mode valid" title="1" id="policy_type1" name="policy_type[]">
+                                          <option value=""> Please Select </option>
+                                          <option value="Professional Indemnity"> Professional Indemnity </option>
+                                          <option value="Motor"> Motor </option>
+                                          <option value="Health"> Health </option>
+                                          <option value="Fire"> Fire </option>
+                                          <option value="Others"> Others </option>
+                                        </select>
+                                   </td>
+                                   <td><input type="text" class="form-control date_type valid" name="expiry_date[]" id="expiry_date1" placeholder="Expiry date" value=""></td>
+                                   <td><input type="text" class="form-control valid" name="insurer_name[]" id="insurer_name1" placeholder="Insurer / Company name" value=""></td>
+                                   <td class="text-center"> <button class="btn btn-danger remove" type="button">Remove</button> </td> 
+                                 </tr>
+                                                      </tbody>
+                      </table>
+                      
+                   </div>
+                   
+                  <div class="form-group col-md-12 table-responsive no-padding" id="multiplePrposelAdd" width="100%" style="border:1px solid #ddd;margin-bottom:30px;">
+                         <div width="100%" class="form-group col-md-12 table-responsive no-padding" style="background-color:#e5eaf4;/* text-align:right; */">
+                             <span style="font-size: 15px;margin-left: 10px;"> <b>Add Membership Details :</b></span>
+                      </div>
+                      <!--<div class="table-responsive">-->
+                      <table class="table table-hover table-bordered " id="add_tr" style="width:100%">
+                          <thead><tr style="background-color:#e5eaf4">
+                              <th>Category</th>
+                              <th>Membership Date</th>					
+                              <th>Membership Renewal Date</th>					
+                              <th>Policy Renewal Date</th>					
+                              <th>Membership Amount</th>					
+                              <th>Total Premium Amount</th>
+                              <th>Total Amount</th>
+                              <th>Membership Tenure</th>
+                              <th>Policy Tenure</th>
+                              <th>Coverage</th>
+                              <!--<th>-->
+                                  <!--<button type="button" class="btn btn-primary pull-right" id="add_member_new" -->
+                            <!--   data-toggle="modal" data-target="#modalMemberDetail" >Add</button>-->
+                               <!--</th>					-->
+                          </tr> </thead>
+                          
+                          <tbody id="tbody_add_member_detail">
+                                                       </tbody>
+                       </table>
+                   <!--</div>-->
+                  </div>
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;">
+                      <label style="float:left;color:white">Appointments</label>
+                                       </div>
+  
+                   <input type="hidden" name="add_appointment" id="add_appointment" value="1">
+                  
+  
+                  <!--- appointment --->
+  
+                  <span id="app_data">
+                      <div class="form-group col-md-6">
+                      <label>Appointment Date</label>
+                                          <input class="form-control" name="appointment_date" id="appointment_date" value="" required="" autocomplete="off">
+                  </div>
+  
+                  <div class="form-group col-md-6">
+                    <label>Employes Sales*</label>
+  
+                    <select class="form-control select2-hidden-accessible" name="sales_employe_id" id="sales_employe_id" required="" tabindex="-1" aria-hidden="true">
+                        <option selected="selected" value="">--Select--</option>
+  
+                          
+                          <option value="3198">Ashok Mishra</option>
+  
+                                                       <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                    <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                               
+                          <option value="3251">Rakesh Kumar Sinha</option>
+  
+                                                  
+                          <option value="3272">SAKET KUMAR</option>
+  
+                                                                  </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 589px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-sales_employe_id-container"><span class="select2-selection__rendered" id="select2-sales_employe_id-container"><span class="select2-selection__placeholder">--Select--</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                    
+  
+                  <div class="form-group col-md-6">
+                    <label>From Time*</label>
+                    <select class="form-control" name="from_time" id="from_time" required="">
+                        <option value="">--From--</option>
+                          
+                          <option value="08:00 AM" data-val="9000">08:00 AM</option>
+                          
+                          <option value="08:30 AM" data-val="10800">08:30 AM</option>
+                          
+                          <option value="09:00 AM" data-val="12600">09:00 AM</option>
+                          
+                          <option value="09:30 AM" data-val="14400">09:30 AM</option>
+                          
+                          <option value="10:00 AM" data-val="16200">10:00 AM</option>
+                          
+                          <option value="10:30 AM" data-val="18000">10:30 AM</option>
+                          
+                          <option value="11:00 AM" data-val="19800">11:00 AM</option>
+                          
+                          <option value="11:30 AM" data-val="21600">11:30 AM</option>
+                          
+                          <option value="12:00 PM" data-val="23400">12:00 PM</option>
+                          
+                          <option value="12:30 PM" data-val="25200">12:30 PM</option>
+                          
+                          <option value="13:00 PM" data-val="27000">13:00 PM</option>
+                          
+                          <option value="13:30 PM" data-val="28800">13:30 PM</option>
+                          
+                          <option value="14:00 PM" data-val="30600">14:00 PM</option>
+                          
+                          <option value="14:30 PM" data-val="32400">14:30 PM</option>
+                          
+                          <option value="15:00 PM" data-val="34200">15:00 PM</option>
+                          
+                          <option value="15:30 PM" data-val="36000">15:30 PM</option>
+                          
+                          <option value="16:00 PM" data-val="37800">16:00 PM</option>
+                          
+                          <option value="16:30 PM" data-val="39600">16:30 PM</option>
+                          
+                          <option value="17:00 PM" data-val="41400">17:00 PM</option>
+                          
+                          <option value="17:30 PM" data-val="43200">17:30 PM</option>
+                          
+                          <option value="18:00 PM" data-val="45000">18:00 PM</option>
+                          
+                          <option value="18:30 PM" data-val="46800">18:30 PM</option>
+                          
+                          <option value="19:00 PM" data-val="48600">19:00 PM</option>
+                          
+                          <option value="19:30 PM" data-val="50400">19:30 PM</option>
+                          
+                          <option value="20:00 PM" data-val="52200">20:00 PM</option>
+                          
+                          <option value="20:30 PM" data-val="54000">20:30 PM</option>
+                          
+                          <option value="21:00 PM" data-val="55800">21:00 PM</option>
+                          
+                          <option value="21:30 PM" data-val="57600">21:30 PM</option>
+                          
+                          <option value="22:00 PM" data-val="59400">22:00 PM</option>
+                                          </select>
+  
+                  </div>
+  
+                  <div class="form-group col-md-6">
+                      <label>To Time*</label>
+                      <select class="form-control" name="to_time" id="to_time" required="">
+                          <option selected="selected" value="">--To--</option>
+                              
+                          <option value="08:00 AM" data-val="9000">08:00 AM</option>
+                          
+                          <option value="08:30 AM" data-val="10800">08:30 AM</option>
+                          
+                          <option value="09:00 AM" data-val="12600">09:00 AM</option>
+                          
+                          <option value="09:30 AM" data-val="14400">09:30 AM</option>
+                          
+                          <option value="10:00 AM" data-val="16200">10:00 AM</option>
+                          
+                          <option value="10:30 AM" data-val="18000">10:30 AM</option>
+                          
+                          <option value="11:00 AM" data-val="19800">11:00 AM</option>
+                          
+                          <option value="11:30 AM" data-val="21600">11:30 AM</option>
+                          
+                          <option value="12:00 PM" data-val="23400">12:00 PM</option>
+                          
+                          <option value="12:30 PM" data-val="25200">12:30 PM</option>
+                          
+                          <option value="13:00 PM" data-val="27000">13:00 PM</option>
+                          
+                          <option value="13:30 PM" data-val="28800">13:30 PM</option>
+                          
+                          <option value="14:00 PM" data-val="30600">14:00 PM</option>
+                          
+                          <option value="14:30 PM" data-val="32400">14:30 PM</option>
+                          
+                          <option value="15:00 PM" data-val="34200">15:00 PM</option>
+                          
+                          <option value="15:30 PM" data-val="36000">15:30 PM</option>
+                          
+                          <option value="16:00 PM" data-val="37800">16:00 PM</option>
+                          
+                          <option value="16:30 PM" data-val="39600">16:30 PM</option>
+                          
+                          <option value="17:00 PM" data-val="41400">17:00 PM</option>
+                          
+                          <option value="17:30 PM" data-val="43200">17:30 PM</option>
+                          
+                          <option value="18:00 PM" data-val="45000">18:00 PM</option>
+                          
+                          <option value="18:30 PM" data-val="46800">18:30 PM</option>
+                          
+                          <option value="19:00 PM" data-val="48600">19:00 PM</option>
+                          
+                          <option value="19:30 PM" data-val="50400">19:30 PM</option>
+                          
+                          <option value="20:00 PM" data-val="52200">20:00 PM</option>
+                          
+                          <option value="20:30 PM" data-val="54000">20:30 PM</option>
+                          
+                          <option value="21:00 PM" data-val="55800">21:00 PM</option>
+                          
+                          <option value="21:30 PM" data-val="57600">21:30 PM</option>
+                          
+                          <option value="22:00 PM" data-val="59400">22:00 PM</option>
+                                          </select>
+                  </div>
+                  
+                  </span>  
+              
+  
+              </div>
+  
+              <!-- /.box-body -->
+  
+              <div class="box-footer">
+  
+                  <button type="submit" class="btn btn-primary  disabled">Submit</button>
+  
+                <button type="button" class="btn btn-default" onclick="window.location='https://prescriibe.com/docland/admin/leads';">Cancel</button>
+  
+                
+  
+                
+                <input type="hidden" id="id" name="id" value="0">
+  
+                <input type="hidden" id="verify_mobile" name="verify_mobile" value="0">
+  
+                <input type="hidden" id="verify_email" name="verify_email" value="0">
+  
+                <input type="hidden" id="status" name="status" value="1">
+  
+              </div>
+  
+              </form>
+  
+              
+  
+            </div>
+  
+            <!-- /.box -->
+  
+  
+  
+      </section>
+  
+      <!-- /.content -->
+  
+    </div>
+  
+    <!-- /.content-wrapper -->
+  
+   <!-- /.Popup Data -->
+  
+  <div class="modal fade" id="modalpop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  
+    <div class="modal-dialog modal-md" role="document">
+  
+      <div class="modal-content">
+  
+        <div class="modal-header">
+  
+            <button type="button" class="close" data-dismiss="modal">×</button>
+  
+          </div>
+  
+          <form enctype="multipart/form-data" method="post" class="stdform" id="check_otp" name="check_otp" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/leads/check_otp" data-toggle="validator" novalidate="true">	
+  
+           <div class="box-body">
+  
+               
+  
+              <div class="form-group col-md-12">
+  
+                    <label>Otp* </label>
+  
+                    <input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" value="" required="">
+  
+                    <p style="display:none; color:red;" id="check_otp_error"></p>
+  
+              </div>
+  
+          </div>
+  
+          <div class="box-footer">
+  
+                  <button type="button" class="btn btn-primary " id="check_otp_btn">Submit</button>
+  
+                
+  
+                <input type="hidden" id="mobile_phone" name="mobile_phone" value="">
+  
+          </div>
+  
+      </form>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  <!-- /.end Popup -->
+  
+  
+  
+   <!-- /.Popup Data -->
+  
+  <div class="modal fade" id="modalpopemail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  
+    <div class="modal-dialog modal-md" role="document">
+  
+      <div class="modal-content">
+  
+        <div class="modal-header">
+  
+            <button type="button" class="close" data-dismiss="modal">×</button>
+  
+          </div>
+  
+          <form enctype="multipart/form-data" method="post" class="stdform" id="check_otp_email" name="check_otp_email" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/leads/check_otp_email" data-toggle="validator" novalidate="true">	
+  
+           <div class="box-body">
+  
+               
+  
+              <div class="form-group col-md-12">
+  
+                    <label>Otp* </label>
+  
+                    <input type="text" class="form-control" name="otp_email" id="otp_email" placeholder="OTP" value="" required="">
+  
+                    <p style="display:none; color:red;" id="check_otp_email_error"></p>
+  
+              </div>
+  
+          </div>
+  
+          <div class="box-footer">
+  
+                  <button type="button" class="btn btn-primary " id="check_otp_btn_email">Submit</button>
+  
+                
+  
+                <input type="hidden" id="email_email" name="email_email" value="">
+  
+          </div>
+  
+      </form>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  <!-- /.end Popup -->
+  
+   <div class="modal fade" id="modalMemberDetail" tabindex="-1" role="dialog" aria-labelledby="modalMemberDetail">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <b>Add Membership Detail</b> <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+           <input type="hidden" class="form-control" name="count_id" id="count_id" value="">
+           <div class="box-body">
+              <div class="form-group col-md-4">
+                <label><b>Membership Date</b></label>
+                <input type="text" class="form-control membership_date" name="membership_popup" id="membership_popup" placeholder="yyyy-mm-dd" value="">
+              </div>
+              
+              <div class="form-group col-md-4">
+                <label><b>Membership Renewal Date</b></label>
+                <input type="text" class="form-control membership_renewal_date" name="membership_renewal_popup" id="membership_renewal_popup" placeholder="yyyy-mm-dd" value="">
+              </div>
+              
+              <div class="form-group col-md-4">
+                <label><b>Policy Renewal Date</b></label>
+                <input type="text" class="form-control policy_renewal_date" name="policy_renewal_popup" id="policy_renewal_popup" placeholder="yyyy-mm-dd" value="">
+              </div>
+              
+              
+              <div class="form-group col-md-4">
+                <label><b>Membership Amount</b></label>
+                <input type="text" class="form-control" name="membership_amount_popup" id="membership_amount_popup" value="">
+              </div>
+              
+              <div class="form-group col-md-4">
+                <label><b>Total Premium Amount</b></label>
+                <input type="text" class="form-control" name="total_premium_amount_popup" id="total_premium_amount_popup" value="">
+              </div>
+  
+              <div class="form-group col-md-4">
+                <label><b>Total Amount</b></label>
+                <input type="text" class="form-control" name="total_amount_popup" id="total_amount_popup" value="">
+              </div>
+              
+              <div class="form-group col-md-4" id="membershipTenureDiv1">
+                <label>Membership Tenure*</label>
+                <select class="form-control" name="tenure[]" id="tenure1" required="">
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>    
+                </select>
+              </div>
+              
+              <div class="form-group col-md-4" id="policyDiv1">
+                <label>Policy Tenure*</label>
+                <select class="form-control" name="policy_tenure[]" id="policy_tenure1" required="">
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>    
+                </select>
+              </div>
+              
+              <div class="form-group col-md-4" id="coverDiv1">
+                <label>Coverage</label>
+                <select class="form-control" id="cover_id1" name="cover_id[]" required="">
+                   <option value="">Select</option>
+                                 </select>
+              </div>
+              
+              
+          </div>
+          <!--<div class="box-footer">-->
+          <!--	<button type="button" class="btn btn-primary " id="add_member_btn" >Submit</button>-->
+          <!--	<button type="button" class="btn btn-primary " id="edit_member_btn" style="display:none" >Submit</button>-->
+          <!--</div>-->
+      <!--</form>-->
+      </div>
+    </div>
+  </div>
+      
+  
+  {% comment %} <script src="/docland/assets/admin/plugins/validator.js"></script>
+  
+  <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  
+  <script>
+  
+  $(document).ready(function(){
+      
+  
+      var member_types = '';
+  
+      if(member_types == 1)
+  
+      {
+  
+          $('.member_type_name').text('Doctor');
+  
+      }else if(member_types == 2)
+  
+      {
+  
+          $('.member_type_name').text('Hospital');
+  
+      }else if(member_types == 3)
+  
+      {
+  
+          $('.member_type_name').text('Dignostic Center');
+  
+      }else{
+  
+          $('.member_type_name').text('Doctor');
+  
+      }
+  
+      
+  
+      $('#member_type').on('change',function(){
+  
+          var val = $(this).val();
+  
+          if(val == 1)
+  
+          {
+  
+              $('.member_type_name').text('Doctor');
+  
+              $('#contact_person_div').hide();
+  
+              $('#doctor_name').attr("placeholder", "Doctor Name");
+  
+              $('#category_label').text('Category');
+  
+          }else if(val == 2)
+  
+          {
+  
+              $('.member_type_name').text('Hospital');
+  
+              $('#contact_person_div').show();
+  
+              $('#doctor_name').attr("placeholder", "Hospital Name");
+  
+              $('#category_label').text('Medical Establishment');
+  
+          }else if(val == 3)
+  
+          {
+  
+              $('#category_label').text('Medical Establishment');
+  
+              $('.member_type_name').text('Dignostic Center');
+  
+              $('#contact_person_div').show();
+  
+              $('#doctor_name').attr("placeholder", "Dignostic Center Name");
+  
+          }else{
+  
+              $('.member_type_name').text('Doctor');
+  
+              $('#contact_person_div').hide();
+  
+              $('#category_label').text('Category');
+  
+          }
+  
+      });
+  
+      
+  
+        $("#state_id").change(function(){
+          var state_id=$("#state_id").val();		
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/leads/getCitysByStateId",
+              type:"post",
+              data:{'state_id':state_id},
+              success:function(data){	
+                  $("#city_id").html(data);
+              }
+          });
+      });
+  
+      
+  
+        $("#state_id").select2({
+  
+              placeholder: "Select State"
+  
+          });
+  
+      
+  
+          /*$("#sales_employe_id").select2({
+  
+              placeholder: "Select employe"
+  
+          });*/
+  
+        $("#city_id").select2({
+  
+              placeholder: "Select City"
+  
+          });
+  
+      
+  
+          $("#category_id").select2({
+  
+              placeholder: "--Select--"
+  
+          });
+          
+          $("#sales_employe_id").select2({
+  
+              placeholder: "--Select--"
+  
+          });
+  
+        $("#policy_category_id").select2({
+  
+              placeholder: "Select Policy Category"
+  
+          });
+  
+      
+  
+        $("#employe_id").select2({
+  
+              placeholder: "Select Employe"
+  
+          });
+  
+      
+  
+        $("form[name='add_data_view']").validate({
+  
+              // Specify validation rules
+  
+              rules: {
+  
+                 email: {
+  
+                  required:false,
+  
+                  email:true,
+  
+                  //remote:"https://prescriibe.com/docland/admin/leads/email_exists/0"
+  
+                },
+  
+              mobile: {
+  
+                  required: true,
+  
+                  minlength: 10,
+  
+                   maxlength: 10,
+  
+                   digits: true
+  
+                  }
+  
+              },
+  
+              // Specify validation error messages
+  
+              messages: {
+  
+                  
+  
+               email: {
+  
+                  required:"this field required*",
+  
+                  email:"enter valid email*",
+  
+                  //remote:"Email Name already in database.*"
+  
+                },
+  
+             mobile: {
+  
+                  required: 'Mobile Number is required',
+  
+                  minlength: "Mobile Number must be 10 digits long!",
+  
+                  maxlength: "Mobile Number  must be 10 digits long!",
+  
+                  digits: "Mobile Number must be a valid number!"
+  
+              }
+  
+                
+  
+              },
+  
+              
+  
+              submitHandler: function(form) {
+  
+                form.submit();
+  
+              }
+  
+            });
+  
+            
+  
+       $('#doj,#appointment_date').datepicker({
+  
+          format: 'dd/mm/yyyy',
+  
+          todayHighlight: true,
+  
+          autoclose: true
+  
+      });
+  
+      
+  
+       $('#modalpop').on('show.bs.modal', function (event) {
+  
+            var button = $(event.relatedTarget);
+  
+            var href = button.data('url');
+  
+            var modal = $(this);
+  
+            modal.find('iframe').attr('src', href);
+  
+        });
+  
+      
+  
+      $('#send_otp').on('click',function(){
+  
+          var phone = $('#mobile').val();
+  
+          var email = $('#email').val();
+  
+          
+  
+          if(phone)
+  
+          {
+  
+              $.ajax({
+  
+                  url:'https://prescriibe.com/docland/admin/leads/send_otp',
+  
+                  type:'POST',
+  
+                  data:'mobile='+phone+'&email='+email,
+  
+                  success:function(data1)
+  
+                  {
+  
+                      console.log(data1);
+  
+                      $('#mobile_phone').val(phone);
+  
+                      $('#modalpop').modal({
+  
+                          backdrop:'static',
+  
+                          keyboard:false
+  
+                      });
+  
+                  }
+  
+              });
+  
+          }else{
+  
+              return false;
+  
+          }
+  
+          
+  
+      });
+  
+      
+  
+      $('#check_otp_btn').on('click',function(){
+  
+          var phone = $('#mobile_phone').val();
+  
+          var otp = $('#otp').val();
+  
+          
+  
+          if(phone)
+  
+          {
+  
+              $.ajax({
+  
+                  url:'https://prescriibe.com/docland/admin/leads/check_otp',
+  
+                  type:'POST',
+  
+                  data:'mobile_phone='+phone+'&otp='+otp,
+  
+                  success:function(data1)
+  
+                  {
+  
+                      /*$('#modalpop').on('hidden.bs.modal', function () {
+  
+                      });*/	
+  
+                      if(data1)
+  
+                      {
+  
+                          $('#check_otp_error').show();
+  
+                          $('#check_otp_error').text('Verified');
+  
+                          $('#send_otp').hide();
+  
+                          $('#modalpop').modal('hide');
+  
+                          $('#verify_mobile').val(1);
+  
+                      }else{
+  
+                          $('#check_otp_error').show();
+  
+                          $('#check_otp_error').text('Not Verified');
+  
+                      }
+  
+                      
+  
+                  }
+  
+              });
+  
+          }else{
+  
+              return false;
+  
+          }
+  
+          
+  
+      });
+  
+      
+  
+      $('#send_otp_email').on('click',function(){
+  
+          var email = $('#emailId').val();
+              
+  
+          if(email)
+  
+          {
+  
+              $.ajax({
+  
+                  url:'https://prescriibe.com/docland/admin/leads/send_otp_email',
+  
+                  type:'POST',
+  
+                  data:'email='+email,
+  
+                  success:function(data1)
+  
+                  {
+  
+                      $('#email_email').val(email);
+  
+                      $('#modalpopemail').modal({
+  
+                          backdrop:'static',
+  
+                          keyboard:false
+  
+                      });
+  
+                  }
+  
+              });
+  
+          }else{
+              return false;
+          }
+  
+      });
+  
+      
+  
+      $('#check_otp_btn_email').on('click',function(){
+  
+          var email = $('#email_email').val();
+  
+          var otp = $('#otp_email').val();
+  
+          if(email){
+  
+              $.ajax({
+  
+                  url:'https://prescriibe.com/docland/admin/leads/check_otp_email',
+  
+                  type:'POST',
+  
+                  data:'email='+email+'&otp='+otp,
+  
+                  success:function(data1)
+  
+                  {
+  
+                      if(data1)
+  
+                      {
+  
+                          $('#check_otp_email_error').show();
+  
+                          $('#check_otp_email_error').text('Verified');
+  
+                          $('#send_otp_email').hide();
+  
+                          $('#modalpopemail').modal('hide');
+  
+                          $('#verify_email').val(1);
+  
+                      }else{
+  
+                          $('#check_otp_email_error').show();
+  
+                          $('#check_otp_email_error').text('Not Verified');
+  
+                      }
+                  }
+  
+              });
+  
+          }else{
+              return false;
+          }
+      });
+      
+      $("#member_status").change(function(e) {
+          if($(this).val() == "renewal") {
+              $('.memberIds').attr('style', 'display: block');
+          } else {
+              $('.memberIds').attr('style', 'display: none');
+          }
+          
+      });
+      
+      $('.date_type').datepicker({
+          format: 'dd-mm-yyyy',
+          todayHighlight: true,
+          autoclose: true
+      });
+      
+      $('#lead_date').datepicker({
+          format: 'yyyy-mm-dd',
+          autoclose: true,
+          startDate: '-1d',
+          endDate: '0d'
+      });
+      
+      $("#lead_date").keydown(false);
+     });
+  
+      $(document).ready(function () { 
+        // Denotes total number of rows 
+        var rowIdx = 1; 
+        var rowIdxNEw = 1; 
+        
+        // jQuery button click event to add a row 
+        $('#addBtn').on('click', function () { 
+           
+          var countTr = parseInt($('#tbody tr:last').attr("class")); 
+          
+          rowIdx = countTr;
+          rowIdxNEw = countTr+1 ;
+          if(rowIdxNEw <=5) {
+              // Adding a row inside the tbody. 
+              $('#tbody').append(`<tr id="R${++rowIdx}" class="${rowIdx}">
+                   <td>${rowIdxNEw}</td>
+                   <td>
+                      <select class="form-control payment_mode " title="${rowIdxNEw}" id="policy_type${rowIdxNEw}" name="policy_type[]" >
+                          <option value="0"> Please Select </option>
+                          <option value="Professional Indemnity"> Professional Indemnity </option>
+                          <option value="Motor"> Motor </option>
+                          <option value="Health"> Health </option>
+                          <option value="Fire"> Fire </option>
+                          <option value="Others"> Others </option>
+                      </select>
+                   </td>
+                   <td><input type="text" class="form-control date_type " name="expiry_date[]" id="expiry_date${rowIdxNEw}" placeholder="Expiry date" value="" ></td>
+                   <td><input type="text" class="form-control " name="insurer_name[]" id="insurer_name${rowIdxNEw}" placeholder="Insurer / Company name" value=""></td>						  
+                   <td class="text-center"> <button class="btn btn-danger remove" type="button">Remove</button> </td> 
+              </tr>`); 
+          }            
+        }); 
+        
+        // jQuery button click event to remove a row. 
+        $('#tbody').on('click', '.remove', function () { 
+            
+          if(rowIdx==1){
+               
+          } else {
+              if(rowIdx == 1) {
+                  rowIdxNEw = 1;
+              }
+              var child = $(this).closest('tr').nextAll(); 
+              child.each(function () { 
+                var id = $(this).attr('id'); 
+        
+                // Getting the <p> inside the .row-index class. 
+                var idx = $(this).children('.row-index').children('p'); 
+        
+                // Gets the row number from <tr> id. 
+                var dig = parseInt(id.substring(1)); 
+        
+                // Modifying row index. 
+                idx.html(`Row ${dig - 1}`); 
+        
+                // Modifying row id. 
+                $(this).attr('id', `R${dig - 1}`); 
+              }); 
+        
+              // Removing the current row. 
+              $(this).closest('tr').remove(); 
+              
+              var cnt = $(this).closest('tr').attr('class');
+              $('#p_tbody').find('#R'+cnt).remove();
+        
+              // Decreasing total number of rows by 1. 
+              rowIdx--; 
+          }
+        }); 
+      }); 
+      
+      $('body').on('click', '#add_member_new', function(){
+         
+         $('#member_id_popup').val("");  
+         $('#member_name_popup').val(""); 
+         $('#member_email_popup').val(""); 
+         $('#alternate_member_email_popup').val("");
+         $('#member_mobile1_popup').val(""); 
+         $('#member_mobile2_popup').val(""); 
+         $('#member_type_popup').val(""); 
+         $('#policy_status_popup').val(""); 
+         $('#policy_no_popup').val(""); 
+         $('#party_type_popup').val(""); 
+         //$('#advocate_popup').val(""); 
+         $("#advocate_popup").val(null).select2();
+         $("#advocate_popup").select2({
+              placeholder: "Select Advocate",
+              width:"100%"
+          });	
+          
+          $('#op_popup').val("");
+          $('#insurer_popup').val("");
+          $('#policy_startdate_popup').val("");
+          $('#policy_enddate_popup').val("");
+          
+          $("#edit_member_btn").attr("style", "display:none");
+          $("#add_member_btn").attr("style", "display:block");
+     });
+     
+     $('body').on('click', '#add_member_btn', function(){
+         var member_id_popup = $('#member_id_popup').val();  
+         var member_name_popup = $('#member_name_popup').val(); 
+         var member_email_popup = $('#member_email_popup').val(); 
+         var alternate_member_email_popup = $('#alternate_member_email_popup').val();
+         var member_mobile1_popup = $('#member_mobile1_popup').val(); 
+         var member_mobile2_popup = $('#member_mobile2_popup').val(); 
+         
+         var member_type_popup = $('#member_type_popup').val();  
+         var policy_status_popup = $('#policy_status_popup').val(); 
+         var policy_no_popup = $('#policy_no_popup').val(); 
+         var party_type_popup = $('#party_type_popup').val(); 
+         var advocate_popup = $('#advocate_popup').val(); 
+         var advocate_popup_name = $("#advocate_popup option:selected").text();
+         var op_popup = $('#op_popup').val();
+         var insurer_popup = $('#insurer_popup').val();
+         var policy_startdate_popup = $('#policy_startdate_popup').val();
+         var policy_enddate_popup = $('#policy_enddate_popup').val();
+            
+         var countTrM = parseInt($('#tbody_add_member_detail tr:last').attr("class")); 
+         var counterM = (isNaN(countTrM))? 0 : countTrM;
+         var roleId = "";
+         var tagValm = ``;
+         
+         if(roleId == 1){
+             tagValm = `| <span class="text-danger trash-absolute deleteMember"><i class="fa fa-trash"></i></span>`;
+         }
+         
+          rowIdxm = counterM;
+          rowIdxNEwm = counterM+1 ;
+         
+         $('#tbody_add_member_detail').append(`<tr id="MR${++rowIdxm}" class="${rowIdxm}">
+             <td> <input type="hidden" class="form-control" name="member_id[]" id="member_id${rowIdxm}" value="${member_id_popup}"  >${member_id_popup}</td>
+             <td> <input type="hidden" class="form-control" name="member_name[]" id="member_name${rowIdxm}" value="${member_name_popup}"  >${member_name_popup}</td>
+             <td>  <input type="hidden" class="form-control" name="alternate_member_email[]" id="alternate_member_email${rowIdxm}" value="${alternate_member_email_popup}"  >
+             <input type="hidden" class="form-control" name="member_email[]" id="member_email${rowIdxm}" value="${member_email_popup}"  >${member_email_popup}</td>
+  
+             <td> <input type="hidden" class="form-control" name="member_mobile1[]" id="member_mobile1${rowIdxm}" value="${member_mobile1_popup}"  >${member_mobile1_popup}</td>
+             <td> <input type="hidden" class="form-control" name="member_mobile2[]" id="member_mobile2${rowIdxm}" value="${member_mobile2_popup}"  >${member_mobile2_popup}</td>
+             
+             <td> <input type="hidden" class="form-control" name="member_type[]" id="member_type${rowIdxm}" value="${member_type_popup}"  >${member_type_popup}</td>
+             <td> <input type="hidden" class="form-control" name="policy_status[]" id="policy_status${rowIdxm}" value="${policy_status_popup}"  >${policy_status_popup}</td>
+             <td> <input type="hidden" class="form-control" name="policy_no[]" id="policy_no${rowIdxm}" value="${policy_no_popup}"  >${policy_no_popup}</td>
+  
+             <td> <input type="hidden" class="form-control" name="party_type[]" id="party_type${rowIdxm}" value="${party_type_popup}"  >${party_type_popup}</td>
+             <input type="hidden" class="form-control" name="advocate[]" id="advocate${rowIdxm}" value="${advocate_popup}">
+             <input type="hidden" class="form-control" name="op[]" id="op${rowIdxm}" value="${op_popup}"  >
+             <input type="hidden" class="form-control" name="insurer[]" id="insurer${rowIdxm}" value="${insurer_popup}"  >
+             <input type="hidden" class="form-control" name="policy_start_date[]" id="policy_start_date${rowIdxm}" value="${policy_startdate_popup}"  >
+             <input type="hidden" class="form-control" name="policy_end_date[]" id="policy_end_date${rowIdxm}" value="${policy_enddate_popup}"  >
+             <td>
+             <a href="#" name="viewMember" id="viewMember"><i class="fa fa-edit"></i></a>${tagValm}</td>
+         </tr>`);
+         
+         $('#member_id_popup').val("");  
+         $('#member_name_popup').val(""); 
+         $('#member_email_popup').val(""); 
+         $('#alternate_member_email_popup').val("");
+         $('#member_mobile1_popup').val(""); 
+         $('#member_mobile2_popup').val(""); 
+         $('#member_type_popup').val(""); 
+         $('#policy_status_popup').val(""); 
+         $('#policy_no_popup').val(""); 
+         $('#party_type_popup').val(""); 
+         $("#advocate_popup").val(null).select2();
+         $('#op_popup').val();
+         $('#insurer_popup').val();
+         $('#policy_startdate_popup').val();
+         $('#policy_enddate_popup').val();
+         
+         $('#modalMemberDetail').modal('hide');
+     });
+     
+     
+         $('body').on('click','.deleteProccedding',function(){
+          if(confirm('Are you sure you want to delete?')) {
+              $(this).parent().parent().remove();
+          }
+      });
+      
+      $("body").on('click', '#viewMember', function(){
+          var classId = $(this).closest('tr').attr('class');
+          
+          $("#add_member_btn").attr("style", "display:none");
+          $("#edit_member_btn").attr("style", "display:block");
+          $("#count_id").val(classId);
+          
+          $('#member_id_popup').val($('#member_id'+classId).val());  
+          $('#member_name_popup').val($('#member_name'+classId).val()); 
+          $('#member_email_popup').val($('#member_email'+classId).val()); 
+          $('#member_mobile1_popup').val($('#member_mobile1'+classId).val()); 
+          $('#member_mobile2_popup').val($('#member_mobile2'+classId).val()); 
+          $('#member_type_popup').val($('#member_type'+classId).val()); 
+          $('#policy_status_popup').val($('#policy_status'+classId).val()); 
+          $('#policy_no_popup').val($('#policy_no'+classId).val()); 
+          $('#party_type_popup').val($('#party_type'+classId).val()); 
+          $('#advocate_popup').val($('#advocate'+classId).val()).select2(); 
+         
+          $('#op_popup').val($('#op'+classId).val()); 
+          $('#insurer_popup').val($('#insurer'+classId).val()); 
+          $('#policy_startdate_popup').val($('#policy_start_date'+classId).val()); 
+          $('#policy_enddate_popup').val($('#policy_end_date'+classId).val()); 
+          
+          $("#advocate_popup").select2({
+              placeholder: "Select Advocate",
+              width:"100%"
+          });	
+         
+          $('#modalMemberDetail').modal('show');
+      });
+      
+      $("body").on('click', '.close', function(){
+          $("#count_id").val("");
+          $("#edit_member_btn").attr("style", "display:none");
+          $("#add_member_btn").attr("style", "display:block");
+      });
+      
+     
+      $('body').on('click', '#edit_member_btn', function(){
+         var member_id_popup = $('#member_id_popup').val();  
+         var member_name_popup = $('#member_name_popup').val(); 
+         var member_email_popup = $('#member_email_popup').val(); 
+         var alternate_member_email_popup = $('#alternate_member_email_popup').val();
+         var member_mobile1_popup = $('#member_mobile1_popup').val(); 
+         var member_mobile2_popup = $('#member_mobile2_popup').val(); 
+         
+         var member_type_popup = $('#member_type_popup').val();  
+         var policy_status_popup = $('#policy_status_popup').val(); 
+         var policy_no_popup = $('#policy_no_popup').val(); 
+         var party_type_popup = $('#party_type_popup').val(); 
+         var advocate_popup = $('#advocate_popup').val(); 
+         var advocate_popup_name = $("#advocate_popup option:selected").text();
+         var op_popup = $('#op_popup').val();
+         var insurer_popup = $('#insurer_popup').val();
+         var policy_startdate_popup = $('#policy_startdate_popup').val();
+         var policy_enddate_popup = $('#policy_enddate_popup').val();
+            
+         var rowIdxm = $("#count_id").val();
+         var rowIdxmNew = $("#count_id").val();
+         
+         var m_id_val = $('#m_id'+rowIdxmNew).val();
+         $('#MR'+rowIdxmNew).remove(); 
+         
+         var tagValm = ``;
+         var roleId = "";
+         if(roleId == 1){
+             tagValm = `| <span class="text-danger trash-absolute deleteMember"><i class="fa fa-trash"></i></span>`;
+         }
+         var new_id = rowIdxmNew-1;
+         
+         let varRow = `<tr id="MR${rowIdxm}" class="${rowIdxm}">
+            <td><input type="hidden" name="memberViewStatus" id="memberViewStatus${rowIdxm}" value="" >
+                  <input type="hidden" name="m_id[]" id="m_id${rowIdxm}" value="${m_id_val}" >
+                  <input type="hidden" class="form-control" name="member_id[]" id="member_id${rowIdxm}" value="${member_id_popup}"  >${member_id_popup}</td>
+                  
+            <td> <input type="hidden" class="form-control" name="member_name[]" id="member_name${rowIdxm}" value="${member_name_popup}"  >${member_name_popup}</td>
+            <td>  <input type="hidden" class="form-control" name="alternate_member_email[]" id="alternate_member_email${rowIdxm}" value="${alternate_member_email_popup}"  >
+            <input type="hidden" class="form-control" name="member_email[]" id="member_email${rowIdxm}" value="${member_email_popup}"  >${member_email_popup}</td>
+  
+            <td> <input type="hidden" class="form-control" name="member_mobile1[]" id="member_mobile1${rowIdxm}" value="${member_mobile1_popup}"  >${member_mobile1_popup}</td>
+            <td> <input type="hidden" class="form-control" name="member_mobile2[]" id="member_mobile2${rowIdxm}" value="${member_mobile2_popup}"  >${member_mobile2_popup}</td>
+             
+            <td> <input type="hidden" class="form-control" name="member_type[]" id="member_type${rowIdxm}" value="${member_type_popup}"  >${member_type_popup}</td>
+            <td> <input type="hidden" class="form-control" name="policy_status[]" id="policy_status${rowIdxm}" value="${policy_status_popup}"  >${policy_status_popup}</td>
+            <td> <input type="hidden" class="form-control" name="policy_no[]" id="policy_no${rowIdxm}" value="${policy_no_popup}"  >${policy_no_popup}</td>
+  
+            <td> <input type="hidden" class="form-control" name="party_type[]" id="party_type${rowIdxm}" value="${party_type_popup}"  >${party_type_popup}</td>
+                       <input type="hidden" class="form-control" name="advocate[]" id="advocate${rowIdxm}" value="${advocate_popup}">
+            <input type="hidden" class="form-control" name="op[]" id="op${rowIdxm}" value="${op_popup}"  >
+            <input type="hidden" class="form-control" name="insurer[]" id="insurer${rowIdxm}" value="${insurer_popup}"  >
+            <input type="hidden" class="form-control" name="policy_start_date[]" id="policy_start_date${rowIdxm}" value="${policy_startdate_popup}"  >
+            <input type="hidden" class="form-control" name="policy_end_date[]" id="policy_end_date${rowIdxm}" value="${policy_enddate_popup}"  >
+            <td>
+            <a href="#" name="viewMember" id="viewMember"><i class="fa fa-edit"></i></a>${tagValm}</td>
+        </tr>`;
+  
+          if(new_id == 0 ) {
+              $('#tbody_add_member_detail').prepend(varRow);
+          } else {
+              $('#MR'+new_id).after(varRow);
+          }
+         
+         $('#member_id_popup').val("");  
+         $('#member_name_popup').val(""); 
+         $('#member_email_popup').val(""); 
+         $('#alternate_member_email_popup').val("");
+         $('#member_mobile1_popup').val(""); 
+         $('#member_mobile2_popup').val(""); 
+         $('#member_type_popup').val(""); 
+         $('#policy_status_popup').val(""); 
+         $('#policy_no_popup').val(""); 
+         $('#party_type_popup').val(""); 
+         $("#advocate_popup").val(null).select2();
+         $('#op_popup').val();
+         $('#insurer_popup').val();
+         $('#policy_startdate_popup').val();
+         $('#policy_enddate_popup').val();
+         
+         $('#modalMemberDetail').modal('hide');
+     });
+     
+     $('body').on('focus', '.membership_date, .membership_renewal_date, .policy_renewal_date', function () {
+          $(this).datepicker({
+              format: 'yyyy-mm-dd',
+              todayHighlight: true,
+              autoclose: true
+          });
+      });
+     
+  </script>
+  
+  <footer class="main-footer">
+      
+  </footer>
+  
+  </div>
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script> {% endcomment %}
+  {% comment %} {% include "include_footerjs.html" %} {% endcomment %}
+
+  </body></html>

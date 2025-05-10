@@ -1,0 +1,152 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper white-bgs" style="min-height: 544px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header ">
+        <h1></h1>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content white-bgs">
+  
+        <!-- general form elements disabled -->
+            <div class="box box-primary">
+              <!-- /.box-header -->
+              <form enctype="multipart/form-data" method="post" class="stdform" id="newsFrm" name="add_data_view" accept-charset="utf-8" action="" data-toggle="validator" novalidate="true">
+              <div class="box-body ">
+                  <div class="row">
+                      <div class="form-group col-md-4">
+                        <label>Name<span class="red-cor">*</span> </label>
+                        <input type="text" class="form-control inbord" name="name" id="name" placeholder="Name" value="" required="">
+                      </div>
+                  </div>
+                  <div class="row">
+                       <div class="form-group col-md-4">
+                        <label>Email<span class="red-cor">*</span></label>
+                        <input type="text" class="form-control inbord" name="email" id="email" autocomplete="off" placeholder="Email" required="">
+                      </div>
+                   </div>
+                   
+                   <div class="row">
+                       <div class="form-group col-md-4">
+                        <label>Subject<span class="red-cor">*</span></label>
+                        <input type="text" class="form-control inbord" name="subject" id="subject" autocomplete="off" placeholder="Subject" required="">
+                      </div>
+                   </div>
+                   
+                   <div class="row">
+                       <div class="form-group col-md-4">
+                        <label>Message<span class="red-cor">*</span></label>
+                        <textarea type="text" class="form-control inbord" name="message" autocomplete="off" placeholder="Message" required=""></textarea>
+                      </div>
+                   </div>
+                   <button type="submit" class="btn btn-primary disabled">Submit</button>
+                <button type="button" class="btn btn-default" onclick="window.location='https://prescriibe.com/docland/admin/admin/index';">Cancel</button>
+                
+                 
+                  
+              </div>
+             
+              </form>
+              
+            </div>
+            <!-- /.box -->
+  
+      </section>
+      <!-- /.content -->
+  
+  
+    </div>
+    <!-- /.content-wrapper -->
+  <script src="/docland/assets/admin/plugins/validator.js"></script>
+  <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  <footer class="main-footer">
+      
+  </footer>
+  
+  </div>
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body></html>

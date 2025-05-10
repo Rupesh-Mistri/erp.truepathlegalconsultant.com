@@ -1,0 +1,521 @@
+{% comment %} {% load custom_filters %} {% endcomment %}
+
+{% load static %}
+
+<html>
+
+  {% include "include_head.html" %}
+
+
+
+  <style>
+
+    {% comment %} body {
+
+        font-family: Arial, sans-serif;
+
+        line-height: 1.5;
+
+        margin: 20px;
+
+    } {% endcomment %}
+
+    .header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 20px;
+
+    }
+
+    .header img {
+
+        height: 60px;
+
+    }
+
+    .title {
+
+        text-align: center;
+
+        font-size: 18px;
+
+        font-weight: bold;
+
+        margin-bottom: 20px;
+
+    }
+
+    .section {
+
+        margin-bottom: 20px;
+
+    }
+
+    .section-title {
+
+        font-weight: bold;
+
+        margin-bottom: 10px;
+
+    }
+
+    .info-table {
+
+        width: 100%;
+
+        border-collapse: collapse;
+
+    }
+
+    .info-table td {
+
+        padding: 8px;
+
+        vertical-align: top;
+
+    }
+
+    .info-table td:first-child {
+
+        font-weight: bold;
+
+        width: 30%;
+
+    }
+
+    .info-table td:nth-child(2) {
+
+        width: 70%;
+
+    }
+
+</style>
+
+
+
+<style>
+
+  #id_download_pdf {
+
+    margin: 0 auto; /* Center the div horizontally */
+
+    padding: 20px; /* Add some padding inside the div */
+
+    border: 2px solid #ccc; /* Add a border around the div */
+
+    border-radius: 10px; /* Optional: Rounded corners */
+
+    max-width: 800px; /* Optional: Limit the width */
+
+    background-color: #f9f9f9; /* Optional: Light background color */
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+
+  }
+
+</style>
+
+
+
+  <body class="skin-blue-light sidebar-mini">
+
+    <div class="wrapper">
+
+      {% include "include_header.html" %}
+
+      {% include "include_aside.html" %}
+
+
+
+      <!-- Content Wrapper -->
+
+      <div class="content-wrapper" style="min-height: 370px;">
+
+        {% comment %} <section class="content-header">
+
+          <h1>
+
+            Doctor Registration Details
+
+            
+
+
+
+          </h1>
+
+        </section> {% endcomment %}
+
+    <div id="id_download_pdf"> 
+
+        <div class="header">
+
+          <img src="{% static 'images/logo_rectangle.webp' %}" alt="Logo">
+
+          {% comment %} <img src="oriental_insurance_logo.png" alt="Oriental Insurance Logo"> {% endcomment %}
+
+      </div>
+
+  
+
+      <div class="title">
+
+        LEAD REGISTRATION DETAILS
+
+      </div>
+
+  
+
+      <div class="section">
+
+        {% comment %} <p>{{ lead_details.submission_date_time|date:"l, F d, Y" }}</p> {% endcomment %}
+
+          <table class="info-table">
+
+              <tr>
+
+                  <td>Lead Date</td>
+
+                  <td>{{ lead_details.lead_date }}</td>
+
+              </tr>
+
+              <tr>
+
+                <td>Member Type</td>
+
+                <td>{{ lead_details.member_type }}</td>
+
+            </tr>
+            {% if lead_details.doctor_name %}
+              <tr>
+                  <td>Doctor Name</td>
+                  <td>{{ lead_details.doctor_name }}</td>
+
+              </tr>
+              {% elif lead_details.hospital_name  %}
+
+                <tr>
+
+                  <td>Hospital Name</td>
+
+                  <td>{{ lead_details.hospital_name }} </td>
+
+                </tr>
+                {% elif lead_details.diagnostic_name  %}
+                <tr>
+
+                  <td>Diagnostic Name</td>
+
+                  <td>{{ lead_details.diagnostic_name }} </td>
+
+                </tr>
+                {% endif %}
+              <tr>
+
+                  <td>Contact Person</td>
+
+                  <td>{{ lead_details.contact_person }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>Category</td>
+
+                  <td>{{ lead_details.category }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>Mobile</td>
+
+                  <td>{{ lead_details.mobile }}</td>
+
+              </tr>
+
+          {% comment %} </table>
+
+      </div> {% endcomment %}
+
+  
+
+      {% comment %} <div class="section">
+
+          <table class="info-table"> {% endcomment %}
+
+              <tr>
+
+                  <td>Mobile2</td>
+
+                  <td>{{ lead_details.mobile2 }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>Email</td>
+
+                  <td>{{ lead_details.email }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>State</td>
+
+                  <td>{{ lead_details.state }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>City</td>
+
+                  <td>{{ lead_details.city }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>Employee</td>
+
+                  <td>{{ lead_details.employee }}</td>
+
+              </tr>
+
+              <tr>
+
+                  <td>Remarks</td>
+
+                  <td>{{ lead_details.remarks }}</td>
+
+              </tr>
+
+              
+              
+
+              
+
+              
+              
+
+            
+
+
+
+            
+
+              
+
+          </table>
+
+          <div>
+
+            Declaration : I agree and hereby declare that the above statement and particulars are true and I have not suppressed or mis-stated any material
+
+and that at the present time I have no reason to anticipate any claim being brought against me for any negligence, etc. error or omission on my
+
+part and agree that this negligence, error or omission or mis-conduct is committed prior to the commencement of this insurance. I have also
+
+understood the terms and conditions of membership of {{COMPANY_NAME}}.
+
+
+
+          </div>
+
+        
+
+          {% comment %} <tr>
+
+            <td>Terms and Conditions</td>
+
+            <td>Declaration Accepted</td>
+
+        </tr> {% endcomment %}
+
+
+
+    
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="button-container text-center mt-4 mb-2">
+
+  {% comment %} <button onclick="printDiv('id_download_pdf')" class="btn btn-primary">Print</button> {% endcomment %}
+
+  <button onclick="downloadAsPDF('id_download_pdf')" class="btn btn-success">Download PDF</button>
+
+  {% comment %} <button onclick="downloadPDF()" class="btn btn-success">Download as PDF</button> {% endcomment %}
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
+
+  
+
+  function downloadAsPDF(divID) {
+
+    const element = document.getElementById(divID); // The container to export as PDF
+
+    const { jsPDF } = window.jspdf;
+
+  
+
+    const pdf = new jsPDF({
+
+      orientation: 'portrait',
+
+      unit: 'mm',
+
+      format: 'a4',
+
+    });
+
+  
+
+    const pdfWidth = pdf.internal.pageSize.getWidth(); // Width of A4 in mm
+
+    const pdfHeight = pdf.internal.pageSize.getHeight(); // Height of A4 in mm
+
+  
+
+    html2canvas(element, {
+
+      scale: 2, // High resolution for clear text and images
+
+      useCORS: true, // Enables loading external images
+
+    }).then((canvas) => {
+
+      const imgData = canvas.toDataURL('image/png'); // Get the canvas as an image
+
+      const imgWidth = canvas.width;
+
+      const imgHeight = canvas.height;
+
+  
+
+      // Calculate scaling to fit content to one A4 page
+
+      const scale = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+
+  
+
+      const scaledWidth = imgWidth * scale;
+
+      const scaledHeight = imgHeight * scale;
+
+  
+
+      const xOffset = (pdfWidth - scaledWidth) / 2; // Center horizontally
+
+      const yOffset = (pdfHeight - scaledHeight) / 2; // Center vertically
+
+  
+
+      // Add scaled content to the PDF
+
+      pdf.addImage(imgData, 'PNG', xOffset, yOffset, scaledWidth, scaledHeight);
+
+  
+
+      // Save the generated PDF
+
+      pdf.save('registration_details.pdf');
+
+    });
+
+  }
+
+  
+
+  
+
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+
+  // Function to print the ID card
+
+  {% comment %} function printIDCard() {
+
+      window.print();
+
+  } {% endcomment %}
+
+  
+
+  // Function to download the ID card as a PDF
+
+  function downloadPDF() {
+
+      const idCardElement = document.querySelector('#id_download_pdf');
+
+      const options = {
+
+          margin: 0,
+
+          filename: 'ID_Card.pdf',
+
+          image: {
+
+              type: 'jpeg',
+
+              quality: 0.98
+
+          },
+
+          html2canvas: {
+
+              scale: 2
+
+          },
+
+          jsPDF: {
+
+              unit: 'in',
+
+            //  format: 'a4',
+
+              orientation: 'portrait'
+
+          }
+
+      };
+
+      html2pdf().set(options).from(idCardElement).save();
+
+  }
+
+</script>
+
+
+
+      {% include "include_footerjs.html" %}
+
+  </body>
+
+</html>
+

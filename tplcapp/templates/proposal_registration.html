@@ -1,0 +1,753 @@
+<html>
+
+  {% include "include_head.html" %}
+
+  <body class="skin-blue-light sidebar-mini">
+
+  
+
+    <div class="wrapper">
+
+      {% include "include_header.html" %}
+
+      {% include "include_aside.html" %}
+
+  
+
+      <!-- Content Wrapper. Contains page content -->
+
+      <div class="content-wrapper" style="min-height: 370px;">
+
+        <section class="content-header">
+
+          <h1>
+
+            <small>Proposal Registration</span></small> <br>
+	 </h1>
+          <h1>
+		<p>Proposal No. {{proposal_no}}</span></p>
+          </h1>
+
+
+        </section>
+
+        
+
+        <section class="mt-30">
+
+          <div class="div-width">
+
+            <div class="container">
+
+              
+
+                <form class="m-3" method="post" id="iform" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="row">
+
+                      {% for field in form %}
+
+                     
+
+                      
+
+                        {% if field.name == 'special_mentions' %}
+
+                          <!-- Remarks field spans the full width -->
+
+                          
+
+                            <div class="col-12 form-group col-lg-12 mb-3" id="{{ form.special_mentions.id_for_label }}"> <br>
+
+                              <label for="{{ form.special_mentions.id_for_label }}" class="form-label font-weight-bold">
+
+                                {{ form.special_mentions.label }}
+
+                              </label>
+
+                              {{ form.special_mentions }}
+
+                              {% if form.special_mentions.help_text %}
+
+                                <div class="form-text text-muted">{{ form.special_mentions.help_text }}</div>
+
+                              {% endif %}
+
+                              {% if form.special_mentions.errors %}
+
+                                <div class="text-danger mt-1">
+
+                                  {% for error in form.special_mentions.errors %}
+
+                                    <p class="mb-0">{{ error }}</p>
+
+                                  {% endfor %}
+
+                                </div>
+
+                              {% endif %}
+
+                            </div>
+
+                         
+
+                          
+
+                        {% else %}
+
+                          <!-- Render three fields per row -->
+
+                          {% comment %} {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+
+                            </div><div class="row"> <!-- Start a new row after every 3 fields -->
+
+                          {% endif %} {% endcomment %}
+
+                          
+
+                          <div class="col-12 col-md-4 form-group mb-3" id="div_{{ field.id_for_label }}">
+
+                            <label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}</label>
+
+                            {{ field }}
+
+                            {% if field.help_text %}
+
+                              <div class="form-text text-muted">{{ field.help_text }}</div>
+
+                            {% endif %}
+
+                            {% if field.errors %}
+
+                              <div class="text-danger mt-1">
+
+                                {% for error in field.errors %}
+
+                                  <p class="mb-0">{{ error }}</p>
+
+                                {% endfor %}
+
+                              </div>
+
+                            {% endif %}
+
+                          </div>
+
+                        {% endif %}
+
+                      {% endfor %}
+
+
+
+                      
+
+                    </div>
+
+                
+
+
+
+                <h2>Multiple Records  <a href="javascript:void(0);" class="btn btn-success" onclick="addRow()">Add</a></h2>
+
+                        
+
+                   
+
+                    {% if mul_table_data %}
+
+                    <div id="multi_records_div">
+
+                        {% for row in mul_table_data %}
+
+                        <div id="multi_recor_row{{ forloop.counter }}" class="border border-danger rounded p-3 mb-4" style="border-style: double;">
+
+                            <div class="row gx-3 gy-3">
+
+                                <!-- Services Type -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="services_type{{ forloop.counter }}">Services Type</label>
+
+                                    <select class="form-control serviceType" id="services_type{{ forloop.counter }}" name="services_type{{ forloop.counter }}" required>
+
+                                        <option value="">Select</option>
+
+                                        <option value="Only Membership" {% if row.services_type == "Only Membership" %}selected{% endif %}>Only Membership</option>
+
+                                        <option value="Membership + Indemnity Insurance" {% if row.services_type == "Membership + Indemnity Insurance" %}selected{% endif %}>Membership + Indemnity Insurance</option>
+
+                                        <option value="Only Indmenity insurance" {% if row.services_type == "Only Indmenity insurance" %}selected{% endif %}>Only Indmenity insurance</option>
+
+                                        <option value="Pre - Membership Fee / Other Charges" {% if row.services_type == "Pre - Membership Fee / Other Charges" %}selected{% endif %}>Pre - Membership Fee / Other Charges</option>
+
+                                    </select>
+
+                                </div>
+
+                    
+
+                                <!-- Cover -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="cover{{ forloop.counter }}" class="form-label fw-bold">Cover</label>
+
+                                    <select class="form-control" id="cover{{ forloop.counter }}" name="cover{{ forloop.counter }}" required>
+
+                                      <option value="">Select</option>
+
+                                      <option value="2 Lakh Yearly" data-val="2" {% if row.cover == "2 Lakh Yearly" %}selected{% endif %}>2 Lakh Yearly</option>
+
+                                      <option value="5 Lakh Yearly" data-val="5" {% if row.cover == "5 Lakh Yearly" %}selected{% endif %}>5 Lakh Yearly</option>
+
+                                      <option value="10 Lakh Yearly" data-val="10" {% if row.cover == "10 Lakh Yearly" %}selected{% endif %}>10 Lakh Yearly</option>
+
+                                      <option value="20 Lakh Yearly" data-val="20" {% if row.cover == "20 Lakh Yearly" %}selected{% endif %}>20 Lakh Yearly</option>
+
+                                      <option value="30 Lakh Yearly" data-val="30" {% if row.cover == "30 Lakh Yearly" %}selected{% endif %}>30 Lakh Yearly</option>
+
+                                      <option value="40 Lakh Yearly" data-val="40" {% if row.cover == "40 Lakh Yearly" %}selected{% endif %}>40 Lakh Yearly</option>
+
+                                      <option value="50 Lakh Yearly" data-val="50" {% if row.cover == "50 Lakh Yearly" %}selected{% endif %}>50 Lakh Yearly</option>
+
+                                      <option value="1 Crore Yearly" data-val="100" {% if row.cover == "1 Crore Yearly" %}selected{% endif %}>1 Crore Yearly</option>
+
+                                      <option value="1.5 Crore Yearly" data-val="150" {% if row.cover == "1.5 Crore Yearly" %}selected{% endif %}>1.5 Crore Yearly</option>
+
+                                      <option value="2 Crore Yearly" data-val="200" {% if row.cover == "2 Crore Yearly" %}selected{% endif %}>2 Crore Yearly</option>
+
+                                      <option value="2.5 Crore Yearly" data-val="250" {% if row.cover == "2.5 Crore Yearly" %}selected{% endif %}>2.5 Crore Yearly</option>
+
+                                      <option value="5 Crore Yearly" data-val="500" {% if row.cover == "5 Crore Yearly" %}selected{% endif %}>5 Crore Yearly</option>
+
+                                  </select>
+
+                                  
+
+                                    
+
+                                </div>
+
+                    
+
+                                <!-- Premium Amount -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="cover_amount{{ forloop.counter }}" class="form-label fw-bold">Premium Amount</label>
+
+                                    <input type="number" name="cover_amount{{ forloop.counter }}" class="form-control" maxlength="255" required id="cover_amount{{ forloop.counter }}" value="{{ row.cover_amount }}">
+
+                                </div>
+
+                    
+
+                                <!-- Membership Amount -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="membership_amount{{ forloop.counter }}" class="form-label fw-bold">Membership Amount</label>
+
+                                    <input type="number" name="membership_amount{{ forloop.counter }}" class="form-control" maxlength="255" required id="membership_amount{{ forloop.counter }}" value="{{ row.membership_amount }}">
+
+                                </div>
+
+                    
+
+                                <!-- Total Amount -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="total_amount{{ forloop.counter }}" class="form-label fw-bold">Total Amount</label>
+
+                                    <input type="number" name="total_amount{{ forloop.counter }}" class="form-control" maxlength="255" required id="total_amount{{ forloop.counter }}" value="{{ row.total_amount }}">
+
+                                </div>
+
+                    
+
+                                <!-- Membership Tenure -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="tenure{{ forloop.counter }}" class="form-label fw-bold">Membership Tenure</label>
+
+                                    <select class="form-control" name="tenure{{ forloop.counter }}" id="tenure{{ forloop.counter }}" required>
+
+                                        {% comment %} <option value="">Select</option>
+
+                                        {% for i in range(1, 11) %}
+
+                                        <option value="{{ i }}" {% if row.tenure == i %}selected{% endif %}>{{ i }}</option>
+
+                                        {% endfor %} {% endcomment %}
+
+                                                    <option value="">Select</option>
+
+                                                    <option value="1" {% if row.tenure == "1" %}selected{% endif %}>1</option>
+
+                                                    <option value="2" {% if row.tenure == "2" %}selected{% endif %}>2</option>
+
+                                                    <option value="3" {% if row.tenure == "3" %}selected{% endif %}>3</option>
+
+                                                    <option value="4" {% if row.tenure == "4" %}selected{% endif %}>4</option>
+
+                                                    <option value="5" {% if row.tenure == "5" %}selected{% endif %}>5</option>
+
+                                                    <option value="6" {% if row.tenure == "6" %}selected{% endif %}>6</option>
+
+                                                    <option value="7" {% if row.tenure == "7" %}selected{% endif %}>7</option>
+
+                                                    <option value="8" {% if row.tenure == "8" %}selected{% endif %}>8</option>
+
+                                                    <option value="9" {% if row.tenure == "9" %}selected{% endif %}>9</option>
+
+                                                    <option value="10" {% if row.tenure == "10" %}selected{% endif %}>10</option>
+
+                                    </select>
+
+                                </div>
+
+                    
+
+                                <!-- Policy Tenure -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label for="policy_tenure{{ forloop.counter }}" class="form-label fw-bold">Policy Tenure</label>
+
+                                    <select class="form-control" name="policy_tenure{{ forloop.counter }}" id="policy_tenure{{ forloop.counter }}" required>
+
+                                        <option value="">Select</option>
+
+                                        {% comment %} {% for i in range(1, 11) %}
+
+                                        <option value="{{ i }}" {% if row.policy_tenure == i %}selected{% endif %}>{{ i }}</option>
+
+                                        {% endfor %} {% endcomment %}
+
+                                        <option value="">Select</option>
+
+                                        <option value="1" {% if row.policy_tenure == "1" %}selected{% endif %}>1</option>
+
+                                        <option value="2" {% if row.policy_tenure == "2" %}selected{% endif %}>2</option>
+
+                                        <option value="3" {% if row.policy_tenure == "3" %}selected{% endif %}>3</option>
+
+                                        <option value="4" {% if row.policy_tenure == "4" %}selected{% endif %}>4</option>
+
+                                        <option value="5" {% if row.policy_tenure == "5" %}selected{% endif %}>5</option>
+
+                                        <option value="6" {% if row.policy_tenure == "6" %}selected{% endif %}>6</option>
+
+                                        <option value="7" {% if row.policy_tenure == "7" %}selected{% endif %}>7</option>
+
+                                        <option value="8" {% if row.policy_tenure == "8" %}selected{% endif %}>8</option>
+
+                                        <option value="9" {% if row.policy_tenure == "9" %}selected{% endif %}>9</option>
+
+                                        <option value="10" {% if row.policy_tenure == "10" %}selected{% endif %}>10</option>
+
+                                    </select>
+
+                                </div>
+
+                    
+
+                                <!-- Remove Button -->
+
+                                <div class="col-12 col-md-3">
+
+                                    <label class="form-label fw-bold"> &nbsp;</label><br>
+
+                                    <a href="javascript:void(0);" class="btn btn-danger" onclick="removeRow(this)">Remove</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                       </div>
+
+                    {% else %}
+
+                    <div id="multi_records_div">
+
+                    <div id="multi_recor_row1" class="border border-danger rounded p-3 mb-4" style="border-style: double;">
+
+                        <div class="row gx-3 gy-3">
+
+                          <!-- Services Type -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="services_type1" >Services Type</label>
+
+                            <select class="form-control serviceType" id="services_type1" name="services_type1" required>
+
+                              <option value="">Select</option>
+
+                              <option value="Only Membership">Only Membership</option>
+
+                              <option value="Membership + Indemnity Insurance">Membership + Indemnity Insurance</option>
+
+                              <option value="Only Indmenity insurance">Only Indmenity insurance</option>
+
+                              <option value="Pre - Membership Fee / Other Charges">Pre - Membership Fee / Other Charges</option>
+
+                            </select>
+
+                          </div>
+
+                      
+
+                          <!-- Cover -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="cover1" class="form-label fw-bold">Cover</label>
+
+                            <select class="form-control" id="cover1" name="cover1" required>
+
+                              <option value="">Select</option>
+
+                              <option value="2 Lakh Yearly" data-val="2">2 Lakh Yearly</option>
+
+                              <option value="5 Lakh Yearly" data-val="5">5 Lakh Yearly</option>
+
+                              <option value="10 Lakh Yearly" data-val="10">10 Lakh Yearly</option>
+
+                              <option value="20 Lakh Yearly" data-val="20">20 Lakh Yearly</option>
+
+                              <option value="30 Lakh Yearly" data-val="30">30 Lakh Yearly</option>
+
+                              <option value="40 Lakh Yearly" data-val="40">40 Lakh Yearly</option>
+
+                              <option value="50 Lakh Yearly" data-val="50">50 Lakh Yearly</option>
+
+                              <option value="1 Crore Yearly" data-val="100">1 Crore Yearly</option>
+
+                              <option value="1.5 Crore Yearly" data-val="150">1.5 Crore Yearly</option>
+
+                              <option value="2 Crore Yearly" data-val="200">2 Crore Yearly</option>
+
+                              <option value="2.5 Crore Yearly" data-val="250">2.5 Crore Yearly</option>
+
+                              <option value="5 Crore Yearly" data-val="500">5 Crore Yearly</option>
+
+                            </select>
+
+                          </div>
+
+                      
+
+                          <!-- Premium Amount -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="cover_amount1" class="form-label fw-bold">Premium Amount</label>
+
+                            <input type="number" name="cover_amount1" class="form-control" maxlength="255" required id="cover_amount1">
+
+                          </div>
+
+                      
+
+                          <!-- Membership Amount -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="membership_amount1" class="form-label fw-bold">Membership Amount</label>
+
+                            <input type="number" name="membership_amount1" class="form-control" maxlength="255" required id="membership_amount1">
+
+                          </div>
+
+                      
+
+                          <!-- Total Amount -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="total_amount1" class="form-label fw-bold">Total Amount</label>
+
+                            <input type="number" name="total_amount1" class="form-control" maxlength="255" required id="total_amount1">
+
+                          </div>
+
+                      
+
+                          <!-- Membership Tenure -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="tenure1" class="form-label fw-bold">Membership Tenure</label>
+
+                            <select class="form-control" name="tenure1" id="tenure1" required>
+
+                              <option value="">Select</option>
+
+                              <option value="1">1</option>
+
+                              <option value="2">2</option>
+
+                              <option value="3">3</option>
+
+                              <option value="4">4</option>
+
+                              <option value="5">5</option>
+
+                              <option value="6">6</option>
+
+                              <option value="7">7</option>
+
+                              <option value="8">8</option>
+
+                              <option value="9">9</option>
+
+                              <option value="10">10</option>
+
+                            </select>
+
+                          </div>
+
+                      
+
+                          <!-- Policy Tenure -->
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="policy_tenure1" class="form-label fw-bold">Policy Tenure</label>
+
+                            <select class="form-control" name="policy_tenure1" id="policy_tenure1" required>
+
+                              <option value="">Select</option>
+
+                              <option value="1">1</option>
+
+                              <option value="2">2</option>
+
+                              <option value="3">3</option>
+
+                              <option value="4">4</option>
+
+                              <option value="5">5</option>
+
+                              <option value="6">6</option>
+
+                              <option value="7">7</option>
+
+                              <option value="8">8</option>
+
+                              <option value="9">9</option>
+
+                              <option value="10">10</option>
+
+                            </select>
+
+                          </div>
+
+                          <div class="col-12 col-md-3">
+
+                            <label for="total_amount1" class="form-label fw-bold"> .</label><br>
+
+                            <a href="javascript:void(0);" class="btn btn-danger" onclick="removeRow(this)">Remove</a>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    {% endif %}
+
+                
+
+           
+
+                
+
+                
+
+                    <div class="text-center mt-4">
+
+                        {% comment %} <button  name="Submit" onclick="check_all_field_valid(event)" class="btn btn-primary btn-lg px-5">Submit</button> {% endcomment %}
+
+                        <button  name="Submit"  class="btn btn-primary btn-lg px-5">Submit</button>
+
+                          {% comment %} <button type="button" class="btn btn-primary btn-lg px-5" data-toggle="modal" id="id_preview_modal_btn" data-target="#previewModal" onclick="populatePreview()">Preview</button> {% endcomment %}
+
+                    </div>   
+
+                </div> 
+
+                  </form>
+
+
+
+             
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div> <!-- .content-wrapper -->
+
+  
+
+      <footer class="main-footer">
+
+        <!-- Footer content can be added here -->
+
+      </footer>
+
+  
+
+    </div> <!-- .wrapper -->
+
+
+
+    
+
+  
+
+  <script>
+
+    function addRow() {
+
+        const container = document.getElementById('multi_records_div'); // Get the container div
+
+        const firstRow = container.firstElementChild; // Get the first row as a template
+
+      
+
+        // Clone the first row
+
+        const newRow = firstRow.cloneNode(true);
+
+      
+
+        // Reset the values of all inputs and selects in the cloned row
+
+        newRow.querySelectorAll('input').forEach(input => input.value = '');
+
+        newRow.querySelectorAll('select').forEach(select => select.value = '');
+
+      
+
+        // Update IDs and names to ensure uniqueness
+
+        const totalRows = container.childElementCount + 1; // New row index
+
+        newRow.id = `multi_recor_row${totalRows}`;
+
+        newRow.querySelectorAll('input, select').forEach(field => {
+
+          if (field.id) {
+
+            field.id = field.id.replace(/\d+$/, totalRows); // Update ID suffix
+
+          }
+
+          if (field.name) {
+
+            field.name = field.name.replace(/\d+$/, totalRows); // Update name suffix
+
+          }
+
+        });
+
+      
+
+        // Append the new row to the container
+
+        container.appendChild(newRow);
+
+      }
+
+      
+
+      function removeRow(button) {
+
+        const container = document.getElementById('multi_records_div'); // Get the container div
+
+        if (container.childElementCount > 1) {
+
+          // Remove the row containing the button
+
+          const row = button.closest('.border');
+
+          container.removeChild(row);
+
+      
+
+          // Reassign IDs and names to remaining rows
+
+          Array.from(container.children).forEach((child, index) => {
+
+            const newIndex = index + 1;
+
+            child.id = `multi_recor_row${newIndex}`;
+
+            child.querySelectorAll('input, select').forEach(field => {
+
+              if (field.id) {
+
+                field.id = field.id.replace(/\d+$/, newIndex); // Update ID suffix
+
+              }
+
+              if (field.name) {
+
+                field.name = field.name.replace(/\d+$/, newIndex); // Update name suffix
+
+              }
+
+            });
+
+          });
+
+        } else {
+
+          alert('You must have at least one record!');
+
+        }
+
+      }
+
+      
+
+  </script>
+
+    
+
+   
+
+
+
+
+
+   
+
+
+
+  
+
+
+
+    {% include "include_footerjs.html" %}
+
+  </body>
+
+</html>
+

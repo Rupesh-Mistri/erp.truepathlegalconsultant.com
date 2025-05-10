@@ -1,0 +1,439 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+  
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        <section class="content-header">
+          <h1>
+            <small>Diagnostic Center Registration</span></small>
+            <H1> Member Reg No.:{{app_registraction_no}} </H1>
+          </h1>
+        </section>
+        
+        <section class="mt-30">
+          <div class="div-width">
+            <div class="container">
+              
+              <form class="m-3" method="post" id="iform" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  {% for field in form %}
+                  <div class="col-12 form-group col-lg-12 mb-3">
+                    {% if field.name == 'selfie' %}
+                    <strong> 
+                        <label class="form-label font-weight-bold">
+                            {{ field.label }}  
+                            {% if field.field.required %}
+                                <i style="color:red"> *</i>
+                            {% else %}
+                                <span style="color:red"> (Optional, You can leave it blank) </span>
+                            {% endif %}
+                        </label>
+                    </strong>
+
+                    {{ field }}
+                    <video id="video" style="display:none" width="320" height="240" autoplay></video>
+
+                    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+                    <img id="photo" alt="Captured Image" style="display:none" width="320">
+                    <div class="col-12 form-group col-lg-12 mb-3 ">
+                      
+                      <div class="row g-3">
+                          <div class="col-12 form-group col-lg-12 mb-3">
+                            <label id="capture" class="btn btn-primary" style="display:none">Capture</label>
+                            <label id="cameraon" class="btn btn-success">Take Selfie</label>
+                            <label id="retake" class="btn btn-danger" style="display:none">Retake Photo</label>
+                          </div>
+                      </div>
+                    </div>
+                    <script>
+                        const fileInput = document.getElementById('id_selfie');
+                        fileInput.style.display = 'none';
+                        const video = document.getElementById('video');
+                        const canvas = document.getElementById('canvas');
+                        const photo = document.getElementById('photo');
+                        const captureButton = document.getElementById('capture');
+                        const cameraButton = document.getElementById('cameraon');
+                        const retakeButton = document.getElementById('retake');
+                        let stream;
+
+                        // Function to stop the webcam stream
+                        function stopCamera() {
+                            if (stream) {
+                                stream.getTracks().forEach(track => track.stop());
+                                video.srcObject = null; // Reset video source
+                            }
+                        }
+
+                        // Stop camera on page load to ensure permission is requested each time
+                        window.addEventListener('load', stopCamera);
+
+                        cameraButton.addEventListener('click', () => {
+                            stopCamera(); // Ensure any previous stream is stopped
+
+                            navigator.mediaDevices.getUserMedia({ video: true })
+                                .then(mediaStream => {
+                                    stream = mediaStream;
+                                    video.srcObject = stream;
+                                    video.style.display = 'block';
+                                    cameraButton.style.display = 'none';
+                                    captureButton.style.display = 'inline'; // Show capture button
+                                    retakeButton.style.display = 'none'; // Hide retake button if it was shown before
+                                })
+                                .catch(err => {
+                                    console.error("Error accessing webcam: ", err);
+                                    fileInput.style.display = 'block';
+                                });
+                        });
+
+                        // Capture the image
+                        captureButton.addEventListener('click', () => {
+                            const context = canvas.getContext('2d');
+                            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                            const dataUrl = canvas.toDataURL('image/png');
+                            photo.src = dataUrl;
+                            video.style.display = 'none';
+                            photo.style.display = 'block';
+                            captureButton.style.display = 'none'; // Hide capture button
+                            retakeButton.style.display = 'inline'; // Show retake button
+
+                            // Convert dataURL to a file and set to file input
+                            fetch(dataUrl)
+                                .then(res => res.blob())
+                                .then(blob => {
+                                    const file = new File([blob], "selfie.png", { type: 'image/png' });
+                                    const dataTransfer = new DataTransfer();
+                                    dataTransfer.items.add(file);
+                                    fileInput.files = dataTransfer.files;
+                                });
+
+                            // Stop the webcam
+                            stopCamera();
+                        });
+
+                        // Retake Photo
+                        retakeButton.addEventListener('click', () => {
+                            stopCamera(); // Stop previous stream
+
+                            navigator.mediaDevices.getUserMedia({ video: true })
+                                .then(mediaStream => {
+                                    stream = mediaStream;
+                                    video.srcObject = stream;
+                                    video.style.display = 'block';
+                                    photo.style.display = 'none';
+                                    retakeButton.style.display = 'none';
+                                    captureButton.style.display = 'inline'; // Show capture button again
+                                })
+                                .catch(err => {
+                                    console.error("Error accessing webcam: ", err);
+                                    //alert("Error accessing webcam: "+ err)
+                                    fileInput.style.display = 'block';
+                                });
+                        });
+                    </script>
+                    {% elif field.name == 'signature' %}
+                    {{ field }}
+                    
+                    <strong> <label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}  {% if field.field.required %}<i style="color:red"> *</i>{% else %}<span style="color:red"> (Optional ,You can leave it blank) {% endif %} </span></label></strong>
+
+                    <style>
+                      #signature-pad {
+                          border: 2px solid #000; /* Black border */
+                          background-color: #fff; /* White background */
+                          width: 400px;
+                          height: 200px;
+                          display: block;
+                      }
+                  </style>
+                    <canvas id="signature-pad"></canvas>
+                    <br>
+                    <label class="btn btn-primary" id="clear-btn">Clear Signature</label>
+                    <br>
+                    
+                    {% comment %} <label for="file-input">Upload signature as file:</label>
+                    <input type="file" id="file-input" accept="image/*" name="{{ field.html_name }}"> {% endcomment %}
+                    
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            // Setup canvas and context
+                            const canvas = document.getElementById('signature-pad');
+                            const ctx = canvas.getContext('2d');
+                            const clearBtn = document.getElementById('clear-btn');
+                            const sigfileInput = document.getElementById('id_signature');
+                            sigfileInput.style.display = 'none';
+                            // Set canvas size
+                            canvas.width = 400;
+                            canvas.height = 200;
+                            
+                            let isDrawing = false;
+                            
+                            // Event listener to start drawing
+                            canvas.addEventListener('mousedown', (e) => {
+                                isDrawing = true;
+                                ctx.beginPath();
+                                ctx.moveTo(e.offsetX, e.offsetY);
+                            });
+                            
+                            // Event listener to draw on canvas
+                            canvas.addEventListener('mousemove', (e) => {
+                                if (isDrawing) {
+                                    ctx.lineTo(e.offsetX, e.offsetY);
+                                    ctx.stroke();
+                                }
+                            });
+                            
+                            // Event listener to stop drawing
+                            canvas.addEventListener('mouseup', () => {
+                                isDrawing = false;
+                                saveSignature();
+                            });
+                            
+                            // Clear the canvas
+                            clearBtn.addEventListener('click', () => {
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                sigfileInput.value = ""; // Reset file input
+                            });
+                
+                            // Convert canvas signature to file and trigger file input
+                            {% comment %} function saveSignature() {
+                                const imageData = canvas.toDataURL('image/png');
+                                const file = dataURLToFile(imageData, 'signature.png');
+                                const dataTransfer = new DataTransfer();
+                                dataTransfer.items.add(file);
+                                sigfileInput.files = dataTransfer.files;
+                            }
+                             {% endcomment %}
+                            // Convert base64 to file
+                            function dataURLToFile(dataURL, filename) {
+                              const arr = dataURL.split(','), 
+                                    mime = arr[0].match(/:(.*?);/)[1],
+                                    bstr = atob(arr[1]);
+                              let n = bstr.length,  // Fixed issue: changed from const to let
+                                  u8arr = new Uint8Array(n);
+                              
+                              while (n--) {
+                                  u8arr[n] = bstr.charCodeAt(n);
+                              }
+                              
+                              return new File([u8arr], filename, {type: mime});
+                          }
+
+                          function saveSignature() {
+                            const canvas = document.getElementById('signature-pad');
+                            const sigfileInput = document.getElementById('id_signature');
+                        
+                            if (!sigfileInput) {
+                                console.error("Signature file input not found!");
+                                return;
+                            }
+                        
+                            const imageData = canvas.toDataURL('image/png');
+                            const file = dataURLToFile(imageData, 'signature.png');
+                            
+                            const dataTransfer = new DataTransfer();
+                            dataTransfer.items.add(file);
+                            sigfileInput.files = dataTransfer.files;
+                        
+                            console.log("Signature File:", sigfileInput.files[0]);
+                        }
+
+                            console.log(sigfileInput.value)
+                        });
+                    </script>
+               
+                
+                    {% else %}
+
+                    <strong> <label for="{{ field.id_for_label }}" class="form-label font-weight-bold">{{ field.label }}  {% if field.field.required %}<i style="color:red"> *</i>{% else %}<span style="color:red"> (Optional ,You can leave it blank) {% endif %} </span></label></strong>
+                    {{ field }}
+                    {% endif %}
+                    
+                    {% if field.name == 'proprietor_name' %}
+                    <h2> Residence Address <h2>
+                    {% endif %}
+
+                    {% if field.name == 'pin_code' %}
+                    <h2>Hospital / Clinic Address <h2>
+                    {% endif %}
+
+                    <!-- Check if the field is "selfie" -->
+                    {% if field.name == 'selfie' %}
+                    <div class="col-12 form-group col-lg-12 mb-3 border border-primary">
+                        <h4 class="mb-3">Declaration</h4>
+                        <div class="row g-3">
+                            <div class="col-12 form-group col-lg-12 mb-3">
+                                <input type="checkbox" name="declaration" required><i style="color:red"> *</i>
+                                <label>
+                                    I agree and hereby declare that the above statement and particulars are true and I have not suppressed or mis-stated any material and that at the present time I have no reason to anticipate any claim being brought against me for any negligence, etc., error, or omission on my part. I agree that this negligence, error, or omission or misconduct is committed prior to the commencement of this insurance. I have also understood the terms and conditions of membership of {{ COMPANY_NAME }}.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if field.help_text %}
+                    <div class="form-text text-muted">{{ field.help_text }}</div>
+                    {% endif %}
+                    
+                    <!-- Display errors for this field -->
+                    {% if field.errors %}
+                    <div class="text-danger mt-1">
+                      {% for error in field.errors %}
+                      <p class="mb-0">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+                 <!-- Submit button -->
+                 <div class="text-center mt-4">
+                  <button  name="Submit" onclick="check_all_field_valid(event)" class="btn btn-primary btn-lg px-5">Submit</button>
+                    
+                  <button type="button" class="btn btn-primary btn-lg px-5" data-bs-toggle="modal" id="id_preview_modal_btn" data-bs-target="#previewModal" onclick="populatePreview()">Preview</button>
+
+                    <script>
+                      function check_all_field_valid(event) {
+                        //alert('gh')
+                        // Select the form element
+                        const form = document.getElementById('iform');
+                      
+                        // Check if the form is valid
+                        if (!form.checkValidity()) {
+                          // Prevent form submission if any field is invalid
+                          event.preventDefault();
+                      
+                          // Display an alert if the form is not valid
+                          alert('Please fill all required fields correctly.');
+                        } else {
+                          // If valid, you can proceed with form submission (optional)
+                          //alert('Form is valid. Submitting...');
+                          event.preventDefault();
+                          document.getElementById('id_preview_modal_btn').click();
+                        }
+                      }
+                    </script>
+                </div>
+<!-- Preview Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="previewModalLabel">Form Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="id_download_pdf">
+        <section class="logo-mt">
+          <img src="/static/images/logo_rectangle.webp" alt="Company Logo" height="50px" width="200px">
+        </section>
+        <section class="content-header">
+          <h1>
+            <small>REGISTRATION CUM INSURANCE PROPOSAL</small>
+          </h1>
+        </section>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody id="previewTableBody">
+            <!-- Preview data will be dynamically populated here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+        <button type="submit" class="btn btn-success" name="submit" form="iform">Submit</button>
+      </div>
+      <div class="button-container text-center mt-4 mb-2">
+        <button onclick="printDiv('id_download_pdf')" class="btn btn-primary">Print</button>
+        {% comment %} <button onclick="downloadAsPDF('id_download_pdf')" class="btn btn-success">Download PDF</button> {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Preview Modal -->
+              </form> 
+<!-- JavaScript to Populate Modal -->
+<script>
+  function populatePreview() {
+      const tableBody = document.getElementById('previewTableBody');
+      tableBody.innerHTML = ''; // Clear the table body
+
+      // Loop through form fields
+      const form = document.getElementById('iform');
+      Array.from(form.elements).forEach((field) => {
+          if (field.name && field.type !== 'submit' && field.name!=='csrfmiddlewaretoken' ) {
+              const row = document.createElement('tr');
+
+              // Field name
+              const fieldName = document.createElement('td');
+              fieldName.textContent = field.labels?.[0]?.textContent || field.name;
+              row.appendChild(fieldName);
+
+              // Field value
+              const fieldValue = document.createElement('td');
+              fieldValue.textContent = field.value || 'Not provided';
+              row.appendChild(fieldValue);
+
+              tableBody.appendChild(row);
+          }
+      });
+  }
+</script>
+            </div>
+          </div>
+        </section>
+        
+      </div> <!-- .content-wrapper -->
+  
+      <footer class="main-footer">
+        <!-- Footer content can be added here -->
+      </footer>
+  
+    </div> <!-- .wrapper -->
+
+    <script>
+      // Initially hide the label and input field for coverage amount
+      document.querySelector('label[for="id_coverage_amount"]').style.display = 'none';
+      let coverage_amount_field = document.getElementById('id_coverage_amount');
+      coverage_amount_field.style.display = 'none';
+      coverage_amount_field.removeAttribute('required');
+
+      {% if record.insurance_cover == 'Yes' %}
+      document.querySelector('label[for="id_coverage_amount"]').style.display = 'block';
+      let coverage_amount_field = document.getElementById('id_coverage_amount');
+      coverage_amount_field.style.display = 'block';
+
+      {% endif %}
+      // Add an event listener for the 'id_insurance_cover' dropdown
+      document.getElementById('id_insurance_cover').addEventListener('change', function() {
+          if (this.value === 'Yes') {
+              // Show label and input field for coverage amount if 'Yes' is selected
+              document.querySelector('label[for="id_coverage_amount"]').style.display = 'block';
+              coverage_amount_field.style.display = 'block';
+              coverage_amount_field.setAttribute('required', true); // Correct use of setAttribute
+          } else {
+              // Hide label and input field for coverage amount if 'No' is selected
+              document.querySelector('label[for="id_coverage_amount"]').style.display = 'none';
+              coverage_amount_field.style.display = 'none';
+              coverage_amount_field.removeAttribute('required'); // Correct usage of removeAttribute
+          }
+      });
+  </script>
+    
+
+
+    {% include "include_footerjs.html" %}
+
+
+  </body>
+</html>

@@ -1,0 +1,2202 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+    
+  <style>
+  .error{color:#dd4b39}
+  label{font-weight:900;!important}
+  </style>
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 384px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Add Payment Form Details</h1>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+  
+        <!-- general form elements disabled -->
+            <div class="box box-solid">
+              <div class="nav-tabs-custom">	  
+              <!-- /.box-header -->
+              <form enctype="multipart/form-data" method="post" class="stdform" id="newsFrm" name="add_data_view" accept-charset="utf-8"  data-toggle="validator" novalidate="true">
+                {% csrf_token %}
+                <div class="box-body">
+                  
+                  <button style="float: right;margin-top: 23px;" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Preview</button>
+                   <div class="form-group col-md-2">
+                    <label>Member Status</label>
+                    <select class="form-control" id="member_status" name="member_status" required="">
+                      <option value="">Select</option>
+                      <option value="fresh">Fresh</option>
+                      <option value="renewal">Renewal</option>
+                    </select>
+                  </div>
+                                  <div class="form-group col-md-4 " id="member_id_div" style="display:none">
+                    <label>Member ID</label>
+                    <input type="text" class="form-control" name="member_id" id="member_id" style="display:none" value="">
+                  </div>
+                  
+                                  <div class="form-group col-md-4 " id="member_type_div1" style="display:block">
+                    <label>Insured Type*</label>
+                    <select class="form-control" id="member_type" name="member_type" style="display:block">
+                     <option value="">Select Member Type</option>
+                      <option value="1">Doctor</option>
+                      <option value="2">Hospital</option>
+                      <option value="3">Diagnostic Center</option>
+                    </select>
+                  </div>
+                  
+                 <div class="form-group col-md-4 ">
+                    <label>Name of Doctor / Medical Establishment *</label>
+                    <input type="text" class="form-control" name="insured_name" id="insured_name" placeholder="Insured Name" value="">
+                  </div>
+                  
+                  
+                  <div class="form-group col-md-4 propdiv" style="display:none">
+                    <label>Proprietor / Owner Nam *</label>
+                                       <input type="text" class="form-control" name="prop_name" id="prop_name" placeholder="Proprietor / Owner Nam" value="">
+                  </div>
+                  
+                                  
+                                  
+                  <!--<div class="form-group col-md-4 specialitydiv " style="display:block">-->
+                  <div class="form-group col-md-4 ">
+                    <label>Speciality*</label>
+                                       <select class="form-control select2-hidden-accessible" id="category_id" name="category_id" tabindex="-1" aria-hidden="true">
+                       <option value="">Select</option>
+                        
+                      <option value="1">Plastic and Cosmetic Surgeon</option>
+                       
+                      <option value="2">Cosmetic Surgeon</option>
+                       
+                      <option value="3">Dermatologist and Cosmetic Surgeon</option>
+                       
+                      <option value="4">Hair Transplant Surgeon</option>
+                       
+                      <option value="5">Anaesthetist</option>
+                       
+                      <option value="6">Cancer Surgeon</option>
+                       
+                      <option value="7">Bariatric Surgeon</option>
+                       
+                      <option value="8">Cardiothoracic Surgeon</option>
+                       
+                      <option value="9">Cardiovascular Surgeon</option>
+                       
+                      <option value="10">Critical Care Specialist</option>
+                       
+                      <option value="11">Dental Surgeon</option>
+                       
+                      <option value="12">ENT Surgeon</option>
+                       
+                      <option value="13">Eye Surgeon</option>
+                       
+                      <option value="14">Gastroenterosurgeon</option>
+                       
+                      <option value="15">General Surgeon</option>
+                       
+                      <option value="16">Interventional Cardiologist</option>
+                       
+                      <option value="17">Nephrosurgeon</option>
+                       
+                      <option value="18">Neurosurgeon</option>
+                       
+                      <option value="19">Obstetrics &amp; Gynaecologist</option>
+                       
+                      <option value="20">Oncosurgeon</option>
+                       
+                      <option value="21">Oncologist</option>
+                       
+                      <option value="22">Opthalmologist</option>
+                       
+                      <option value="23">Oral &amp; Maxillofacial Surgeon</option>
+                       
+                      <option value="24">Orthopaedic Surgeon</option>
+                       
+                      <option value="25">Paediatric Surgeon</option>
+                       
+                      <option value="26">Thoracic Surgeon</option>
+                       
+                      <option value="27">Urosurgeon</option>
+                       
+                      <option value="28">Cancer Physician</option>
+                       
+                      <option value="29">Acupuncturist</option>
+                       
+                      <option value="30">Cardiologist</option>
+                       
+                      <option value="31">Chest and TB Specialist</option>
+                       
+                      <option value="32">Child Specialist</option>
+                       
+                      <option value="33">Consultant Physician</option>
+                       
+                      <option value="34">Dermatologist</option>
+                       
+                      <option value="35">Diabetologist</option>
+                       
+                      <option value="36">ENT Physician</option>
+                       
+                      <option value="37">Endocrinologist</option>
+                       
+                      <option value="38">Gastroenterologist</option>
+                       
+                      <option value="39">General Physician</option>
+                       
+                      <option value="40">Haematologist</option>
+                       
+                      <option value="41">Microbiologist</option>
+                       
+                      <option value="42">Neonatologist</option>
+                       
+                      <option value="43">Nephrologist</option>
+                       
+                      <option value="44">Neurologist</option>
+                       
+                      <option value="45">Occupational Therapist</option>
+                       
+                      <option value="46">Paediatrician</option>
+                       
+                      <option value="47">Pathologist</option>
+                       
+                      <option value="48">Physiotherapist</option>
+                       
+                      <option value="49">Proctologist</option>
+                       
+                      <option value="50">Psychiatrist</option>
+                       
+                      <option value="51">Pulmonologist</option>
+                       
+                      <option value="52">Radiologist</option>
+                       
+                      <option value="53">Rheumatologist</option>
+                       
+                      <option value="54">Skin Specialist</option>
+                       
+                      <option value="55">Ultrasonologist</option>
+                       
+                      <option value="56">Urologist</option>
+                       
+                      <option value="57">Venerologist</option>
+                       
+                      <option value="58">Medical Establishment</option>
+                       
+                      <option value="59">Oral and Maxillofacial Surgeon with Cosmetic Surgery</option>
+                       
+                      <option value="60">Anaesthetist and Critical Care Specialist</option>
+                       
+                      <option value="61">Plastic Surgeon</option>
+                       
+                      <option value="62">General &amp; Laparoscopic Surgeon</option>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-category_id-container"><span class="select2-selection__rendered" id="select2-category_id-container"><span class="select2-selection__placeholder">Select Category</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                  
+                  
+                  <div class="clearfix"></div>
+                   <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;">
+                      <label>Communication Address *</label>					  
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>House No./ Flat No. / Block*</label>
+                    <input type="text" class="form-control" name="h_house_no" id="h_house_no" placeholder="House No" value="" required="">
+                  </div> 
+  
+                   
+                  <div class="form-group col-md-4">
+                    <label>Street / Road /Locality </label>
+                    <input type="text" class="form-control" name="h_street" id="h_street" placeholder="Street" value="">
+                  </div>
+                  
+                  <!--<div class="form-group col-md-4">
+                    <label>District*</label>
+                    <input type="text" class="form-control" name="h_district" id="h_district" placeholder="District" value=""  required>
+                  </div>-->
+                 
+                 <div class="form-group col-md-4">
+                    <label>State</label>
+                                      <select class="form-control select2-hidden-accessible" id="h_state_id" name="h_state_id" tabindex="-1" aria-hidden="true">
+                       <option value="">Select</option>
+                        
+                      <option value="1">Andaman and Nicobar </option>
+                       
+                      <option value="2">Andhra Pradesh </option>
+                       
+                      <option value="3">Arunachal Pradesh </option>
+                       
+                      <option value="4">Assam </option>
+                       
+                      <option value="5">Bihar </option>
+                       
+                      <option value="6">Chandigarh </option>
+                       
+                      <option value="7">Chhattisgarh </option>
+                       
+                      <option value="8">Dadra and Nagar Haveli </option>
+                       
+                      <option value="9">Daman and Diu </option>
+                       
+                      <option value="10">Delhi </option>
+                       
+                      <option value="11">Goa </option>
+                       
+                      <option value="12">Gujarat </option>
+                       
+                      <option value="13">Haryana </option>
+                       
+                      <option value="14">Himachal Pradesh </option>
+                       
+                      <option value="15">Jammu &amp; Kashmir </option>
+                       
+                      <option value="16">Jharkhand </option>
+                       
+                      <option value="17">Karnataka </option>
+                       
+                      <option value="18">Kerala </option>
+                       
+                      <option value="19">Lakshadweep </option>
+                       
+                      <option value="20">Maharashtra </option>
+                       
+                      <option value="21">Madhya Pradesh</option>
+                       
+                      <option value="22">Orissa </option>
+                       
+                      <option value="23">Punjab</option>
+                       
+                      <option value="24">Pondicherry </option>
+                       
+                      <option value="25">Rajasthan </option>
+                       
+                      <option value="26">Tamil Nadu </option>
+                       
+                      <option value="27">Uttar Pradesh</option>
+                       
+                      <option value="28">Uttarakhand</option>
+                       
+                      <option value="29">West Bengal </option>
+                       
+                      <option value="30">Telangana</option>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-h_state_id-container"><span class="select2-selection__rendered" id="select2-h_state_id-container"><span class="select2-selection__placeholder">Select State</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>City</label>
+                    <select class="form-control select2-hidden-accessible" id="h_city_id" name="h_city_id" tabindex="-1" aria-hidden="true">
+                       <option value="">Select</option>
+                                          </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 383px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-h_city_id-container"><span class="select2-selection__rendered" id="select2-h_city_id-container"><span class="select2-selection__placeholder">Select City</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>	
+                                     
+                  <div class="form-group col-md-4">
+                    <label>Pincode*</label>
+                    <input type="text" class="form-control" name="h_pincode" id="h_pincode" placeholder="Pincode" value="" required="">
+                  </div>
+                 
+                 <div class="clearfix"></div>
+                  <div class="form-group col-md-4">
+                    <label>Mobile Number of Doctor *</label>
+                    <input type="text" class="form-control" name="doc_mobile" id="doc_mobile" placeholder="Mobile1" value="" required="">
+                  </div>
+                                 
+                  <div class="form-group col-md-4">
+                    <label>Alternate Mobile Number of Doctor</label>
+                    <input type="text" class="form-control" name="doc_mobile2" id="doc_mobile2" placeholder="Mobile2" value="">
+                  </div>
+                 
+                   <div class="form-group col-md-4">
+                    <label>Email of Doctor* </label>
+                    <input type="text" class="form-control" name="doc_email" id="doc_email" placeholder="Email of Doctor" value="" required="">
+                  
+                  </div>
+                  
+                  <div class="clearfix"></div>
+                   <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;">
+                      <label></label>					  
+                  </div>
+                   <div class="form-group col-md-4">
+                    <label>Choose Plan</label>
+                    <select class="form-control" id="choose_plan" name="choose_plan">
+                      <option selected="selected" value="">Select</option>
+                      <option value="1">Only Membership</option>
+                      <option value="2">Membership + Indemnity Insurance</option>
+                      <option value="3">Only Indemnity Insurance</option>
+                      <option value="4">Pre - Membership Fee / Other Charges</option>
+                    </select>
+                  </div>
+  
+                                                  
+                  <div class="form-group col-md-4 insuranPlanDiv" style="display:none;">
+                    <label>Membership Period*</label>
+                    <select class="form-control" id="period" name="period" required="">
+                       <option value="">Select</option> 
+                      
+                      <option value="1">1 Year</option>
+                      
+                      <option value="2">2 Year</option>
+                      
+                      <option value="3">3 Year</option>
+                      
+                      <option value="4">4 Year</option>
+                      
+                      <option value="5">5 Year</option>
+                      
+                      <option value="6">6 Year</option>
+                      
+                    </select>
+                  </div>
+                  
+                   <div class="form-group col-md-4 insuranPlanDiv" style="display:none;">
+                    <label>Membership Amount*</label>
+                    <input type="text" class="form-control" name="membership_amount" id="membership_amount" placeholder="Membership Amount" value="" required="">
+                  </div>
+                  
+                  <div class="form-group col-md-4 LegalMemDiv" style="display:none;">
+                    <label>Coverage **</label>
+                    <select class="form-control" id="coverage" name="coverage" required="">
+                       <option value="">Select</option>
+                        
+                      <option value="2" data-val="2">2 Lacs Yearly</option>
+                       
+                      <option value="5" data-val="5">5 Lacs Yearly</option>
+                       
+                      <option value="10" data-val="10">10 Lacs Yearly</option>
+                       
+                      <option value="20" data-val="20">20 Lacs Yearly</option>
+                       
+                      <option value="25" data-val="25">25 Lacs Yearly</option>
+                       
+                      <option value="30" data-val="30">30 Lacs Yearly</option>
+                       
+                      <option value="35" data-val="35">35 Lacs Yearly</option>
+                       
+                      <option value="40" data-val="40">40 Lacs Yearly</option>
+                       
+                      <option value="45" data-val="45">45 Lacs Yearly</option>
+                       
+                      <option value="50" data-val="50">50 Lacs Yearly</option>
+                       
+                      <option value="55" data-val="55">55 Lacs Yearly</option>
+                       
+                      <option value="60" data-val="60">60 Lacs Yearly</option>
+                       
+                      <option value="65" data-val="65">65 Lacs Yearly</option>
+                       
+                      <option value="70" data-val="70">70 Lacs Yearly</option>
+                       
+                      <option value="75" data-val="75">75 Lacs Yearly</option>
+                       
+                      <option value="80" data-val="80">80 Lacs Yearly</option>
+                       
+                      <option value="85" data-val="85">85 Lacs Yearly</option>
+                       
+                      <option value="90" data-val="90">90 Lacs Yearly</option>
+                       
+                      <option value="95" data-val="95">95 Lacs Yearly</option>
+                       
+                      <option value="100" data-val="100">1 Crore Yearly</option>
+                       
+                      <option value="15" data-val="15">15 Lacs Yearly</option>
+                       
+                      <option value="4" data-val="4">4 Lacs Yearly</option>
+                       
+                      <option value="7" data-val="7">7 Lacs Yearly</option>
+                       
+                      <option value="3" data-val="3">3 Lacs Yearly</option>
+                       
+                      <option value="8" data-val="8">8 Lacs Yearly</option>
+                       
+                      <option value="2.5" data-val="2.5">2.5 Lacs Yearly</option>
+                       
+                      <option value="200" data-val="200">2 Crores Yearly</option>
+                       
+                      <option value="300" data-val="300">3 crores Yearly</option>
+                       
+                      <option value="500" data-val="500">5 crores yearly</option>
+                       
+                      <option value="1000" data-val="1000">10 Crores Yearly</option>
+                       
+                      <option value="24" data-val="24">24 Lacs Yearly</option>
+                       
+                      <option value="12" data-val="12">12 Lacs Yearly</option>
+                       
+                      <option value="6" data-val="6">6 Lacs Yearly</option>
+                       
+                      <option value="28" data-val="28">28 Lacs Yearly</option>
+                       
+                      <option value="18" data-val="18">18 Lacs Yearly</option>
+                       
+                      <option value="120" data-val="120">1 Crore 20 Lacs Yearly</option>
+                       
+                      <option value="150" data-val="150">1 Crore 50 Lacs</option>
+                       
+                      <option value="33" data-val="33">33 Lacs yearly</option>
+                       
+                      <option value="400" data-val="400">4 Crores Yearly</option>
+                       
+                      <option value="1.5" data-val="1.5">1.5 Lacs Yearly</option>
+                       
+                      <option value="1" data-val="1">1 Lacs Yearly</option>
+                       
+                      <option value="250" data-val="250">2.5 Crores yearly</option>
+                       
+                      <option value="150" data-val="150">1.5 Crores yearly</option>
+                       
+                      <option value="800" data-val="800">8 Crores Yearly</option>
+                                        </select>
+                  </div>
+                  
+                  <div class="form-group col-md-4 LegalMemDiv" style="display:none;">
+                    <label>Insurance Premium Tenure **</label>
+                    <select class="form-control" id="insurance_period" name="insurance_period" required="">
+                       <option value="">Select</option> 
+                      
+                      <option value="1">1 Year</option>
+                      
+                      <option value="2">2 Year</option>
+                      
+                      <option value="3">3 Year</option>
+                      
+                      <option value="4">4 Year</option>
+                      
+                      <option value="5">5 Year</option>
+                      
+                      <option value="6">6 Year</option>
+                      
+                    </select>
+                  </div>
+                  
+                  
+                 
+                   <div class="form-group col-md-4 LegalMemDiv" style="display:none;">
+                    <label>Insurance Premium Amount *</label>
+                    <input type="text" class="form-control" name="ins_premium_amount" id="ins_premium_amount" placeholder="Insurance Premium Amount" value="" required="">
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Total Amount (Inc. GST) **</label>
+                    <input type="text" class="form-control" name="membership_amount_inc_gst" id="membership_amount_inc_gst" placeholder="Total Amount (Inc. GST)" value="" required="">
+                  </div>
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label>For KYC</label></div>
+                                  <div class="form-group col-md-4">
+                    <label>Select Customer Id Type</label>
+                    <select class="form-control" id="customer_id_type" name="customer_id_type">
+                          <option value="">Please Select</option>
+                          <option value="Aadhar">Aadhar </option>
+                          <option value="PAN">PAN</option>
+                          <option value="Driving License">Driving License</option>
+                          <option value="Passport">Passport</option>
+                          <option value="GST Certificate (For Non-Individual)">GST Certificate (For Non-Individual)</option>
+                          <option value="Incorporation Certificate (For Non Individuals)">Incorporation Certificate (For Non Individuals)</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Customer ID Number</label>
+                    <input type="text" class="form-control" name="customer_id_no" id="customer_id_no" placeholder="Customer ID Number" value="" required="">
+                  </div>
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label></label></div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Payment Type</label>
+                    <select class="form-control" id="payment_type" name="payment_type_main">
+                       <option value=""> Please Select </option>
+                      <option value="single"> Single </option>
+                      <option value="combined"> Combined </option>
+                    </select>
+                  </div>
+                  
+                  
+                                  <div class="form-group col-md-4" id="additional_member_id_div" style="display:none">
+                    <label>Additional Member Id/Name</label>
+                    <input type="text" class="form-control" name="additional_member_id" id="additional_member_id" placeholder="Additional Member Id/Name" value="" style="display:none">
+                  </div>
+                  
+                  
+                  <div class="form-group col-md-12 table-responsive no-padding" id="references_div">
+                      <table class="table table-hover table-bordered">
+                         <thead> <tr style="background-color:#e5eaf4;">
+                              <th></th>
+                              <th>Payment mode </th>
+                              <th>Add Transaction / Cheque date</th>
+                              <th>Add Transaction Ref no. / cheque no.</th>
+                              <th>Add Transaction amount / cheque amount</th>
+                              <th>Bank Name</th>														
+                              <th>Payment Type</th>
+                              <th><button class="btn btn-md btn-primary" id="addBtn" type="button" style="background-color: green !important;color:white !important;">Add new Row </button></th>
+                         </tr></thead> 
+                         <tbody id="tbody">
+                         
+                                                     <tr id="R1" class="1">
+                               <td>1</td>
+                               <td>
+                                   <select class="form-control payment_mode valid" title="1" id="payment_mode1" name="payment_mode[]" onchange="paymentMethodCon(1)" required="">
+                                       <option value="0"> Please Select </option>
+                                      <option value="Cheque"> Cheque </option>
+                                      <option value="Cash"> Cash </option>
+                                      <option value="NEFT"> NEFT </option>
+                                      <option value="IMPS"> IMPS </option>
+                                      <option value="UPI"> UPI </option>
+                                      <option value="CC avenue"> CC avenue </option>
+                                      <option value="Razorpay"> Razorpay </option>
+                                      <option value="Paytm"> Paytm </option>
+                                      <option value="Phonepe"> Phonepe </option>
+                                      <option value="Google Pay"> Google Pay </option>
+                                    </select>
+                               </td>
+                               <td><input type="text" class="form-control date_type" name="txn_date[]" id="txn_date1" placeholder="Transaction / Cheque date" value="" onchange="txnDateCon(1)" required=""></td>
+                               <td><input type="text" class="form-control" name="txn_ref_no[]" id="txn_ref_no1" placeholder="Transaction Ref no. / cheque no" value="" onchange="txnRefNoCon(1)" required=""></td>
+                               <td><input type="text" class="form-control" name="txn_amount[]" id="txn_amount1" placeholder="Transaction amount / cheque amount" value="" onchange="txnAmountCon(1)" required=""></td>
+                               <td><input type="text" class="form-control bank_name_div" name="bank_name[]" id="bank_name1" placeholder="Bank Name" value="" style="display:none" onchange="txnBankCon(1)" required=""></td>
+                               <td><select class="form-control payment_status valid" id="payment_status1" name="payment_type[]" onchange="paymentStatus(1)" required="">                					 
+                                     <option value=" "> Please Select </option>                					
+                                     <option value="Full"> Full </option>                					    
+                                     <option value="Installment"> Installment </option>                                  
+                                 </select>    					     
+                               </td>							 
+                               <td class="text-center"> <button class="btn btn-danger remove" type="button">Remove</button> </td> 
+                             </tr>
+                                                    
+                             
+                          </tbody>
+                      </table>
+                      
+                      
+                   </div>
+                  
+                 
+                  <!--<div class="form-group col-md-4">
+                    <label>BDM / TL Name</label>
+                    <input type="text" class="form-control" name="bdm_name" id="bdm_name" placeholder="BDM / TL Name" value=""  >
+                  </div>-->
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label></label></div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Upload Selfie <span style="color:red">(Allowed image only) </span></label>
+                    <input type="file" name="selfie_image" id="selfie_image">
+                    <input type="hidden" name="selfie_image_old" id="selfie_image_old" value="" required="">
+                                    
+                   <p><img src="#" id="upload_Selfie" style="margin-top:10px" width="100"></p>
+                  
+                  </div>
+               <!--   <div class="form-group col-md-4">-->
+      <!--              <label>Upload Signature*</label>-->
+      <!--                  <div id="sig" style="height: 200px; width: 200px;"></div>-->
+      <!--                    <br>-->
+      <!--                    <textarea id="signature64" name="signed" style="display: none;"></textarea>-->
+      <!--                    <button id="clear">Clear</button>-->
+                    <!--<input type="file" name="signature_image" id="signature_image"  >-->
+                    <!--<input type="hidden" name="signature_image_old" id="signature_image_old" value="" required >-->
+                               
+      <!--           </div>-->
+                 <div class="form-group col-md-4">
+                    <label>Upload Document <span style="color:red">(Allowed Only doc, pdf and image file) </span></label>
+                    <input type="file" name="document_image" id="document_image">
+                    <input type="hidden" name="document_image_old" id="document_image_old" value="" required="">
+                   
+                                    <p><img src="#" id="doc_image" style="display:none " width="100"></p>
+                                  </div>
+                 <div class="clearfix"></div>
+                         <div class="form-group col-md-4">
+                    <label>Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="remarks" placeholder="Remarks" value="">
+                  </div>
+                  <div class="form-group col-md-4">
+                        <label>#Place of submission</label>
+                        <input type="text" class="form-control" name="place_of_submission" id="place_of_submission" value="">
+                   </div>
+              
+              <div class="clearfix"></div>	
+                  
+              <!-- /.box-body -->
+              <div class="box-footer">
+                  
+                  <!--<button type="submit" class="btn btn-primary " id="form_submit">Preview & Submit</button>-->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Preview</button>
+                <button type="button" class="btn btn-default" onclick="window.location='https://prescriibe.com/docland/admin/member/payment_form_list';">Cancel</button>
+                <input type="hidden" id="id" name="id" value="">
+                <input type="hidden" id="payment_id" name="payment_id" value="">
+              </div>
+              
+              </div></form>
+              
+            </div>
+            <!-- /.box -->
+  
+      </div></section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    
+   <!-- /.Popup Data -->
+  <div class="modal fade" id="modalpop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <form enctype="multipart/form-data" method="post" class="stdform" id="check_otp" name="check_otp" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/member/check_otp" data-toggle="validator" novalidate="true">	
+           <div class="box-body">
+               
+              <div class="form-group col-md-12">
+                    <label>Otp* </label>
+                    <input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" value="" required="">
+                    <p style="display:none; color:red;" id="check_otp_error"></p>
+              </div>
+          </div>
+          <div class="box-footer">
+                  <button type="button" class="btn btn-primary " id="check_otp_btn">Submit</button>
+                
+                <input type="hidden" id="mobile_phone" name="mobile_phone" value="">
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <!-- /.end Popup -->
+    
+   <!-- /.Popup Data -->
+  <div class="modal fade" id="modalpopemail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <form enctype="multipart/form-data" method="post" class="stdform" id="check_otp_email" name="check_otp_email" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/member/check_otp_email" data-toggle="validator" novalidate="true">	
+           <div class="box-body">
+               
+              <div class="form-group col-md-12">
+                    <label>Otp* </label>
+                    <input type="text" class="form-control" name="otp_email" id="otp_email" placeholder="OTP" value="" required="">
+                    <p style="display:none; color:red;" id="check_otp_email_error"></p>
+              </div>
+          </div>
+          <div class="box-footer">
+                  <button type="button" class="btn btn-primary " id="check_otp_btn_email">Submit</button>
+                
+                <input type="hidden" id="email_email" name="email_email" value="">
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content modal-lg">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="myModalLabel">Preview</h4>
+        </div>
+        <div class="modal-body">
+          <div class="box-body">
+  
+  
+                   <div class="form-group col-md-2">
+                    <label>Member Status</label>
+                    <select class="form-control" id="member_status_p" name="member_status_p" required="" disabled="">
+                      <option value="">Select</option>
+                      <option value="fresh">Fresh</option>
+                      <option value="renewal">Renewal</option>
+                    </select>
+                  </div>
+  
+                                  <div class="form-group col-md-4 " id="member_id_div_p" style="display:block">
+                    <label>Member ID</label>
+                    <input type="text" class="form-control" name="member_id" id="member_id_p" style="display:block" value="" readonly="">
+                  </div>
+                  
+                                  <div class="form-group col-md-4 " id="member_type_div1_p" style="display:none">
+                    <label>Insured Type*</label>
+                    <select class="form-control" id="member_type_p" name="member_type" style="display:none" disabled="">
+                     <option value="">Select Member Type</option>
+                      <option value="1">Doctor</option>
+                      <option value="2">Hospital</option>
+                      <option value="3">Diagnostic Center</option>
+                    </select>
+                  </div>
+                  
+                  
+                 <div class="form-group col-md-6 ">
+                    <label>Name of Doctor / Medical Establishment *</label>
+                    <input type="text" class="form-control" name="insured_name" id="insured_name_p" placeholder="Insured Name" value="" readonly="">
+                  </div>
+                  
+  
+                  
+                  <div class="form-group col-md-4 propdiv" style="display:none">
+                    <label>Proprietor / Owner Nam *</label>
+                    <input type="text" class="form-control" name="prop_name" id="prop_name_p" placeholder="Proprietor / Owner Nam" value="" readonly="">
+                  </div>
+                  
+                  
+                                      
+                  <div class="form-group col-md-4 ">
+                      <label>Speciality*</label>
+                      <select class="form-control" id="category_id_p" name="category_id" disabled="">
+                           <option value="">Select</option>
+                            
+                          <option value="1">Plastic and Cosmetic Surgeon</option>
+                           
+                          <option value="2">Cosmetic Surgeon</option>
+                           
+                          <option value="3">Dermatologist and Cosmetic Surgeon</option>
+                           
+                          <option value="4">Hair Transplant Surgeon</option>
+                           
+                          <option value="5">Anaesthetist</option>
+                           
+                          <option value="6">Cancer Surgeon</option>
+                           
+                          <option value="7">Bariatric Surgeon</option>
+                           
+                          <option value="8">Cardiothoracic Surgeon</option>
+                           
+                          <option value="9">Cardiovascular Surgeon</option>
+                           
+                          <option value="10">Critical Care Specialist</option>
+                           
+                          <option value="11">Dental Surgeon</option>
+                           
+                          <option value="12">ENT Surgeon</option>
+                           
+                          <option value="13">Eye Surgeon</option>
+                           
+                          <option value="14">Gastroenterosurgeon</option>
+                           
+                          <option value="15">General Surgeon</option>
+                           
+                          <option value="16">Interventional Cardiologist</option>
+                           
+                          <option value="17">Nephrosurgeon</option>
+                           
+                          <option value="18">Neurosurgeon</option>
+                           
+                          <option value="19">Obstetrics &amp; Gynaecologist</option>
+                           
+                          <option value="20">Oncosurgeon</option>
+                           
+                          <option value="21">Oncologist</option>
+                           
+                          <option value="22">Opthalmologist</option>
+                           
+                          <option value="23">Oral &amp; Maxillofacial Surgeon</option>
+                           
+                          <option value="24">Orthopaedic Surgeon</option>
+                           
+                          <option value="25">Paediatric Surgeon</option>
+                           
+                          <option value="26">Thoracic Surgeon</option>
+                           
+                          <option value="27">Urosurgeon</option>
+                           
+                          <option value="28">Cancer Physician</option>
+                           
+                          <option value="29">Acupuncturist</option>
+                           
+                          <option value="30">Cardiologist</option>
+                           
+                          <option value="31">Chest and TB Specialist</option>
+                           
+                          <option value="32">Child Specialist</option>
+                           
+                          <option value="33">Consultant Physician</option>
+                           
+                          <option value="34">Dermatologist</option>
+                           
+                          <option value="35">Diabetologist</option>
+                           
+                          <option value="36">ENT Physician</option>
+                           
+                          <option value="37">Endocrinologist</option>
+                           
+                          <option value="38">Gastroenterologist</option>
+                           
+                          <option value="39">General Physician</option>
+                           
+                          <option value="40">Haematologist</option>
+                           
+                          <option value="41">Microbiologist</option>
+                           
+                          <option value="42">Neonatologist</option>
+                           
+                          <option value="43">Nephrologist</option>
+                           
+                          <option value="44">Neurologist</option>
+                           
+                          <option value="45">Occupational Therapist</option>
+                           
+                          <option value="46">Paediatrician</option>
+                           
+                          <option value="47">Pathologist</option>
+                           
+                          <option value="48">Physiotherapist</option>
+                           
+                          <option value="49">Proctologist</option>
+                           
+                          <option value="50">Psychiatrist</option>
+                           
+                          <option value="51">Pulmonologist</option>
+                           
+                          <option value="52">Radiologist</option>
+                           
+                          <option value="53">Rheumatologist</option>
+                           
+                          <option value="54">Skin Specialist</option>
+                           
+                          <option value="55">Ultrasonologist</option>
+                           
+                          <option value="56">Urologist</option>
+                           
+                          <option value="57">Venerologist</option>
+                           
+                          <option value="58">Medical Establishment</option>
+                           
+                          <option value="59">Oral and Maxillofacial Surgeon with Cosmetic Surgery</option>
+                           
+                          <option value="60">Anaesthetist and Critical Care Specialist</option>
+                           
+                          <option value="61">Plastic Surgeon</option>
+                           
+                          <option value="62">General &amp; Laparoscopic Surgeon</option>
+                                             </select>
+                  </div>
+                  
+                  
+                  <div class="clearfix"></div>
+                   <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;">
+                      <label>Communication Address *</label>					  
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>House No./ Flat No. / Block*</label>
+                    <input type="text" class="form-control" name="h_house_no" id="h_house_no_p" placeholder="House No" value="" readonly="">
+                  </div> 
+  
+                   
+                  <div class="form-group col-md-4">
+                    <label>Street / Road /Locality </label>
+                    <input type="text" class="form-control" name="h_street" id="h_street_p" placeholder="Street" value="" readonly="">
+                  </div>
+                  
+              
+                 
+                  <div class="form-group col-md-4">
+                      <label>State</label>
+                                          <select class="form-control" id="h_state_id_p" name="h_state_id" disabled="">
+                          <option value="">Select</option>
+                            
+                          <option value="1">Andaman and Nicobar </option>
+                        
+                          <option value="2">Andhra Pradesh </option>
+                        
+                          <option value="3">Arunachal Pradesh </option>
+                        
+                          <option value="4">Assam </option>
+                        
+                          <option value="5">Bihar </option>
+                        
+                          <option value="6">Chandigarh </option>
+                        
+                          <option value="7">Chhattisgarh </option>
+                        
+                          <option value="8">Dadra and Nagar Haveli </option>
+                        
+                          <option value="9">Daman and Diu </option>
+                        
+                          <option value="10">Delhi </option>
+                        
+                          <option value="11">Goa </option>
+                        
+                          <option value="12">Gujarat </option>
+                        
+                          <option value="13">Haryana </option>
+                        
+                          <option value="14">Himachal Pradesh </option>
+                        
+                          <option value="15">Jammu &amp; Kashmir </option>
+                        
+                          <option value="16">Jharkhand </option>
+                        
+                          <option value="17">Karnataka </option>
+                        
+                          <option value="18">Kerala </option>
+                        
+                          <option value="19">Lakshadweep </option>
+                        
+                          <option value="20">Maharashtra </option>
+                        
+                          <option value="21">Madhya Pradesh</option>
+                        
+                          <option value="22">Orissa </option>
+                        
+                          <option value="23">Punjab</option>
+                        
+                          <option value="24">Pondicherry </option>
+                        
+                          <option value="25">Rajasthan </option>
+                        
+                          <option value="26">Tamil Nadu </option>
+                        
+                          <option value="27">Uttar Pradesh</option>
+                        
+                          <option value="28">Uttarakhand</option>
+                        
+                          <option value="29">West Bengal </option>
+                        
+                          <option value="30">Telangana</option>
+                                          </select> 
+                       
+                  </div>
+                                       
+                  
+                  <div class="form-group col-md-4">
+                      <label>City</label>
+                      <select class="form-control" id="h_city_id_p" name="h_city_id" disabled="">
+                       <option value="">Select</option>
+                                          </select>  
+                  </div>	
+                      
+                     
+                                     
+                  <div class="form-group col-md-4">
+                    <label>Pincode*</label>
+                    <input type="text" class="form-control" name="h_pincode" id="h_pincode_p" placeholder="Pincode" value="" readonly="">
+                  </div>
+                  
+                  
+                 <div class="clearfix"></div>
+                  <div class="form-group col-md-4">
+                    <label>Mobile Number of Doctor *</label>
+                    <input type="text" class="form-control" name="doc_mobile" id="doc_mobile_p" placeholder="Mobile1" value="" readonly="">
+                  </div>
+                      
+                      
+                                 
+                  <div class="form-group col-md-4">
+                    <label>Alternate Mobile Number of Doctor</label>
+                    <input type="text" class="form-control" name="doc_mobile2" id="doc_mobile2_p" placeholder="Mobile2" value="" readonly="">
+                  </div>
+                 
+                  
+                 
+                   <div class="form-group col-md-4">
+                    <label>Email of Doctor* </label>
+                    <input type="text" class="form-control" name="doc_email" id="doc_email_p" placeholder="Email of Doctor" value="" readonly="">
+                  
+                  </div>
+                  
+              
+                  
+                  <div class="clearfix"></div>
+                   <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;">
+                      <label></label>					  
+                  </div>
+                   <div class="form-group col-md-4">
+                    <label>Choose Plan</label>
+                    <select class="form-control" id="choose_plan_p" name="choose_plan" disabled="">
+                      <option selected="selected" value="">Select</option>
+                      <option value="1">Only Membership</option>
+                      <option value="2">Membership + Indemnity Insurance</option>
+                      <option value="3">Only Indemnity Insurance</option>
+                      <option value="4">Pre - Membership Fee / Other Charges</option>
+                    </select>
+                  </div>
+                  
+                  
+                                                     
+                  <div class="form-group col-md-4 insuranPlanDiv" style="display:none;">
+                    <label>Membership Period*</label>
+                  
+                    <select class="form-control" id="period_p" name="period" disabled="" required="">
+                       <option value="">Select</option> 
+                      
+                      <option value="1">1 Year</option>
+                      
+                      <option value="2">2 Year</option>
+                      
+                      <option value="3">3 Year</option>
+                      
+                      <option value="4">4 Year</option>
+                      
+                      <option value="5">5 Year</option>
+                      
+                      <option value="6">6 Year</option>
+                      
+                    </select>
+                  </div>
+                  
+                   <div class="form-group col-md-4 insuranPlanDiv" style="display:none;">
+                    <label>Membership Amount*</label>
+                    <input type="text" class="form-control" name="membership_amount" id="membership_amount_p" placeholder="Membership Amount" value="" required="" readonly="">
+                  </div>
+                  
+                  <div class="form-group col-md-4 LegalMemDiv" style="display:none;">
+                    <label>Coverage **</label>
+                    <select class="form-control" id="coverage_p" name="coverage" required="" disabled="">
+                       <option value="">Select</option>
+                        
+                      <option value="2" data-val="2">2 Lacs Yearly</option>
+                       
+                      <option value="5" data-val="5">5 Lacs Yearly</option>
+                       
+                      <option value="10" data-val="10">10 Lacs Yearly</option>
+                       
+                      <option value="20" data-val="20">20 Lacs Yearly</option>
+                       
+                      <option value="25" data-val="25">25 Lacs Yearly</option>
+                       
+                      <option value="30" data-val="30">30 Lacs Yearly</option>
+                       
+                      <option value="35" data-val="35">35 Lacs Yearly</option>
+                       
+                      <option value="40" data-val="40">40 Lacs Yearly</option>
+                       
+                      <option value="45" data-val="45">45 Lacs Yearly</option>
+                       
+                      <option value="50" data-val="50">50 Lacs Yearly</option>
+                       
+                      <option value="55" data-val="55">55 Lacs Yearly</option>
+                       
+                      <option value="60" data-val="60">60 Lacs Yearly</option>
+                       
+                      <option value="65" data-val="65">65 Lacs Yearly</option>
+                       
+                      <option value="70" data-val="70">70 Lacs Yearly</option>
+                       
+                      <option value="75" data-val="75">75 Lacs Yearly</option>
+                       
+                      <option value="80" data-val="80">80 Lacs Yearly</option>
+                       
+                      <option value="85" data-val="85">85 Lacs Yearly</option>
+                       
+                      <option value="90" data-val="90">90 Lacs Yearly</option>
+                       
+                      <option value="95" data-val="95">95 Lacs Yearly</option>
+                       
+                      <option value="100" data-val="100">1 Crore Yearly</option>
+                       
+                      <option value="15" data-val="15">15 Lacs Yearly</option>
+                       
+                      <option value="4" data-val="4">4 Lacs Yearly</option>
+                       
+                      <option value="7" data-val="7">7 Lacs Yearly</option>
+                       
+                      <option value="3" data-val="3">3 Lacs Yearly</option>
+                       
+                      <option value="8" data-val="8">8 Lacs Yearly</option>
+                       
+                      <option value="2.5" data-val="2.5">2.5 Lacs Yearly</option>
+                       
+                      <option value="200" data-val="200">2 Crores Yearly</option>
+                       
+                      <option value="300" data-val="300">3 crores Yearly</option>
+                       
+                      <option value="500" data-val="500">5 crores yearly</option>
+                       
+                      <option value="1000" data-val="1000">10 Crores Yearly</option>
+                       
+                      <option value="24" data-val="24">24 Lacs Yearly</option>
+                       
+                      <option value="12" data-val="12">12 Lacs Yearly</option>
+                       
+                      <option value="6" data-val="6">6 Lacs Yearly</option>
+                       
+                      <option value="28" data-val="28">28 Lacs Yearly</option>
+                       
+                      <option value="18" data-val="18">18 Lacs Yearly</option>
+                       
+                      <option value="120" data-val="120">1 Crore 20 Lacs Yearly</option>
+                       
+                      <option value="150" data-val="150">1 Crore 50 Lacs</option>
+                       
+                      <option value="33" data-val="33">33 Lacs yearly</option>
+                       
+                      <option value="400" data-val="400">4 Crores Yearly</option>
+                       
+                      <option value="1.5" data-val="1.5">1.5 Lacs Yearly</option>
+                       
+                      <option value="1" data-val="1">1 Lacs Yearly</option>
+                       
+                      <option value="250" data-val="250">2.5 Crores yearly</option>
+                       
+                      <option value="150" data-val="150">1.5 Crores yearly</option>
+                       
+                      <option value="800" data-val="800">8 Crores Yearly</option>
+                                        </select>
+                  </div>
+                  
+                  <div class="form-group col-md-4 LegalMemDiv" style="display:none;">
+                    <label>Insurance Premium Tenure **</label>
+                    <select class="form-control" id="insurance_period_p" name="insurance_period" readonly="" disabled="">
+                       <option value="">Select</option> 
+                      
+                      <option value="1">1 Year</option>
+                      
+                      <option value="2">2 Year</option>
+                      
+                      <option value="3">3 Year</option>
+                      
+                      <option value="4">4 Year</option>
+                      
+                      <option value="5">5 Year</option>
+                      
+                      <option value="6">6 Year</option>
+                      
+                    </select>
+                  </div>
+                 
+                   <div class="form-group col-md-4 LegalMemDiv" style="display:none;">
+                    <label>Insurance Premium Amount *</label>
+                    <input type="text" class="form-control" name="ins_premium_amount" id="ins_premium_amount_p" placeholder="Insurance Premium Amount" value="" required="" readonly="">
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Total Amount (Inc. GST) **</label>
+                    <input type="text" class="form-control" name="membership_amount_inc_gst" id="membership_amount_inc_gst_p" placeholder="Total Amount (Inc. GST)" value="" required="" readonly="">
+                  </div>
+                  
+                   <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label>For KYC</label></div>
+                  <div class="form-group col-md-4">
+                    <label>Select Customer Id Type</label>
+                    <select class="form-control" id="customer_id_type_p" name="customer_id_type">
+                          <option value="">Please Select</option>
+                          <option value="Aadhar">Aadhar </option>
+                          <option value="PAN">PAN</option>
+                          <option value="Driving License">Driving License</option>
+                          <option value="Passport">Passport</option>
+                          <option value="GST Certificate (For Non-Individual)">GST Certificate (For Non-Individual)</option>
+                          <option value="Incorporation Certificate (For Non Individuals)">Incorporation Certificate (For Non Individuals)</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Customer ID Number</label>
+                    <input type="text" class="form-control" name="customer_id_no" id="customer_id_no_p" placeholder="Customer ID Number" value="" required="">
+                  </div>
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label></label></div>
+                  
+                  <div class="form-group col-md-4">
+                    <label>Payment Type</label>
+                    <select class="form-control" id="payment_type_p" name="payment_type_main" disabled="">
+                       <option value=""> Please Select </option>
+                      <option value="single"> Single </option>
+                      <option value="combined"> Combined </option>
+                    </select>
+                  </div>
+                  
+                                  <div class="form-group col-md-4" id="additional_member_id_div_p" style="display:none">
+                    <label>Additional Member Id/Name</label>
+                    <input type="text" class="form-control" name="additional_member_id_p" id="additional_member_id_p" placeholder="Additional Member Id/Name" value="" style="display:none" disabled="">
+                  </div>
+                  
+                  <!---->
+                  <div class="form-group col-md-12 table-responsive no-padding" id="references_div">
+                      <table class="table table-hover table-bordered">
+                         <thead> <tr style="background-color:#e5eaf4;">
+                              <th></th>
+                              <th>Payment mode </th>
+                              <th>Add Transaction / Cheque date</th>
+                              <th>Add Transaction Ref no. / cheque no.</th>
+                              <th>Add Transaction amount / cheque amount</th>
+                              <th>Bank Name</th>														
+                              <th>Payment Type</th>
+                              <th></th>
+                         </tr></thead> 
+                         <tbody id="p_tbody">
+                         
+                                                     <tr id="R1" class="1">
+                               <td>1</td>
+                               <td>
+                                   <select class="form-control payment_mode" title="1" id="p_payment_mode1" name="payment_mode[]" onchange="paymentMethodCon(1)" disabled="">
+                                       <option value="0"> Please Select </option>
+                                      <option value="Cheque"> Cheque </option>
+                                      <option value="Cash"> Cash </option>
+                                      <option value="NEFT"> NEFT </option>
+                                      <option value="IMPS"> IMPS </option>
+                                      <option value="UPI"> UPI </option>
+                                      <option value="CC avenue"> CC avenue </option>
+                                      <option value="Razorpay"> Razorpay </option>
+                                      <option value="Paytm"> Paytm </option>
+                                      <option value="Phonepe"> Phonepe </option>
+                                      <option value="Google Pay"> Google Pay </option>
+                                    </select>
+                               </td>
+                               <td><input type="text" class="form-control" name="txn_date[]" id="p_txn_date1" placeholder="Transaction / Cheque date" value="" disabled=""></td>
+                               <td><input type="text" class="form-control" name="txn_ref_no[]" id="p_txn_ref_no1" placeholder="Transaction Ref no. / cheque no" value="" readonly=""></td>
+                               <td><input type="text" class="form-control" name="txn_amount[]" id="p_txn_amount1" placeholder="Transaction amount / cheque amount" value="" readonly=""></td>
+                               <td><input type="text" class="form-control bank_name_div" name="bank_name[]" id="p_bank_name1" placeholder="Bank Name" value="" style="display:none" readonly=""></td>                              							  
+                               <td>
+                                   <select class="form-control payment_status" id="p_payment_status1" name="payment_type[]" disabled="">                					 
+                                   <option value=" "> Please Select </option>                					
+                                   <option value="Full"> Full </option>                					
+                                   <option value="Installment"> Installment </option>                                  
+                                   </select>    					     
+                               </td>							 
+                               <td class="text-center"></td> 
+                             </tr>
+                                                    
+                             
+                          </tbody>
+                      </table>
+                      
+                      
+                   </div>
+                  
+                  
+                  <div class="form-group col-md-12 main-heading-2" style="background-color:green;color:white;"><label></label></div>
+                      
+                      <div class="form-group col-md-4">
+                    <label>Uploaded Selfie </label>
+                    <input type="file" name="selfie_image" id="selfie_image" style="display:none">
+                    <input type="hidden" name="selfie_image_old" id="selfie_image_old" value="" required="">
+                                    
+                   <p><img src="#" id="p_upload_Selfie" style="margin-top:10px" width="100"></p>
+                                   
+                 </div>
+              <!--<div class="form-group col-md-4">-->
+     <!--               <label>Upload Signature*</label>-->
+     <!--               <img src="" style="width:20%; margin-top:10px; " id="preview_signature_image">-->
+                                    <!--</div>-->
+                 <div class="form-group col-md-4">
+                    <label>Uploaded Document</label>
+                                                    <p><img src="#" id="p_doc_image" style="display:none " width="100"></p>
+                                  </div>
+                 <div class="clearfix"></div>
+                   
+                   <div class="form-group col-md-4">
+                    <label>Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="remarks_p" placeholder="Remarks" value="" readonly="">
+                  </div>
+                  <div class="form-group col-md-4">
+                        <label>#Place of submission</label>
+                        <input type="text" class="form-control" name="place_of_submission" id="place_of_submission_p" value="" readonly="">
+                   </div>
+              
+              <div class="clearfix"></div>	
+                  
+          
+              
+              </div>
+          
+      
+  
+  
+        </div>
+        <div class="modal-footer">
+           <button type="submit" class="btn btn-primary " id="form_submit_new">Submit</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <!-- /.end Popup --> 
+  <script src="/docland/assets/admin/plugins/validator.js"></script>
+  <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  
+  
+  <script>
+    
+  $(document).ready(function(){
+      
+          $("#member_status").change(function(){		
+              var member_status =$(this).val();
+               //if(member_status=='fresh'){
+                  //  $(".memdiv").hide();
+                  //  $(".typediv").show();
+               //}else if(member_status=='existing'){
+                  //  $(".memdiv").show();
+                  //  $(".typediv").hide();
+               //}
+          });
+      
+        $("#member_type").change(function(){		
+              var member_type =$(this).val();
+              
+               if(member_type=='1'){
+                   $("#category_id").attr("required","true"); 
+                   $(".propdiv").hide();
+                   $(".specialitydiv").removeClass("hide").addClass("show");
+                  //  $('#category_id').attr('class',"form-control");
+                  //  $('#category_id').next().remove();
+                   $("#category_id").val("").trigger('change');
+               }else if(member_type=='2' || member_type=='3'){
+                   $("#prop_name").attr("required","true"); 
+                   $("#category_id").removeAttr("required");
+                  // $("#category_id").val("58");
+                   $("#category_id").val("58").trigger('change');
+                   $(".propdiv").show();
+                  $(".specialitydiv").removeClass("show").addClass("hide");
+                  
+               } else {
+                   $(".specialitydiv").removeClass("show").addClass("hide");
+               }
+          });
+        $("#choose_plan").change(function(){		
+              var plan_type =$(this).val();
+               if(plan_type=='2'){
+                   $(".LegalMemDiv").show();
+                    $(".insuranPlanDiv").show();
+               }else if(plan_type=='1'){
+                   $(".insuranPlanDiv").show();
+                    $(".LegalMemDiv").hide();
+               }else if(plan_type=='3'){
+                   $(".insuranPlanDiv").hide();
+                    $(".LegalMemDiv").show();
+  
+               } else {
+                   $(".LegalMemDiv").hide();
+                    $(".insuranPlanDiv").hide();
+               }
+          });
+      
+         $("#ins_premium_amount").change(function(){	
+              var plan_type =$("#choose_plan").val();	   
+              var ins_premium_amount = parseInt($(this).val());
+              var membership_amount = parseInt($("#membership_amount").val());
+              
+              
+               if(plan_type=='2'){
+                    total = membership_amount+ins_premium_amount;
+                    $("#membership_amount_inc_gst").val(total);
+               }else if(plan_type=='1'){
+              
+               }else if(plan_type=='3'){
+                     $("#membership_amount_inc_gst").val(ins_premium_amount);
+               }
+          });
+        $("#membership_amount").change(function(){	
+              var plan_type =$("#choose_plan").val();	   
+              var membership_amount = parseInt($(this).val());
+              var ins_premium_amount = parseInt($("#ins_premium_amount").val());
+              
+              
+               if(plan_type=='2'){
+                   total = membership_amount+ins_premium_amount;
+                    $("#membership_amount_inc_gst").val(total);
+                    $("#membership_amount_inc_gst_p").val(total);
+               }else if(plan_type=='1'){
+                   $("#membership_amount_inc_gst").val(membership_amount);
+                   $("#membership_amount_inc_gst_p").val(membership_amount);
+                  //  $("#total_payment_amount").val(membership_amount);
+                  //  $("#total_payment_amount_p").val(membership_amount);
+               }else if(plan_type=='3'){
+               
+               }
+          });
+      
+        
+        $("#category_id").select2({
+              placeholder: "Select Category"
+          });
+      
+        /// personal ///
+        $("#p_state_id").change(function(){
+          var state_id=$(this).val();	
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/doctor_policy/getCitysByStateId",
+              type:"post",
+              data:{'state_id':state_id},
+              success:function(data)
+              {		
+                                           
+                  $("#p_city_id").html(data);
+              }
+          });
+      });
+      
+        $("#p_city_id").change(function(){
+          var city_id=$(this).val();	
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/doctor_policy/getTerritorysByCityId",
+              type:"post",
+              data:{'city_id':city_id},
+              success:function(data)
+              {		
+                                           
+                  $("#p_territory_id").html(data);
+              }
+          });
+      });
+      
+        $("#p_state_id").select2({
+              placeholder: "Select State"
+          });
+          
+          $("#doctor_id").select2({
+              placeholder: "Select Doctor"
+          });
+      
+        $("#p_city_id").select2({
+              placeholder: "Select City"
+          });
+      
+        $("#p_territory_id").select2({
+              placeholder: "Select Territory"
+          });
+          
+          $("#policy_document_id").select2({
+              placeholder: "Select Document Type"
+          });
+      /// personal ///
+      
+          
+        $("#h_state_id").change(function(){
+          var state_id=$(this).val();	
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/doctor_policy/getCitysByStateId",
+              type:"post",
+              data:{'state_id':state_id},
+              success:function(data)
+              {		
+                                                   
+                  $("#h_city_id").html(data);
+              }
+          });
+      });
+      
+       $("#h_city_id").change(function(){
+          var city_id=$(this).val();	
+          $.ajax({
+              url :"https://prescriibe.com/docland/admin/doctor_policy/getTerritorysByCityId",
+              type:"post",
+              data:{'city_id':city_id},
+              success:function(data)
+              {		
+                                           
+                  $("#h_territory_id").html(data);
+              }
+          });
+      }); 
+      
+      
+      
+      
+      $("#insurance_required").change(function(){
+          var insurance_required=$(this).val();
+            console.log('insurance_required'+insurance_required)		
+               if(insurance_required=='0'){
+                   $(".cover_show").hide();
+               }else{
+                   $(".cover_show").show();
+               }
+      });
+        $("#h_state_id").select2({
+              placeholder: "Select State"
+          });
+      
+        $("#h_city_id").select2({
+              placeholder: "Select City"
+          });
+      
+        $("#h_territory_id").select2({
+              placeholder: "Select Territory"
+          });
+      
+        $("form[name='add_data_view']").validate({
+              // Specify validation rules
+              rules: {
+                 email: {
+                  required:true,
+                  email:true,
+                  remote:""
+                },
+              mobile1: {
+                  required: true,
+                  minlength: 10,
+                   maxlength: 10,
+                   digits: true
+                  }
+              },
+              // Specify validation error messages
+              messages: {
+                  
+               email: {
+                  required:"this field required*",
+                  email:"enter valid email*",
+                  remote:"Email Name already in database.*"
+                },
+             mobile1: {
+                  required: 'Mobile Number is required',
+                  minlength: "Mobile Number must be 10 digits long!",
+                  maxlength: "Mobile Number  must be 10 digits long!",
+                  digits: "Mobile Number must be a valid number!"
+              }
+                
+              },
+              
+              submitHandler: function(form) {
+                form.submit();
+              }
+            });
+            
+       $('#dob,#wedding_date').datepicker({
+          format: 'dd/mm/yyyy',
+          todayHighlight: true,
+          autoclose: true
+      });
+      /// otp ///
+      $('#send_otp').on('click',function(){
+          var phone = $('#mobile').val();
+          var email = $('#email').val();
+          
+          if(phone)
+          {
+              $.ajax({
+                  url:'https://prescriibe.com/docland/admin/member/send_otp',
+                  type:'POST',
+                  data:'mobile='+phone+'&email='+email,
+                  success:function(data1)
+                  {
+                      console.log(data1);
+                      $('#mobile_phone').val(phone);
+                      $('#modalpop').modal({
+                          backdrop:'static',
+                          keyboard:false
+                      });
+                  }
+              });
+          }else{
+              return false;
+          }
+          
+      });
+      
+      $('#check_otp_btn').on('click',function(){
+          var phone = $('#mobile_phone').val();
+          var otp = $('#otp').val();
+          
+          if(phone)
+          {
+              $.ajax({
+                  url:'https://prescriibe.com/docland/admin/member/check_otp',
+                  type:'POST',
+                  data:'mobile_phone='+phone+'&otp='+otp,
+                  success:function(data1)
+                  {
+                      /*$('#modalpop').on('hidden.bs.modal', function () {
+                      });*/	
+                      if(data1)
+                      {
+                          $('#check_otp_error').show();
+                          $('#check_otp_error').text('Verified');
+                          $('#send_otp').hide();
+                          $('#modalpop').modal('hide');
+                          $('#verify_mobile').val(1);
+                      }else{
+                          $('#check_otp_error').show();
+                          $('#check_otp_error').text('Not Verified');
+                      }
+                      
+                  }
+              });
+          }else{
+              return false;
+          }
+          
+      });
+      
+      
+      $('#send_otp_email').on('click',function(){
+          var email = $('#email').val();
+          
+          if(email)
+          {
+              $.ajax({
+                  url:'https://prescriibe.com/docland/admin/member/send_otp_email',
+                  type:'POST',
+                  data:'email='+email,
+                  success:function(data1)
+                  {
+                      $('#email_email').val(email);
+                      $('#modalpopemail').modal({
+                          backdrop:'static',
+                          keyboard:false
+                      });
+                  }
+              });
+          }else{
+              return false;
+          }
+          
+      });
+      
+      
+      
+      $('#check_otp_btn_email').on('click',function(){
+          var email = $('#email_email').val();
+          var otp = $('#otp_email').val();
+          
+          if(email)
+          {
+              $.ajax({
+                  url:'https://prescriibe.com/docland/admin/member/check_otp_email',
+                  type:'POST',
+                  data:'email='+email+'&otp='+otp,
+                  success:function(data1)
+                  {
+                      if(data1)
+                      {
+                          $('#check_otp_email_error').show();
+                          $('#check_otp_email_error').text('Verified');
+                          $('#send_otp_email').hide();
+                          $('#modalpopemail').modal('hide');
+                          $('#verify_email').val(1);
+                      }else{
+                          $('#check_otp_email_error').show();
+                          $('#check_otp_email_error').text('Not Verified');
+                      }
+                      
+                  }
+              });
+          }else{
+              return false;
+          }
+          
+      });
+      /// otp ///
+     });
+     $('.date_type').datepicker({
+          format: 'yyyy-mm-dd',
+          todayHighlight: true,
+          autoclose: true
+      });
+      
+      $('#tbody').on('focus', '.date_type', function () {
+          $(this).datepicker({
+              format: 'yyyy-mm-dd',
+              todayHighlight: true,
+              autoclose: true
+          });
+      });
+      
+  </script>
+  <script>
+      var slider1 = document.getElementById("myRange");
+      var output = document.getElementById("demo");
+      output.innerHTML = slider1.value;
+      
+  
+      slider1.oninput = function() {
+        output.innerHTML = (this.value);
+      }
+      </script>
+      
+      
+      
+          
+      <script> 
+      $(document).ready(function () { 
+    
+        // Denotes total number of rows 
+        var rowIdx = 1; 
+        var rowIdxNEw = 1; 
+        
+  
+    
+        // jQuery button click event to add a row 
+        $('#addBtn').on('click', function () { 
+           
+          var countTr = parseInt($('#tbody tr:last').attr("class")); 
+          
+          rowIdx = countTr;
+          rowIdxNEw = countTr+1 ;
+          if(rowIdxNEw <=5) {
+              // Adding a row inside the tbody. 
+              $('#tbody').append(`<tr id="R${++rowIdx}" class="${rowIdx}">
+                   <td>${rowIdxNEw}</td>
+                   <td><select class="form-control payment_mode" title="${rowIdxNEw}" id="payment_mode${rowIdxNEw}" name="payment_mode[]" onchange="paymentMethodCon(${rowIdxNEw})">
+                                       <option value="0"> Please Select </option>
+                                      <option value="Cheque"> Cheque </option>
+                                      <option value="Cash"> Cash </option>
+                                      <option value="NEFT"> NEFT </option>
+                                      <option value="IMPS"> IMPS </option>
+                                      <option value="UPI"> UPI </option>
+                                      <option value="CC avenue"> CC avenue </option>
+                                      <option value="Razorpay"> Razorpay </option>
+                                      <option value="Paytm"> Paytm </option>
+                                      <option value="Phonepe"> Phonepe </option>
+                                      <option value="Google Pay"> Google Pay </option>
+                                    </select></td>
+                                   <td><input type="text" class="form-control date_type" name="txn_date[]" id="txn_date${rowIdxNEw}" placeholder="Transaction / Cheque date" value="" onchange="txnDateCon(${rowIdxNEw})" ></td>
+                               <td><input type="text" class="form-control" name="txn_ref_no[]" id="txn_ref_no${rowIdxNEw}" placeholder="Transaction Ref no. / cheque no" value="" 
+                               onchange="txnRefNoCon(${rowIdxNEw})" ></td>
+                               <td><input type="text" class="form-control" name="txn_amount[]" id="txn_amount${rowIdxNEw}" placeholder="Transaction amount / cheque amount" value="" onchange="txnAmountCon(${rowIdxNEw})" ></td>
+                               <td><input type="text" class="form-control bank_name_div" name="bank_name[]" id="bank_name${rowIdxNEw}" placeholder="Bank Name" value="" 
+                               onchange="txnBankCon(${rowIdxNEw})"></td>                            							
+                               <td><select class="form-control payment_status"  id="payment_status${rowIdxNEw}" name="payment_type[]" onchange="paymentStatus(${rowIdxNEw})">                					 <option value=" "> Please Select </option>                					<option value="Full"> Full </option>                					<option value="Installment"> Installment </option>                                  </select></td>								  
+                    <td class="text-center"> 
+                      <button class="btn btn-danger remove"
+                        type="button">Remove</button> 
+                      </td> 
+                    </tr>`); 
+                    
+              $('#p_tbody').append(`<tr id="R${rowIdx}" class="${rowIdx}">
+                   <td>${rowIdxNEw}</td>
+                   <td><select class="form-control payment_mode" title="${rowIdxNEw}" id="p_payment_mode${rowIdxNEw}" name="payment_mode[]" readonly>
+                                       <option value="0"> Please Select </option>
+                                      <option value="Cheque"> Cheque </option>
+                                      <option value="Cash"> Cash </option>
+                                      <option value="NEFT"> NEFT </option>
+                                      <option value="IMPS"> IMPS </option>
+                                      <option value="UPI"> UPI </option>
+                                      <option value="CC avenue"> CC avenue </option>
+                                      <option value="Razorpay"> Razorpay </option>
+                                      <option value="Paytm"> Paytm </option>
+                                      <option value="Phonepe"> Phonepe </option>
+                                      <option value="Google Pay"> Google Pay </option>
+                                    </select></td>
+                                   <td><input type="text" class="form-control" name="txn_date[]" id="p_txn_date${rowIdxNEw}" placeholder="Transaction / Cheque date" value="" readonly></td>
+                               <td><input type="text" class="form-control" name="txn_ref_no[]" id="p_txn_ref_no${rowIdxNEw}" placeholder="Transaction Ref no. / cheque no" value="" readonly></td>
+                               <td><input type="text" class="form-control" name="txn_amount[]" id="p_txn_amount${rowIdxNEw}" placeholder="Transaction amount / cheque amount" value="" readonly></td>
+                               <td><input type="text" class="form-control bank_name_div" name="bank_name[]" id="p_bank_name${rowIdxNEw}" placeholder="Bank Name" value="" readonly></td> 
+                               <td><select class="form-control payment_status"  id="p_payment_status${rowIdxNEw}" name="payment_type[]" readonly>                		
+                                  <option value=" "> Please Select </option>                					
+                                  <option value="Full"> Full </option>                					
+                                  <option value="Installment"> Installment </option>                                  
+                                  </select>
+                               </td>								  
+                    <td class="text-center"></td> 
+                    </tr>`); 
+          }            
+        }); 
+        
+        // jQuery button click event to remove a row. 
+        $('#tbody').on('click', '.remove', function () { 
+            
+          if(rowIdx==1){
+               
+          } else {
+              if(rowIdx == 1) {
+                  rowIdxNEw = 1;
+              }
+              // Getting all the rows next to the row 
+              // containing the clicked button 
+              var child = $(this).closest('tr').nextAll(); 
+        
+              // Iterating across all the rows  
+              // obtained to change the index 
+              child.each(function () { 
+        
+                // Getting <tr> id. 
+                var id = $(this).attr('id'); 
+        
+                // Getting the <p> inside the .row-index class. 
+                var idx = $(this).children('.row-index').children('p'); 
+        
+                // Gets the row number from <tr> id. 
+                var dig = parseInt(id.substring(1)); 
+        
+                // Modifying row index. 
+                idx.html(`Row ${dig - 1}`); 
+        
+                // Modifying row id. 
+                $(this).attr('id', `R${dig - 1}`); 
+              }); 
+        
+              // Removing the current row. 
+              $(this).closest('tr').remove(); 
+              
+              var cnt = $(this).closest('tr').attr('class');
+              $('#p_tbody').find('#R'+cnt).remove();
+        
+              // Decreasing total number of rows by 1. 
+              rowIdx--; 
+          }
+        }); 
+      }); 
+      
+      function paymentMethodCon(count){
+          var payment_mode = $('#payment_mode'+count).val();
+          if(payment_mode == "Cheque") {
+              $('#bank_name'+count).show();
+              $('#p_bank_name'+count).show();
+          } else {
+              $('#bank_name'+count).hide();
+              $('#p_bank_name'+count).hide();
+          }
+          
+          $('#p_payment_mode'+count).val(payment_mode);
+      }
+      
+      function txnDateCon(count){
+          var txnDate = $('#txn_date'+count).val();
+          $('#p_txn_date'+count).val(txnDate);
+      }
+      
+      function txnRefNoCon(count){
+          var refNo = $('#txn_ref_no'+count).val();
+          $('#p_txn_ref_no'+count).val(refNo);
+      }
+      
+      function txnAmountCon(count){
+          var amt = $('#txn_amount'+count).val();
+          $('#p_txn_amount'+count).val(amt);
+      }
+      
+      function txnBankCon(count){
+          var amt = $('#bank_name'+count).val();
+          $('#p_bank_name'+count).val(amt);
+      }
+      
+      function paymentStatus(count){
+          var amt = $('#payment_status'+count).val();
+          $('#p_payment_status'+count).val(amt);
+      }
+      
+      
+  // 	popoup model
+  
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
+      
+      
+  $(document).ready(function(){
+      
+      $("#member_status").change(function(e) {
+          $("#member_status_p").val($(this).val());
+          if($(this).val() == "renewal") {
+              $('#member_id_div').attr('style', 'display: block');
+              $('#member_id_div_p').attr('style', 'display: block');
+               $('#member_id, #member_id_p').attr('style', 'display: block');
+               
+               $('#member_type_div').attr('style', 'display: none');
+               $('#member_type_div_p').attr('style', 'display: none');
+              // $('#member_type, #member_type_p').attr('style', 'display: none');
+          }else {
+              $('#member_type_div').attr('style', 'display: block');
+              $('#member_type_div_p').attr('style', 'display: block');
+              // $('#member_type, #member_type_p').attr('style', 'display: block');
+               
+              $('#member_id_div').attr('style', 'display: none');
+              $('#member_id_div_p').attr('style', 'display: none');
+               $('#member_id, member_id_p').attr('style', 'display: none');
+          }
+      });
+      $("#member_id").change(function(e){
+             $('#member_id_p').val(e.target.value);
+      }); 
+      
+      $("#member_type").change(function(e){
+             var a = $(this).children(':selected').text();
+              $("#member_type_p option:selected").text(a);
+      });     
+      
+      $("#insured_name").change((e)=>{
+              $('#insured_name_p').val(e.target.value);
+      });
+      
+      $("#prop_name").change((e)=>{
+              $('#prop_name_p').val(e.target.value);
+      });
+      
+       $("#category_id").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#category_id_p option:selected").text(b);
+      });
+      
+      
+       $("#h_house_no").change((e)=>{
+              $('#h_house_no_p').val(e.target.value);
+      });
+      
+       $("#h_street").change((e)=>{
+              $('#h_street_p').val(e.target.value);
+      });
+      
+       $("#h_state_id").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#h_state_id_p option:selected").text(b);
+      });
+      
+       $("#h_city_id").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#h_city_id_p option:selected").text(b);
+      });
+      
+        $("#h_pincode").change((e)=>{
+              $('#h_pincode_p').val(e.target.value);
+      });
+      
+       $("#doc_mobile").change((e)=>{
+              $('#doc_mobile_p').val(e.target.value);
+      });
+      
+      $("#doc_mobile2").change((e)=>{
+              $('#doc_mobile2_p').val(e.target.value);
+      });
+      
+       $("#doc_email").change((e)=>{
+              $('#doc_email_p').val(e.target.value);
+      });
+     
+     $("#choose_plan").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#choose_plan_p option:selected").text(b);
+      });
+     
+      $("#period").change(function(e){
+             var b = $(this).children(':selected').text();
+             $("#period_p option:selected").text(b);
+      });
+     
+      $("#membership_amount").change((e)=>{
+              $('#membership_amount_p').val(e.target.value);
+      });
+     
+      $("#coverage").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#coverage_p option:selected").text(b);
+      });
+     
+     $("#insurance_period").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#insurance_period_p option:selected").text(b);
+      });
+      
+      $("#ins_premium_amount").change((e)=>{
+              $('#ins_premium_amount_p').val(e.target.value);
+      });
+      
+       $("#membership_amount_inc_gst").change((e)=>{
+              $('#membership_amount_inc_gst_p').val(e.target.value);
+      });
+      
+       $("#customer_id_type").change((e)=>{
+              $('#customer_id_type_p').val(e.target.value);
+      });
+      
+       $("#customer_id_no").change((e)=>{
+              $('#customer_id_no_p').val(e.target.value);
+      });
+      
+     
+      $("#payment_type").change(function(e){
+              if($(this).val() == "combined") {
+                  $('#additional_member_id_div').attr('style', 'display: block');
+                   $('#additional_member_id').attr('style', 'display: block');
+                   
+                  $('#additional_member_id_div_p').attr('style', 'display: block');
+                   $('#additional_member_id_p').attr('style', 'display: block');
+              }else {
+                  $('#additional_member_id_div').attr('style', 'display: none');
+                   $('#additional_member_id').attr('style', 'display: none');
+                   
+                  $('#additional_member_id_div_p').attr('style', 'display: none');
+                   $('#additional_member_id_p').attr('style', 'display: none');
+              }
+             var b = $(this).children(':selected').text();
+             $("#payment_type_p option:selected").text(b);
+      });
+      
+      $("#additional_member_id").change(function(e){
+          $('#additional_member_id_p').val(e.target.value);
+      });
+       $("#payment_mode1").change(function(e){
+             var b = $(this).children(':selected').text();
+          //   console.log(b);
+             $("#payment_mode1_p option:selected").text(b);
+      });
+      
+      
+      $("#selfie_image").change(function(filename){
+          readURL(this);
+      });
+  
+  
+      function readURL(input) {
+        const [file] = input.files;
+        if (file) {
+          upload_Selfie.src = URL.createObjectURL(file);
+          p_upload_Selfie.src = URL.createObjectURL(file)
+        }
+        
+          //   if (input.files && input.files[0]) {
+          //     var reader = new FileReader();
+          //     reader.onload = function(e) {
+          //       $('#thumbnil').attr('src', e.target.result);
+          //       $('#thumbnil').hide();
+          //       $('#thumbnil').fadeIn(650);
+          //     }
+          //     reader.readAsDataURL(input.files[0]);
+          //   }
+      }
+      
+  $("#sig").change(function(){
+      alert("ok");
+       //getURL(this);
+  });
+  
+  function getURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#preview_signature_image').attr('src', e.target.result);
+        $('#preview_signature_image').hide();
+        $('#preview_signature_image').fadeIn(650);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  
+   $("#document_image").change(function(file){
+           docsURL(this);
+      }); 
+   
+  function docsURL(input) {
+      const [file] = input.files;
+      const  fileType = file.type;
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/jpg', 'image/png'];
+      if (validImageTypes.includes(fileType)) {
+          $("#doc_image").show();
+          doc_image.src = URL.createObjectURL(file);
+          p_doc_image.src = URL.createObjectURL(file)
+      } else {
+          $("#doc_image").hide();
+      }
+  }    
+  
+    $("#remarks").change((e)=>{
+              $('#remarks_p').val(e.target.value);
+    });
+     $("#place_of_submission").change((e)=>{
+              $('#place_of_submission_p').val(e.target.value);
+    });  
+      
+  });	
+      
+  var sig = $('#sig').signature({
+          syncField: '#signature64',
+          syncFormat: 'PNG'
+      })
+      $('#clear').click(function(e){
+          e.preventDefault();
+          sig.signature('clear');
+          $('#signature64').val();
+      });
+      
+  
+  
+  // signature
+  
+      // $('#form_submit').click(function() {
+      //     $('#form_submit').attr("disabled",true);
+      //     $( "#newsFrm" ).submit();
+      // });
+      
+      $('#form_submit_new').click(function() {
+         // $('#form_submit').attr("disabled",true);
+          $('#myModal').modal('hide');
+          $( "#newsFrm" ).submit();
+      });
+      
+    </script> 
+      
+      <footer class="main-footer">
+      
+  </footer>
+  
+  </div>
+  {% comment %} <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script> {% endcomment %}
+      
+  <!-- ./wrapper -->
+  {% comment %} <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script>  {% endcomment %}
+  {% comment %} <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script> {% endcomment %}
+  {% include "include_footerjs.html" %}
+  </body></html>

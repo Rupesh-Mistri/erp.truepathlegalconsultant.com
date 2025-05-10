@@ -1,0 +1,351 @@
+{% comment %} {% load custom_filters %} {% endcomment %}
+{% load static %}
+<html>
+  {% include "include_head.html" %}
+
+  <style>
+    {% comment %} body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        margin: 20px;
+    } {% endcomment %}
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .header img {
+        height: 60px;
+    }
+    .title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .section {
+        margin-bottom: 20px;
+    }
+    .section-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .info-table td {
+        padding: 8px;
+        vertical-align: top;
+    }
+    .info-table td:first-child {
+        font-weight: bold;
+        width: 30%;
+    }
+    .info-table td:nth-child(2) {
+        width: 70%;
+    }
+</style>
+
+<style>
+  #id_download_pdf {
+    margin: 0 auto; /* Center the div horizontally */
+    padding: 20px; /* Add some padding inside the div */
+    border: 2px solid #ccc; /* Add a border around the div */
+    border-radius: 10px; /* Optional: Rounded corners */
+    max-width: 800px; /* Optional: Limit the width */
+    background-color: #f9f9f9; /* Optional: Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  }
+</style>
+
+  <body class="skin-blue-light sidebar-mini">
+    <div class="wrapper">
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+
+      <!-- Content Wrapper -->
+      <div class="content-wrapper" style="min-height: 370px;">
+        {% comment %} <section class="content-header">
+          <h1>
+            Doctor Registration Details
+            
+
+          </h1>
+        </section> {% endcomment %}
+    <div id="id_download_pdf"> 
+        <div class="header">
+          <img src="{% static 'images/logo_rectangle.webp' %}" alt="Logo">
+          {% comment %} <img src="oriental_insurance_logo.png" alt="Oriental Insurance Logo"> {% endcomment %}
+      </div>
+  
+      <div class="title">
+          REGISTRATION CUM INSURANCE PROPOSAL
+      </div>
+  
+      <div class="section">
+        <p>{{ registration.submission_date_time|date:"l, F d, Y" }}</p>
+          <table class="info-table">
+              <tr>
+                  <td>Insured Type</td>
+                  <td>Hospital / Nursing home</td>
+              </tr>
+              <tr>
+                <td>Member Registration No.</td>
+                <td>{{ registration.app_registraction_no }}</td>
+            </tr>
+              <tr>
+                  <td>Name of Doctor / Medical Establishment</td>
+                  <td>{{ registration.hospital_name }}</td>
+              </tr>
+              <tr>
+                <td>Proprietor / Owner Name</td>
+                <td>{{ registration.proprietor_name }}</td>
+            </tr>
+           
+
+                <tr>
+                  <td>Residence Address</td>
+                  <td>{{ registration.house_no }} {{ registration.street }} {{ registration.district }} {{ registration.state }} {{ registration.pin_code }}</td>
+                </tr>
+              
+              
+                <tr>
+                  <td>Hospital / Clinic Address</td>
+                  <td>{{ registration.hospital_house_no }} {{ registration.hospital_street }} {{ registration.hospital_district }} {{ registration.hospital_state }} {{ registration.hospital_pin_code }}</td>
+                </tr>
+             
+              <tr>
+                  <td>Mobile Number</td>
+                  <td>{{ registration.mobile_number }}</td>
+              </tr>
+              <tr>
+                  <td>E-mail</td>
+                  <td>{{ registration.email }}</td>
+              </tr>
+              <tr>
+                  <td>Date of Birth</td>
+                  <td>{{ registration.dob }}</td>
+              </tr>
+              <tr>
+                <td>Wedding Date</td>
+                <td>{{ registration.wedding_date }}</td>
+            </tr>
+
+            {% comment %} <tr>
+              <td>Wedding Date</td>
+              <td>{{ registration.wedding_date }}</td>
+          </tr> {% endcomment %}
+          </table>
+      </div>
+  
+      <div class="section">
+          <table class="info-table">
+
+              {% comment %} <tr>
+                  <td>Speciality</td>
+                  <td>{{ registration.speciality }}</td>
+              </tr> {% endcomment %}
+              {% comment %} <tr>
+                  <td>Other Speciality</td>
+                  <td>{{ registration.other_speciality }}</td>
+              </tr> {% endcomment %}
+              {% comment %} <tr>
+                  <td>Qualification / Degree</td>
+                  <td>{{ registration.qualification }}</td>
+              </tr> {% endcomment %}
+              {% comment %} <tr>
+                  <td>Registration Number</td>
+                  <td>{{ registration.registration_number_hospital }}</td>
+              </tr>
+              <tr>
+                  <td>Year</td>
+                  <td>{{ registration.registration_year }}</td>
+              </tr> {% endcomment %}
+              {% comment %} <tr>
+                  <td>Medical Council</td>
+                  <td>{{ registration.medical_council }}</td>
+              </tr> {% endcomment %}
+              {% comment %} <tr>
+                <td>No. of Beds</td>
+                <td>{{ registration.no_of_beds }}</td>
+            </tr> {% endcomment %}
+              <tr>
+                  <td>Annual OPD</td>
+                  <td>{{ registration.annual_opd }}</td>
+              </tr>
+              {% comment %} <tr>
+                  <td>Annual IPD</td>
+                  <td>{{ registration.annual_ipd }}</td>
+              </tr> {% endcomment %}
+              <tr>
+                  <td>Facilities available</td>
+                  <td>{{ registration.facilities_available }}</td>
+              </tr>
+              <tr>
+                  <td>Total No. of doctors employed in various speciality</td>
+                  <td>{{ registration.total_doctors }}</td>
+              </tr>
+              <tr>
+                <td>Coverage: </td>
+                <td>{% if registration.coverage_amount %}{{registration.coverage_amount}} {% else %} NA{% endif %}</td>
+                {% comment %} <td>50 Lakh</td> {% endcomment %}
+                {% comment %} <td>{{ registration.total_doctors }}</td> {% endcomment %}
+            </tr>
+              <tr>
+                <td>Membership</td>
+                <td> {% if registration.tenure_of_membership %}{{registration.tenure_of_membership}} Year {% else %} 0 Year {% endif %}</td>
+                </tr>
+              <tr>
+                <td>Indemnity Insurance: </td>
+                <td>{% if registration.tenure_of_indemnity %}{{registration.tenure_of_indemnity}} Year {% else %} 0 Year {% endif %} </td>
+            </tr>
+
+            {% comment %} <tr>
+              <td>Membership + Indemnity Insurance: </td>
+              <td> {{registration.tenure_of_membership}}</td>
+              
+          </tr> {% endcomment %}
+              {% comment %} <tr>
+                  <td>State the average no. of patients you are attending per day</td>
+                  <td>{{ registration.avg_patients_per_day }}</td>
+              </tr>
+              <tr>
+                  <td>Extension for unqualified staff required?</td>
+                  <td>{{ registration.unqualified_staff_extension }}</td>
+              </tr> {% endcomment %}
+          </table>
+          <div>
+            Declaration : I agree and hereby declare that the above statement and particulars are true and I have not suppressed or mis-stated any material
+and that at the present time I have no reason to anticipate any claim being brought against me for any negligence, etc. error or omission on my
+part and agree that this negligence, error or omission or mis-conduct is committed prior to the commencement of this insurance. I have also
+understood the terms and conditions of membership of {{COMPANY_NAME}}.
+
+          </div>
+          <table class="info-table">
+          <tr>
+            <td>Terms and Conditions</td>
+            <td>Declaration Accepted</td>
+        </tr>
+        <tr>
+          <td>Ratio</td>
+          <td>1:1 </td>
+      </tr>
+      <tr>
+        <td>Signature</td>
+        <td> 
+          {% if registration.signature %}
+          <img src="/uploads/{{  registration.signature  }}" alt="No Image" style="max-height: 100px; max-width: 100px;" />
+          {% else %}
+          No Image
+          {% endif %}
+        </td>
+    </tr>
+    <tr>
+      <td>Date of Submission</td>
+      <td>{{  registration.submission_date_time|date:"d F Y" }}</td>
+  </tr>
+  <tr>
+    <td>Place of Submission </td>
+    <td>{{registration.place_of_submission}}</td>
+</tr>
+<tr>
+  <td>Upload Registration Certificate </td>
+  <td>
+    {% if registration.registration_certificate %}
+    <img src="/uploads/{{registration.registration_certificate}} " alt="No" style="max-height: 100px; max-width: 100px;" />
+    {% else %}
+    No Image
+    {% endif %}
+  </td>
+</tr>
+    </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="button-container text-center mt-4 mb-2">
+  <button onclick="printDiv('id_download_pdf')" class="btn btn-primary">Print</button>
+  <button onclick="downloadAsPDF('id_download_pdf')" class="btn btn-success">Download PDF</button>
+  {% comment %} <button onclick="downloadPDF()" class="btn btn-success">Download as PDF</button> {% endcomment %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+  
+  function downloadAsPDF(divID) {
+    const element = document.getElementById(divID); // The container to export as PDF
+    const { jsPDF } = window.jspdf;
+  
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+    });
+  
+    const pdfWidth = pdf.internal.pageSize.getWidth(); // Width of A4 in mm
+    const pdfHeight = pdf.internal.pageSize.getHeight(); // Height of A4 in mm
+  
+    html2canvas(element, {
+      scale: 2, // High resolution for clear text and images
+      useCORS: true, // Enables loading external images
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png'); // Get the canvas as an image
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+  
+      // Calculate scaling to fit content to one A4 page
+      const scale = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+  
+      const scaledWidth = imgWidth * scale;
+      const scaledHeight = imgHeight * scale;
+  
+      const xOffset = (pdfWidth - scaledWidth) / 2; // Center horizontally
+      const yOffset = (pdfHeight - scaledHeight) / 2; // Center vertically
+  
+      // Add scaled content to the PDF
+      pdf.addImage(imgData, 'PNG', xOffset, yOffset, scaledWidth, scaledHeight);
+  
+      // Save the generated PDF
+      pdf.save('registration_details.pdf');
+    });
+  }
+  
+  
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  // Function to print the ID card
+  {% comment %} function printIDCard() {
+      window.print();
+  } {% endcomment %}
+  
+  // Function to download the ID card as a PDF
+  function downloadPDF() {
+      const idCardElement = document.querySelector('#id_download_pdf');
+      const options = {
+          margin: 0,
+          filename: 'ID_Card.pdf',
+          image: {
+              type: 'jpeg',
+              quality: 0.98
+          },
+          html2canvas: {
+              scale: 2
+          },
+          jsPDF: {
+              unit: 'in',
+              format: 'a4',
+              orientation: 'portrait'
+          }
+      };
+      html2pdf().set(options).from(idCardElement).save();
+  }
+</script>
+
+      {% include "include_footerjs.html" %}
+  </body>
+</html>

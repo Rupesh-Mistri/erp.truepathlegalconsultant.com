@@ -1,0 +1,259 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  
+    <div class="wrapper" >
+      {% include "include_header.html" %}
+      {% include "include_aside.html" %}
+  
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 370px;" id="id_download_pdf">
+        <section class="logo-mt"><img src="/static/images/logo_rectangle.webp " height='50px' width="200px" height='50px' width="200px"></section>
+
+        <section class="content-header">
+          <h1>
+            <small>REGISTRATION CUM INSURANCE PROPOSAL</small>
+          </h1>
+        </section>
+        
+        <section class="mt-30">
+          <div class="div-width">
+            <div class="container">
+              
+              {% comment %} <h3>Registration Details Preview</h3> {% endcomment %}
+              <hr>
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Full Name of Doctor / Medical Establishment -->
+                  <tr>
+                    <td>Full Name of Doctor / Medical Establishment:</td>
+                    <td>{{ registration.doctor_name }}</td>
+                  </tr>
+
+                  <!-- Name of Proprietor / Owner -->
+                  <tr>
+                    <td>Name of Proprietor / Owner:</td>
+                    <td>{{ registration.proprietor_name }}</td>
+                  </tr>
+
+                  <!-- Residence Address -->
+                  <tr>
+                    <td>Complete Residence Address:</td>
+                    <td>{{ registration.residence_address }}</td>
+                  </tr>
+
+                  <!-- House No./ Flat No. / Block -->
+                  <tr>
+                    <td>House No. / Flat No. / Block:</td>
+                    <td>{{ registration.house_no }}</td>
+                  </tr>
+
+                  <!-- Street / Road / Locality -->
+                  <tr>
+                    <td>Street / Road / Locality:</td>
+                    <td>{{ registration.street }}</td>
+                  </tr>
+
+                  <!-- District -->
+                  <tr>
+                    <td>District:</td>
+                    <td>{{ registration.district }}</td>
+                  </tr>
+
+                  <!-- State -->
+                  <tr>
+                    <td>State:</td>
+                    <td>{{ registration.state }}</td>
+                  </tr>
+
+                  <!-- Pin Code -->
+                  <tr>
+                    <td>Pin Code:</td>
+                    <td>{{ registration.pin_code }}</td>
+                  </tr>
+
+                  <!-- Hospital Address -->
+                  <tr>
+                    <td>Hospital / Clinic Address:</td>
+                    <td>{{ registration.hospital_address }}</td>
+                  </tr>
+
+                  <!-- Hospital House No. -->
+                  <tr>
+                    <td>Hospital House No. / Flat No. / Block:</td>
+                    <td>{{ registration.hospital_house_no }}</td>
+                  </tr>
+
+                  <!-- Hospital Street -->
+                  <tr>
+                    <td>Hospital Street / Road / Locality:</td>
+                    <td>{{ registration.hospital_street }}</td>
+                  </tr>
+
+                  <!-- Hospital District -->
+                  <tr>
+                    <td>Hospital District:</td>
+                    <td>{{ registration.hospital_district }}</td>
+                  </tr>
+
+                  <!-- Hospital State -->
+                  <tr>
+                    <td>Hospital State:</td>
+                    <td>{{ registration.hospital_state }}</td>
+                  </tr>
+
+                  <!-- Hospital Pin Code -->
+                  <tr>
+                    <td>Hospital Pin Code:</td>
+                    <td>{{ registration.hospital_pin_code }}</td>
+                  </tr>
+
+                  <!-- Mobile Number -->
+                  <tr>
+                    <td>Mobile Number:</td>
+                    <td>{{ registration.mobile_number }}</td>
+                  </tr>
+
+                  <!-- Email -->
+                  <tr>
+                    <td>Email:</td>
+                    <td>{{ registration.email }}</td>
+                  </tr>
+
+                  <!-- Date of Birth -->
+                  <tr>
+                    <td>Date of Birth (DD-MM-YYYY):</td>
+                    <td>{{ registration.dob }}</td>
+                  </tr>
+
+                  <!-- ID Proof -->
+                  <tr>
+                    <td>ID Proof:</td>
+                    <td>{{ registration.id_proof }}</td>
+                  </tr>
+
+                  <!-- ID Number -->
+                  <tr>
+                    <td>ID Number:</td>
+                    <td>{{ registration.id_number }}</td>
+                  </tr>
+
+                  <!-- Registration Number Hospital -->
+                  <tr>
+                    <td>Hospital / Diagnostic Centre Registration Number:</td>
+                    <td>{{ registration.registration_number_hospital }}</td>
+                  </tr>
+
+                  <!-- Total Number of Beds -->
+                  <tr>
+                    <td>Total Number of Beds:</td>
+                    <td>{{ registration.no_of_beds }}</td>
+                  </tr>
+
+                  <!-- Available Facilities -->
+                  <tr>
+                    <td>Available Facilities:</td>
+                    <td>{{ registration.facilities_available }}</td>
+                  </tr>
+
+                  <!-- Total Doctors -->
+                  <tr>
+                    <td>Total Number of Doctors:</td>
+                    <td>{{ registration.total_doctors }}</td>
+                  </tr>
+
+                  <!-- Insurance Cover -->
+                  <tr>
+                    <td>Insurance Cover required:</td>
+                    <td>{{ registration.insurance_cover }}</td>
+                  </tr>
+
+                  <!-- Docland Representative Name -->
+                  <tr>
+                    <td>Docland Representative Name:</td>
+                    <td>{{ registration.docland_rep_name }}</td>
+                  </tr>
+
+                  <!-- Docland Representative Email -->
+                  <tr>
+                    <td>Docland Representative Email Address:</td>
+                    <td>{{ registration.docland_rep_email }}</td>
+                  </tr>
+
+                  <!-- Registration Certificate -->
+                  <tr>
+                    <td>Registration Certificate:</td>
+                    {% comment %} <td><a href="{{ registration.registration_certificate.url }}" target="_blank">View File</a></td> {% endcomment %}
+                    <td><a href="{{ registration.registration_certificate }}" target="_blank">View File</a></td>
+                  </tr>
+
+                  <!-- Submit Section -->
+                  {% comment %} <tr>
+                    <td colspan="2">
+                      <a href="#" class="btn btn-primary">Confirm Submission</a>
+                    </td>
+                  </tr> {% endcomment %}
+                  {% comment %} <tr>
+                    <td colspan="2">
+                      <a href="#" class="btn btn-primary">Download</a>
+                    </td>
+                  </tr> {% endcomment %}
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </section>
+        <div class="button-container text-center mt-4 mb-2">
+          <button onclick="printDiv('id_download_pdf')" class="btn btn-primary">Print</button>
+          <button onclick="downloadAsPDF('id_download_pdf')" class="btn btn-success">Download PDF</button>
+      </div>
+      </div> <!-- .content-wrapper -->
+  
+      <footer class="main-footer">
+        <!-- Footer content can be added here -->
+      </footer>
+  
+    </div> <!-- .wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script type="text/javascript">
+        function downloadAsPDF(divID) {
+            const element = document.getElementById(divID);
+            html2canvas(element).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('Elabour_cooperative_card.pdf');
+            });
+        }
+
+        function printDiv(divID) {
+            const idCard = document.getElementById(divID);
+            const originalContents = document.body.innerHTML;
+            
+            // Temporarily hide other elements
+            document.body.innerHTML = idCard.innerHTML;
+            window.print();
+
+            // Restore the original content after printing
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+    {% include "include_footerjs.html" %}
+  </body>
+</html>

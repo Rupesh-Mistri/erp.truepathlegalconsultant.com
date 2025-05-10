@@ -1,0 +1,1523 @@
+<html>
+  {% include "include_head.html" %}
+  <body class="skin-blue-light sidebar-mini">
+  <!-- Site wrapper -->	
+  <div class="wrapper">
+  
+    {% include "include_header.html" %}
+  
+    <!-- =============================================== -->
+  
+  <!-- Left side column. contains the sidebar -->
+  
+  {% include "include_aside.html" %}
+    
+  <script>
+  $(document).ready(function(){
+      $('.sidebar-menu li.active').parents('.treeview').addClass('active');
+  });
+  </script>
+  <!-- Content Wrapper. Contains page content -->
+  <style>
+  /* Important part */
+  .modal-dialog{
+      overflow-y: initial !important
+  }
+  .modal-body{
+      height: 80vh;
+      overflow-y: auto;
+  }
+  .overlay{
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.8) url("https://www.tutorialrepublic.com/examples/images/loader.gif") center no-repeat;
+  }
+  /* Turn off scrollbar when body element has the loading class */
+  body.loading{
+      overflow: hidden;   
+  }
+  /* Make spinner image visible when body element has the loading class */
+  body.loading .overlay{
+      display: block;
+  }
+  </style>
+    <div class="content-wrapper" style="min-height: 464px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Appointment </h1> 
+      </section>
+      <div class="overlay"></div>
+          <section class="content" style="min-height:100px">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/appointment" novalidate="novalidate">
+                <div class="box-body">
+                <input type="hidden" name="checkfield" id="checkfield">
+                  <div class="form-group col-md-2">
+                      <label> Filter Date </label>
+                      <select class="form-control" name="filter" id="filter">
+                          <option value="appointment" selected="">Appointment Date</option>
+                          <option value="followup">Follow Up Date</option>
+                          <option value="visiting">Visiting Date</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                  <label>Name </label>
+                  <input type="text" class="form-control" name="name" id="name" value="" placeholder="Enter Name">
+                  </div>
+                  
+                      <div class="form-group col-md-3">
+                  <label>Mobile Number </label>
+                  <input type="number" class="form-control" name="mobile" id="mobile" value="" placeholder="Enter Mobile Number">
+                  </div>
+                  
+                  <div class="form-group col-md-2">
+                  <label>From Date</label>
+                  <input type="text" class="form-control" name="from_date" id="from_date" value="" autocomplete="off"></div>
+              
+                  <div class="form-group col-md-2">
+                   <label>To Date</label>
+                      <input type="text" class="form-control" name="to_date" id="to_date" value="" autocomplete="off"></div>
+                      
+                      
+                      <div class="form-group col-md-3">
+  
+                        <label>Employes Sales </label>
+      
+                                               
+                        <select class="form-control select2-hidden-accessible" name="sales_employe_id" id="sales_employe_id" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" value="">--Select--</option>
+                              
+                              <option value="3198">Ashok Mishra</option>
+                                                               <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+                                                                                                     <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+                                                                                                
+                              <option value="3251">Rakesh Kumar Sinha</option>
+                                                          
+                              <option value="3272">SAKET KUMAR</option>
+                                                          
+                          </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 280px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-sales_employe_id-container"><span class="select2-selection__rendered" id="select2-sales_employe_id-container"><span class="select2-selection__placeholder">Select Employe</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+      
+                      </div>
+                  
+                                          <div class="form-group  col-md-2" id="status_div" style="visibility: hidden;">
+                      <label>Status</label>
+                      
+                       <select class="form-control select2-hidden-accessible" name="status" id="status" tabindex="-1" aria-hidden="true">
+                          <option value="">Select</option>
+                          
+                          <option value="1">Hot Lead</option>
+                          
+                          <option value="2">Lead Won</option>
+                          
+                          <option value="4">Lead Lost</option>
+                          
+                          <option value="5">Do Not Disturb</option>
+                          
+                          <option value="12">Not Interested</option>
+                          
+                          <option value="13">Warm Lead</option>
+                          
+                          <option value="14">Cold Lead</option>
+                          
+                          <option value="15">Not Responding</option>
+                          
+                          <option value="16">Follow up</option>
+                          
+                          <option value="17">Duplicate Lead</option>
+                          
+                          <option value="18">Membership Renewal</option>
+                          
+                          <option value="19">Policy Renewal</option>
+                                           </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 176px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-status-container"><span class="select2-selection__rendered" id="select2-status-container"><span class="select2-selection__placeholder">Select Status</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
+                    
+                      <div class="form-group  col-md-12">
+                            <button type="button" onclick="load_appointment_form('1');" class="btn btn-default">Yesterday</button>
+                            <button type="button" onclick="load_appointment_form('2');" class="btn btn-default">Today</button>
+                            <button type="button" onclick="load_appointment_form('3');" class="btn btn-default">Tomorrow</button>
+                        </div>
+                        <div class="form-group  col-md-4">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                              <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/appointment';" class="btn btn-default">Reset</button>
+                              <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+                        </div>
+                </div>
+                  
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      <!-- Main content -->
+      <section class="content">
+          <div class="row">
+              <div class="col-xs-12">
+                <div class="box box-primary">
+                  
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-bordered">
+                      <tbody><tr class="bal-col">
+                          <th style="width: 5%;">Sr.</th>
+                          <th style="width: 10%;">Lead Date</th>	
+                          <th style="width: 10%;">Visiting Date</th>
+                          <th style="width: 10%;">Doctor Name</th>					
+                          <th style="width: 10%;">Mobile</th>	
+                          <th style="width: 10%;">Address</th>	
+                          <th style="width: 10%;">Sales Employe</th>					
+                          <th style="width: 10%;">Appointment Date</th>							
+                          <th style="width: 10%;">Remarks</th>					
+                          <th style="width: 10%;">Updated</th>		
+                          <th style="width: 10%;"></th>		
+                      </tr>
+                                              <tr class="gradeA">
+                              <td>1</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. JITANDER</td>
+                              <td><a href="tel:9996655843">9996655843</a></td>
+                              <td>JJ DENTAL CLINIC, 132 GROUND FLOOR, MC COLONY</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-10-22<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67424)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>2</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR CHANDAN KUMAR</td>
+                              <td><a href="tel:9986247424">9986247424</a></td>
+                              <td>K-13, AWHO BHASKAR ROY ENCLAVE, VIP ROAD OPPOSITE HALDIRAM</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-10-01<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69769)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>3</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. SONI KUMARI</td>
+                              <td><a href="tel:9113380895">9113380895</a></td>
+                              <td>BIBHA NIKETAN NEAR SHIV MANDIR, NEW NAGAR BANDH GARI DIPATOLI, RANCHI</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-09-05<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69570)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>4</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. SANJY KUMAR MAHTO</td>
+                              <td><a href="tel:9708510880">9708510880</a></td>
+                              <td>S/O MRITUAY MAHTO, ALNA RELADIH BUNDU, RANCHI</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-08-25<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69588)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>5</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR SINDHU KUMARI</td>
+                              <td><a href="tel:8789235528">8789235528</a></td>
+                              <td>FLAT:- 5003, B-BLOCK GREEN RESIDENCY, BARIATU</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-08-16<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69584)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>6</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. AWANTIKA SINHA</td>
+                              <td><a href="tel:8527869739">8527869739</a></td>
+                              <td>PEBBLE BEY APARTMENT FLAT NO.604, BLOCK A SARHUL NAGAR, GAUTAM BUDH MARG BARIATU RD.</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-07-26<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69362)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>7</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S HEART CENTRE  NAGARMAL MODI SEVA SADAN</td>
+                              <td><a href="tel:7909009793">7909009793</a></td>
+                              <td>NAGARMAL MODI PATH, UPPER BAZAR, RANCHI</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-05-21<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(68173)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>8</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S HEART CENTRE A UNIT OF HRUDAYALAYM CARE LTD.</td>
+                              <td><a href="tel:7909009793">7909009793</a></td>
+                              <td>NAGARMAL MODI PATH, UPPER BAZAR, RANCHI</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-05-21<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(68174)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>9</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S SARWA MANGALA NURSING HOME</td>
+                              <td><a href="tel:9131337590">9131337590</a></td>
+                              <td>MAIN ROAD BARA CHOWK, NEAR GRAMIN BANK RAJDHANWAR, GIRIDIH</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-04-18<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67601)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>10</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S MADINA HOSPITAL</td>
+                              <td><a href="tel:7004703770">7004703770</a></td>
+                              <td>MAIN ROAD SURHI BEAR MAZAR, NAWADIH, </td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-04-18<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67739)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>11</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S SIDDHI VINAYAK POLY CARE</td>
+                              <td><a href="tel:8084206615">8084206615</a></td>
+                              <td>RAGHUVANSHI HEIGHTS, BUNDU NH33 RANCHI, </td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-04-01<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(68141)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>12</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR AYUSH AGARWAL</td>
+                              <td><a href="tel:7030399110">7030399110</a></td>
+                              <td>AGARWAL CHILDREN HOSPITAL, 134 PATEL NAGAR HANSI CHOWK, OPPOSITE ADARSH MAHILA COLLEGE</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-03-31<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67287)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>13</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR.BEAUTY BANERJEE</td>
+                              <td><a href="tel:9431382368">9431382368</a></td>
+                              <td>6 D SRI BIMALANAND APARTMENT, PURULIA ROAD, BESIDE ST. XAVIERS COLLEGE</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-03-05<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67002)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>14</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S ANKUR SUPERSPECIALITY CHILDREN HOSPITAL</td>
+                              <td><a href="tel:8987565438">8987565438</a></td>
+                              <td>GROUND FLOOR SHANTIDEEP TOWER, REDIUM ROAD NEAR KUTCHERY, CHOWK</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-03-05<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67541)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>15</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. KAVITA MEHTA</td>
+                              <td><a href="tel:9817909890">9817909890</a></td>
+                              <td>VARDAAN MATERNITY HOSPITAL NR. CROWN PLAZA, OPP. FREEDOM BLOOD BANK, OLD BUS STAND</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-28<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(67477)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>16</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR PALLAVI SINGH</td>
+                              <td><a href="tel:8340769419">8340769419</a></td>
+                              <td>UNIT FIRST FLOOR 1 SUSHMA APPARTMENT, JORA TALAB BARIATU, NEAR RIIMS</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-27<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69139)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>17</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. NEHA SINGH</td>
+                              <td><a href="tel:6206083933">6206083933</a></td>
+                              <td>ATREYA CLINIC, NEAR ADITYA VISION, ASHOK RAJ PATH GURHATTA</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-19<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69660)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>18</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. ANSHU ATREYA</td>
+                              <td><a href="tel:9939949049">9939949049</a></td>
+                              <td>ATREYA CLINIC NEAR ADITYA VISION, ASHOK RAJ PATH, SONAR TOLI GURHATTA</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-19<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69661)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>19</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. NARENDRA KUMAR SINGH</td>
+                              <td><a href="tel:9162009351">9162009351</a></td>
+                              <td>S/O KESHAR SINGH VILLAGE JAITIYA, GAYA NOW RESIDING AT RANJANA NURSING HOME, NEAR BLOCK OFFICE KARMAINI ROAD KUCHAIKOTE</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-19<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69662)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>20</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>M/S VISHAL SEWA SADAN AND RESEARCH CENTRE</td>
+                              <td><a href="tel:8210582878">8210582878</a></td>
+                              <td>VISHAL SEVA SADAN, PO RATU, PS RATU AAMTAND</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-16<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69653)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>21</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. SHASHANK SHEKHAR</td>
+                              <td><a href="tel:8085934938">8085934938</a></td>
+                              <td>603-B BAILEY GREENS APPARTMENT, DPS MORE  RUPASPUR, BAILEY ROAD</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-16<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69657)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>22</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR RAJEEV KUMAR RANJAN</td>
+                              <td><a href="tel:9939698101">9939698101</a></td>
+                              <td>R14/2, HARMU HOUSING COLONY, HARMU COLONY</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-12<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(69648)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>23</td>
+                              <td>01/01/1970</td>
+                              <td></td>
+                              <td>DR. PANKAJ KUMAR MANDAL</td>
+                              <td><a href="tel:8017293372">8017293372</a></td>
+                              <td>C - 27, DOCTORS COLONY, NAI SARAI</td>
+                              <td>Ashok Mishra</td>
+                              <td>2025-02-03<br>
+                              <b>From</b>: 10:00 AM<br>
+                              <b>To</b>: 10:30 AM							</td>
+                              
+                              <td></td>
+                              <td>02 Dec 2024 18:38 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(66976)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>24</td>
+                              <td>27/12/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr Shivam</td>
+                              <td><a href="tel:8969721233">8969721233</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-20<br>
+                              <b>From</b>: 19:00 PM<br>
+                              <b>To</b>: 19:30 PM							</td>
+                              
+                              <td>Calling me as for need</td>
+                              <td>04 Jan 2025 20:10 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76393)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>25</td>
+                              <td>16/11/2024</td>
+                              <td>03/01/2025</td>
+                              <td>Dr. Sanjay Kumar Sinha</td>
+                              <td><a href="tel:9905673879">9905673879</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-18<br>
+                              <b>From</b>: 16:00 PM<br>
+                              <b>To</b>: 16:30 PM							</td>
+                              
+                              <td>Calling me after few days</td>
+                              <td>03 Jan 2025 19:51 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76204)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>26</td>
+                              <td>16/11/2024</td>
+                              <td>03/01/2025</td>
+                              <td>Dr. Kajal Priya</td>
+                              <td><a href="tel:8826722272">8826722272</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-18<br>
+                              <b>From</b>: 18:00 PM<br>
+                              <b>To</b>: 18:30 PM							</td>
+                              
+                              <td>Not interested</td>
+                              <td>03 Jan 2025 19:54 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76205)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>27</td>
+                              <td>09/12/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr. Nitish</td>
+                              <td><a href="tel:8102192918">8102192918</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-18<br>
+                              <b>From</b>: 17:00 PM<br>
+                              <b>To</b>: 17:30 PM							</td>
+                              
+                              <td>Allready taken to me all documents and given to payment on last of month</td>
+                              <td>04 Jan 2025 18:58 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76386)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>28</td>
+                              <td>14/12/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr Shahid Siddiqui</td>
+                              <td><a href="tel:9386744412">9386744412</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-18<br>
+                              <b>From</b>: 13:00 PM<br>
+                              <b>To</b>: 13:30 PM							</td>
+                              
+                              <td>Calling me after few days</td>
+                              <td>04 Jan 2025 16:44 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76374)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>29</td>
+                              <td>16/12/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr. Ambuj Kumar</td>
+                              <td><a href="tel:9654170684">9654170684</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-18<br>
+                              <b>From</b>: 18:00 PM<br>
+                              <b>To</b>: 18:30 PM							</td>
+                              
+                              <td>Calling me as for need</td>
+                              <td>04 Jan 2025 20:08 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76392)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>30</td>
+                              <td>10/12/2024</td>
+                              <td>02/01/2025</td>
+                              <td>Dr shivani Nivedita</td>
+                              <td><a href="tel:8789690508">8789690508</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-17<br>
+                              <b>From</b>: 12:30 PM<br>
+                              <b>To</b>: 13:00 PM							</td>
+                              
+                              <td>Say to me plz come after 14th</td>
+                              <td>02 Jan 2025 18:59 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76047)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>31</td>
+                              <td>17/12/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr. Priya Darshini</td>
+                              <td><a href="tel:7763022008">7763022008</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-17<br>
+                              <b>From</b>: 14:30 PM<br>
+                              <b>To</b>: 15:00 PM							</td>
+                              
+                              <td>I am calling you</td>
+                              <td>04 Jan 2025 16:48 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76376)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>32</td>
+                              <td>16/12/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr. Karan Bhargav</td>
+                              <td><a href="tel:7004970224">7004970224</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-16<br>
+                              <b>From</b>: 14:00 PM<br>
+                              <b>To</b>: 14:30 PM							</td>
+                              
+                              <td>Not interested</td>
+                              <td>04 Jan 2025 16:45 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76375)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>33</td>
+                              <td>01/11/2024</td>
+                              <td>04/01/2025</td>
+                              <td>Dr. Sarita sinha</td>
+                              <td><a href="tel:9308280827">9308280827</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-15<br>
+                              <b>From</b>: 12:00 PM<br>
+                              <b>To</b>: 12:30 PM							</td>
+                              
+                              <td>Calling me as per need</td>
+                              <td>04 Jan 2025 16:39 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76373)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>34</td>
+                              <td>14/11/2024</td>
+                              <td>02/01/2025</td>
+                              <td>Dr. Gopal Prasad</td>
+                              <td><a href="tel:9308832016">9308832016</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-15<br>
+                              <b>From</b>: 17:30 PM<br>
+                              <b>To</b>: 18:00 PM							</td>
+                              
+                              <td>Say to me, plz come after 1 week</td>
+                              <td>02 Jan 2025 19:10 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76050)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>35</td>
+                              <td>09/12/2024</td>
+                              <td>02/01/2025</td>
+                              <td>Dr. Dheeraj Kumar</td>
+                              <td><a href="tel:9038401030">9038401030</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-15<br>
+                              <b>From</b>: 18:30 PM<br>
+                              <b>To</b>: 19:00 PM							</td>
+                              
+                              <td>I am interested, but plz come after 14th</td>
+                              <td>02 Jan 2025 19:12 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76051)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>36</td>
+                              <td>09/12/2024</td>
+                              <td>02/01/2025</td>
+                              <td>Dr. Manmohan</td>
+                              <td><a href="tel:6200442351">6200442351</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-15<br>
+                              <b>From</b>: 16:30 PM<br>
+                              <b>To</b>: 17:00 PM							</td>
+                              
+                              <td>Just say to me. I am calling you when I have need. </td>
+                              <td>02 Jan 2025 19:05 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76049)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>37</td>
+                              <td>10/12/2024</td>
+                              <td>02/01/2025</td>
+                              <td>Dr. Novelesh Bachchan</td>
+                              <td><a href="tel:9205024259">9205024259</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-15<br>
+                              <b>From</b>: 11:00 AM<br>
+                              <b>To</b>: 11:30 AM							</td>
+                              
+                              <td>Say to me plz come after 14th . </td>
+                              <td>02 Jan 2025 18:56 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76046)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>38</td>
+                              <td>13/12/2024</td>
+                              <td>02/01/2025</td>
+                              <td>Dr. Amitesh Agarwal</td>
+                              <td><a href="tel:9631220575">9631220575</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-10<br>
+                              <b>From</b>: 14:00 PM<br>
+                              <b>To</b>: 14:30 PM							</td>
+                              
+                              <td>Just say to me, I am not interested for this</td>
+                              <td>02 Jan 2025 19:02 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76048)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>39</td>
+                              <td>03/01/2025</td>
+                              <td></td>
+                              <td>Dr. Rakesh Kumar</td>
+                              <td><a href="tel:9430832627">9430832627</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-03<br>
+                              <b>From</b>: 11:00 AM<br>
+                              <b>To</b>: 11:30 AM							</td>
+                              
+                              <td>Allready taken to Apex</td>
+                              <td>03 Jan 2025 13:44 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76196)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>40</td>
+                              <td>03/01/2025</td>
+                              <td></td>
+                              <td>Dr. S. C. Jha</td>
+                              <td><a href="tel:9470051219">9470051219</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-03<br>
+                              <b>From</b>: 12:00 PM<br>
+                              <b>To</b>: 12:30 PM							</td>
+                              
+                              <td>Calling me after few days</td>
+                              <td>03 Jan 2025 13:49 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76197)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>41</td>
+                              <td>03/01/2025</td>
+                              <td></td>
+                              <td>Dr. Amit Kumar</td>
+                              <td><a href="tel:8235757262">8235757262</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-03<br>
+                              <b>From</b>: 13:30 PM<br>
+                              <b>To</b>: 14:00 PM							</td>
+                              
+                              <td>Allready taken to Apex</td>
+                              <td>03 Jan 2025 13:55 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(76198)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>42</td>
+                              <td>31/12/2024</td>
+                              <td></td>
+                              <td>Dr. Shailendra Kumar</td>
+                              <td><a href="tel:9334268969">9334268969</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2025-01-01<br>
+                              <b>From</b>: 13:30 PM<br>
+                              <b>To</b>: 14:00 PM							</td>
+                              
+                              <td>Calling me after few days</td>
+                              <td>31 Dec 2024 14:06 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(75690)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>43</td>
+                              <td>25/10/2024</td>
+                              <td>20/12/2024</td>
+                              <td>Dr. Ranvijay kumar</td>
+                              <td><a href="tel:9835420698">9835420698</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 11:00 AM<br>
+                              <b>To</b>: 11:30 AM							</td>
+                              
+                              <td>Calling me as per need</td>
+                              <td>20 Dec 2024 19:18 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(73939)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>44</td>
+                              <td>26/10/2024</td>
+                              <td>19/12/2024</td>
+                              <td>Dr. Lata sinha</td>
+                              <td><a href="tel:9334036555">9334036555</a></td>
+                              <td>Khagaul</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 18:00 PM<br>
+                              <b>To</b>: 18:30 PM							</td>
+                              
+                              <td>Work with Regional head Mr Ashok Mishra. Dr just to say me I have no need at the time. When I have need, I have calling you</td>
+                              <td>20 Dec 2024 14:22 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(73909)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>45</td>
+                              <td>26/10/2024</td>
+                              <td>23/12/2024</td>
+                              <td>Dr. Raju Kushwaha</td>
+                              <td><a href="tel:8882072246">8882072246</a></td>
+                              <td>Digha Road</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 15:00 PM<br>
+                              <b>To</b>: 15:30 PM							</td>
+                              
+                              <td>I am not interested</td>
+                              <td>23 Dec 2024 19:35 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(74415)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>46</td>
+                              <td>28/10/2024</td>
+                              <td>23/12/2024</td>
+                              <td>Dr. Rajeev Ranjan</td>
+                              <td><a href="tel:9835614387">9835614387</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 12:00 PM<br>
+                              <b>To</b>: 12:30 PM							</td>
+                              
+                              <td>Calling me in new years</td>
+                              <td>23 Dec 2024 19:31 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(74413)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>47</td>
+                              <td>29/10/2024</td>
+                              <td>20/12/2024</td>
+                              <td>MGM. Hospital</td>
+                              <td><a href="tel:9835020069">9835020069</a></td>
+                              <td>Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 18:00 PM<br>
+                              <b>To</b>: 18:30 PM							</td>
+                              
+                              <td>No Need At present</td>
+                              <td>20 Dec 2024 19:31 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(73943)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>48</td>
+                              <td>29/10/2024</td>
+                              <td>20/12/2024</td>
+                              <td>Dr. Arvind Kumar.</td>
+                              <td><a href="tel:9709760188">9709760188</a></td>
+                              <td>Nala Road, patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 14:00 PM<br>
+                              <b>To</b>: 14:30 PM							</td>
+                              
+                              <td>Just say to me calling you as per needs</td>
+                              <td>20 Dec 2024 19:25 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(73941)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>49</td>
+                              <td>29/10/2024</td>
+                              <td>20/12/2024</td>
+                              <td>Dr. Pummy Sinha</td>
+                              <td><a href="tel:9334347787">9334347787</a></td>
+                              <td>Ramnagri. Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 15:30 PM<br>
+                              <b>To</b>: 16:00 PM							</td>
+                              
+                              <td>No, I have taken allready Apex</td>
+                              <td>20 Dec 2024 19:29 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(73942)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                              <tr class="gradeA">
+                              <td>50</td>
+                              <td>30/10/2024</td>
+                              <td>23/12/2024</td>
+                              <td>Dr. Deepak</td>
+                              <td><a href="tel:9654417987">9654417987</a></td>
+                              <td>Ramnagri. Patna</td>
+                              <td>Rakesh Kumar Sinha</td>
+                              <td>2024-12-31<br>
+                              <b>From</b>: 14:00 PM<br>
+                              <b>To</b>: 14:30 PM							</td>
+                              
+                              <td>Calling me after this month</td>
+                              <td>23 Dec 2024 19:33 PM</td>
+                              <td>
+                                  <a href="javascript:;" onclick="view_record(74414)"><strong>View</strong></a> 
+                                  
+                                                              </td>
+                              
+                          </tr>
+                                        </tbody></table>
+                  </div>
+                  <!-- /.box-body -->
+                  
+                  <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                      <li class="active"><a>1</a></li><li><a href="https://prescriibe.com/docland/admin/appointment/index/2" data-ci-pagination-page="2">2</a></li><li><a href="https://prescriibe.com/docland/admin/appointment/index/3" data-ci-pagination-page="3">3</a></li><li><a href="https://prescriibe.com/docland/admin/appointment/index/2" data-ci-pagination-page="2" rel="next">»</a></li><li><a href="https://prescriibe.com/docland/admin/appointment/index/6" data-ci-pagination-page="6">Last ›</a></li>					<input type="hidden" id="controller" value="appointment">
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.box -->
+              
+                </div>
+                <!-- /.box -->
+              </div>
+            </section></div>
+          
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close clse-model" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="model-result">
+                      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default clse-model" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  
+  <script>
+  function load_appointment_form(id){
+   document.getElementById("checkfield").value = id;
+   document.getElementById("searchFrm").submit();
+  }
+  
+     $(document).ready(function(){
+  
+        $('.pagination > li > a').on('click', function(){
+  
+           link = $(this).attr('href');  
+  
+           $('#searchFrm').attr('action', link);
+  
+           $('#searchFrm').submit();
+  
+           return false; 
+  
+        });
+  
+        $('#filter').on('change', function(){
+  
+            var filter_val= $(this).val();
+  
+            if(filter_val == 'followup') {
+  
+                $('#status_div').attr('style','');
+  
+            } else {
+  
+                $('#status_div').attr('style','visibility: hidden;');
+  
+            }
+  
+        });
+  
+     });
+  
+  </script>
+  
+  <script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+  
+  <script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+  
+  <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script> 
+  
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js" data-semver="1.4.6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.1/ui-bootstrap-tpls.min.js"></script>
+  
+  <script>
+  var app = angular.module('plunker', ['ui.bootstrap']);
+  app.controller('MainCtrl', function($modal) {
+    var main = this; });
+  app.controller('ModalInstanceCtrl', function($modalInstance) {
+      var modal = this;
+      modal.title = 'Modal Title';
+  });
+  
+  $(document).ready(function(){
+  
+       $("#status").select2({
+  
+              placeholder: "Select Status"
+  
+          });
+  
+          
+  
+      $("#from_date ,#to_date, #visiting_date").datepicker({
+  
+          format: 'dd/mm/yyyy',
+  
+          clickInput:true, 
+  
+          changeMonth: true,
+  
+          changeYear: true,
+  
+          numberOfMonths: 1,
+  
+          autoclose: true
+  
+      }); 
+      
+      
+    $(function() {
+     $('[data-toggle="datepicker"]').datepicker({
+        autoHide: true,
+        zIndex: 2048,
+     });
+  });
+  
+  });
+  
+  </script>
+  
+  <script type="text/javascript">
+  
+  $(document).ready(function() {
+  
+  $.validator.addMethod("greaterThanDate", function(value, max, min){
+  
+      return (value == '' || $(min).datepicker("getDate") < $(max).datepicker("getDate"));
+  
+      });
+  
+  $(function() {
+  
+  $("form[name='search_data_view']").validate({
+  
+  // rules: {
+  
+  // from_date: {
+  
+  // },
+  
+  // to_date: {
+  
+  // greaterThanDate:"#from_date"
+  
+  // }
+  
+  // },
+  
+  // messages: {
+  
+  // from_date: {
+  
+  // },
+  
+  // to_date: {
+  
+  // greaterThanDate:"Your End Date must be greater than From Date"
+  
+  // }
+  
+  // },
+  
+  submitHandler: function(form) {
+  
+  form.submit();
+  
+  }
+  
+  
+  
+  
+  
+  });
+  
+  });
+  
+  $('.clse-model').click(function() { 
+  
+      $('#myModal').removeClass('in');
+  
+      $('#myModal').attr('style','display: none;');
+  
+  })
+  
+  $(document).on({
+  
+      ajaxStart: function(){
+  
+          $("body").addClass("loading"); 
+  
+      },
+  
+      ajaxStop: function(){ 
+  
+          $("body").removeClass("loading"); 
+  
+      }   
+  
+     
+  
+  });
+  
+  
+  
+  $(document).click(function (e) {
+  
+      if ($(e.target).is('#myModal')) {
+  
+          $('#myModal').fadeOut(500);
+  
+      }
+  
+  
+  
+  });
+  
+  
+  
+  });
+  
+  function view_record(id){
+  
+      var filter = "appointment";
+  
+      var url = "https://prescriibe.com/docland/admin/appointment/leads_detail/"+filter+'/'+id;
+  
+      
+  
+      var alerta = $('#model-result');
+      //alert(alerta);
+  
+      //$('body').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
+  
+      
+      alerta.load(url,function(){
+  
+          $('#myModal').addClass('in');
+  
+          $('#myModal').attr('style','display: block; padding-right: 16px;');
+  
+      });
+  
+  }
+  
+  
+  $("#sales_employe_id").select2({
+  
+              placeholder: "Select Employe"
+  
+          });
+  
+  
+  </script><footer class="main-footer">
+      
+  </footer>
+  
+  
+  <script>
+          
+      function detectScreenshot() {
+          var roleId = parseInt("6");
+          var arrayVal = [2, 3, 9];
+          if(!arrayVal.includes(roleId)) {
+              document.addEventListener('keydown', function (e) {
+                  if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                      // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                      // You can take some action here, like displaying a message
+                      alert('Screenshots are not allowed on this website.');
+                  } 
+              });
+          }
+      }
+  
+      // Call the function to start detection
+      detectScreenshot();
+      </script>
+      
+  <!-- ./wrapper -->
+  <script src="/docland/assets/admin/custom.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- FastClick -->
+  <script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/docland/assets/admin/dist/js/app.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/docland/assets/admin/dist/js/demo.js"></script>
+   <!-- DataTables JS -->
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+      </script> 
+  <script>
+    var roleIdNew = parseInt("6");
+      var arrayVal1 = [2, 3, 9];
+      
+      if(!arrayVal1.includes(roleIdNew)) {
+         document.addEventListener('contextmenu', function (e) {
+              e.preventDefault();
+          });
+          
+        const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      
+        const showAlert = e => {
+          e.preventDefault(); // preventing its default behaviour
+          // alert("Sorry, you can't view or copy source codes this way!")
+          return ;
+        }
+      
+        document.addEventListener("contextmenu", e => {
+          showAlert(e); // calling showAlert() function on mouse right click
+        });
+      
+        document.addEventListener("keydown", e => {
+          // calling showAlert() function, if the pressed key matched to disabled keys
+          if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+            showAlert(e);
+          }
+        });
+      } 
+  </script>
+  {% include "include_footerjs.html" %}
+  </body>
+  </html>

@@ -1,0 +1,1588 @@
+<html>
+	{% include "include_head.html" %}
+<body class="skin-blue-light sidebar-mini">
+<!-- Site wrapper -->	
+<div class="wrapper">
+
+	{% include "include_header.html" %}
+  <!-- =============================================== -->
+
+<!-- Left side column. contains the sidebar -->
+
+{% include "include_aside.html" %}
+  
+<script>
+$(document).ready(function(){
+	$('.sidebar-menu li.active').parents('.treeview').addClass('active');
+});
+</script>
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 464px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>Lead <a href="/addeditLeads"><button type="submit" class="btn btn-primary pull-right">Add New</button></a></h1>
+    </section>
+
+	<section class="content" style="min-height:100px">
+	  <div class="row">
+		<div class="col-md-12">
+		  <div class="box box-primary">
+			<form role="form" method="post" class="stdform" id="searchFrm" name="search_data_view" accept-charset="utf-8" action="https://prescriibe.com/docland/admin/leads" novalidate="novalidate">
+			  <div class="box-body">
+			
+				<div class="form-group col-md-3">
+				<label>Name </label>
+				<input type="text" class="form-control" name="name" id="name" value="" placeholder="Enter Name">
+				</div>
+				
+				<div class="form-group col-md-3">
+				<label>Mobile Number </label>
+				<input type="text" class="form-control" name="mobile" id="mobile" value="" placeholder="Enter mobile number">
+				</div>
+				 
+                <div class="form-group col-md-3">
+                <label>From Date</label>
+                <input type="text" class="form-control" name="from_date" id="from_date" value="" autocomplete="off"></div>
+			
+			 <div class="form-group col-md-3">
+             <label>To Date</label>
+			    <input type="text" class="form-control" name="to_date" id="to_date" value="" autocomplete="off"></div>
+			
+			    <div class="form-group col-md-3">
+
+                  <label>Employee</label>
+
+                                    
+                  <select class="form-control select2-hidden-accessible" name="employe_id" id="employe_id" tabindex="-1" aria-hidden="true">
+					  <option selected="selected" value="">--Select--</option>
+						
+						<option value="3198">Ashok Mishra</option>
+												     <option value="3251">&nbsp;&nbsp;Rakesh Kumar Sinha</option>
+						     						     						     <option value="3272">&nbsp;&nbsp;SAKET KUMAR</option>
+						     						     						
+						<option value="3251">Rakesh Kumar Sinha</option>
+												
+						<option value="3272">SAKET KUMAR</option>
+											
+					</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 280px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-employe_id-container"><span class="select2-selection__rendered" id="select2-employe_id-container"><span class="select2-selection__placeholder">Select Employe</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+                
+                <div class="form-group col-md-3">
+                    <label>Policy Type</label>
+                    <select class="form-control" id="policy_type1" name="policy_type">
+    					<option value=""> Please Select </option>
+    					<option value="Professional Indemnity"> Professional Indemnity </option>
+    					<option value="Motor"> Motor </option>
+    					<option value="Health"> Health </option>
+    					<option value="Fire"> Fire </option>
+    					<option value="Others"> Others </option>
+                    </select>
+                </div>
+                
+                <div class="form-group col-md-3">
+                  <label>Branch Head</label>
+                                    <select class="form-control" name="branch_head" id="branch_head">
+    				  <option selected="selected" value="">--Select--</option>
+    				      				  <option value="26,3164,3166,3168,3176,3242,3063,3165,3167,3169,3170,3171,3172,3175,3185,3186,3190,3191,3192,3193,3243,3246,3247,3259,3268,3269,3270,3277,2">Dharmender Kumar</option>
+    				      				  <option value="23,37,3076,3092,3178,3180,3196,3198,3202,3238,3239,3267,3137,3195,3197,3199,3201,3203,3204,3205,3206,3207,3208,3211,3212,3214,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3237,3244,3245,3251,3252,3253,3255,3257,3260,3265,3272,3273,3274,3275,3276,4">Narayan Saini</option>
+    				      				  <option value="3068,3131,3132,3148,3152,3157,3160,3161,3174,3179,3229,3234,3256,3264,3149,3150,3240,3248,3271,1061">Santanu Das</option>
+    				      				  <option value="9,27,3096,3107,3109,3110,3140,3141,3156,3158,3194,3241,3139,3153,3154,3182,3189,3262,3263,3144">Rajeev Chhabra</option>
+    				      				  <option value="3254,3151">Nasib Ul Hasan</option>
+    				      				  <option value="31,3061,3163">Demo Manager</option>
+    				      				  <option value="3159,3210,3213,3209">Ravinder Pal Singh</option>
+    				      			  </select>
+                </div>
+                
+                <div class="form-group col-md-12">
+                    
+                    <div class="form-group col-md-2" style="margin-top:24px;margin-right: -89px;">
+                        <input type="hidden" name="hotDeals" id="hotDeals" value="">
+        			    <button type="button" onclick="leads_form('1');" style="background-color: green;color:white" class="btn btn-default">Hot Leads</button>
+        			</div>
+        			<div class="form-group col-md-2" style="margin-top:24px;margin-right: -78px;">
+        			    <button type="button" onclick="leads_form('13');" style="background-color: #FBEC5D;color:black" class="btn btn-default">Warm Leads</button>
+        			</div>
+        			<div class="form-group col-md-2" style="margin-top:24px;margin-right: -89px;">
+        			    <button type="button" onclick="leads_form('18');" style="background-color: #30D5C8;" class="btn btn-default">Memb Ren</button>
+        			</div>
+        			<div class="form-group col-md-2" style="margin-top:24px;margin-right: -89px;">
+        			    <button type="button" onclick="leads_form('19');" style="background-color: #FF8080;" class="btn btn-default">Policy Ren</button>
+        			</div>
+        			<div class="form-group col-md-2" style="margin-top:24px;margin-right: -89px;">
+                        <input type="hidden" name="isPolicyType" id="isPolicyType" value="">
+        			    <button type="button" onclick="policy_form('1');" style="background-color: green;color:white" class="btn btn-default">Other Policy</button>
+        			</div>
+        			<div class="form-group col-md-4" style="margin-top:24px;padding-left: 31px;">
+            			<button type="submit" class="btn btn-primary">Search</button>
+    				    <button type="button" onclick="javascript: window.location.href = 'https://prescriibe.com/docland/admin/leads';" class="btn btn-default">Reset</button>
+    				</div>
+        		</div>
+			  </div>
+			  
+			  <div class="box-footer"></div>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	</section>
+	
+	
+    <!-- Main content -->
+    <section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+			    
+			                            
+			  <div class="box box-primary">
+				
+				<div class="box-body table-responsive no-padding">
+				  <table class="table table-hover table-bordered">
+					<tbody><tr class="bal-col">
+						<th style="width: 5%;">Sr.</th>
+						<th style="width: 10%;">Lead Date</th>	
+						<th style="width: 10%;">Doctor Name</th>					
+						<th style="width: 10%;">Mobile</th>	
+						<th style="width: 10%;">Address</th>	
+						<th style="width: 10%;">City</th>	
+						<th style="width: 10%;">Employee</th>					
+						<th style="width: 15%;">Indate</th>
+						<th style="width: 10%;">Action</th>
+					</tr>
+											<tr class="gradeA">
+							<td>1</td>
+							<td>2025-01-03</td>
+							<td>Dr. Amit Kumar</td>
+							<td><a href="tel:8235757262">8235757262</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2025-01-03 19:25:56</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63399" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63399/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63399" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>2</td>
+							<td>2025-01-03</td>
+							<td>Dr. S. C. Jha</td>
+							<td><a href="tel:9470051219">9470051219</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2025-01-03 19:19:29</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63398" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63398/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63398" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>3</td>
+							<td>2025-01-03</td>
+							<td>Dr. Rakesh Kumar</td>
+							<td><a href="tel:9430832627">9430832627</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2025-01-03 19:14:18</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63397" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63397/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63397" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>4</td>
+							<td>2024-12-31</td>
+							<td>Dr. Ratnesh Kumar</td>
+							<td><a href="tel:9472932140">9472932140</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-31 19:42:04</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63075" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63075/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63075" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>5</td>
+							<td>2024-12-31</td>
+							<td>Dr. Amrendra</td>
+							<td><a href="tel:9431021655">9431021655</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-31 19:38:41</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63074" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63074/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63074" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>6</td>
+							<td>2024-12-31</td>
+							<td>Dr. Shailendra Kumar</td>
+							<td><a href="tel:9334268969">9334268969</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-31 19:36:29</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63073" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63073/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63073" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>7</td>
+							<td>2024-12-31</td>
+							<td>Dr. Mamta</td>
+							<td><a href="tel:9709602129">9709602129</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-31 19:33:58</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63072" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63072/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63072" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>8</td>
+							<td>2024-12-31</td>
+							<td>Dr. Preeti Sharma</td>
+							<td><a href="tel:7766938148">7766938148</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-31 19:31:47</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/63071" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/63071/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=63071" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>9</td>
+							<td>2024-12-28</td>
+							<td>Dr. Anju</td>
+							<td><a href="tel:9341060138">9341060138</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-28 19:32:00</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62810" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62810/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62810" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>10</td>
+							<td>2024-12-28</td>
+							<td>Dr. Mahesh Prasad</td>
+							<td><a href="tel:7763802400">7763802400</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-28 19:29:42</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62809" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62809/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62809" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>11</td>
+							<td>2024-12-28</td>
+							<td>Dr. Pradeep Kumar</td>
+							<td><a href="tel:7970516663">7970516663</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-28 19:26:57</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62808" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62808/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62808" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>12</td>
+							<td>2024-12-28</td>
+							<td>Dr. Manoj Kumar Krishna</td>
+							<td><a href="tel:9386570305">9386570305</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-28 19:23:51</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62807" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62807/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62807" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>13</td>
+							<td>2024-12-28</td>
+							<td>Dr. Sanjeev kumar suman</td>
+							<td><a href="tel:9315625007">9315625007</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-28 19:20:54</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62806" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62806/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62806" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>14</td>
+							<td>2024-12-27</td>
+							<td>Dr. Amit sharma</td>
+							<td><a href="tel:9899469164">9899469164</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 18:43:09</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62681" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62681/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62681" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>15</td>
+							<td>2024-12-27</td>
+							<td>Dr. Prem shankar patel</td>
+							<td><a href="tel:9934942229">9934942229</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 18:40:25</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62680" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62680/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62680" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>16</td>
+							<td>2024-12-27</td>
+							<td>Dr Shivam</td>
+							<td><a href="tel:8969721233">8969721233</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 18:37:52</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62679" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62679/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62679" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>17</td>
+							<td>2024-12-27</td>
+							<td>Dr. Aftab Ansari</td>
+							<td><a href="tel:7677825319">7677825319</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 18:35:25</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62678" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62678/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62678" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>18</td>
+							<td>2024-12-27</td>
+							<td>Dr. Abhimanyu vatsa</td>
+							<td><a href="tel:7289880464">7289880464</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 18:32:57</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62677" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62677/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62677" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>19</td>
+							<td>2024-12-26</td>
+							<td>Dr. Sunil Kumar singh</td>
+							<td><a href="tel:9334157640">9334157640</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 08:53:43</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62641" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62641/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62641" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>20</td>
+							<td>2024-12-26</td>
+							<td>Dr. Amitabh sinha</td>
+							<td><a href="tel:9304296966">9304296966</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 08:51:34</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62640" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62640/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62640" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>21</td>
+							<td>2024-12-26</td>
+							<td>Dr. Shashi Akhauri</td>
+							<td><a href="tel:9431020433">9431020433</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 08:48:55</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62637" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62637/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62637" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>22</td>
+							<td>2024-12-26</td>
+							<td>Dr. Vibha sinha</td>
+							<td><a href="tel:9431015874">9431015874</a></td>
+							<td>Patna</td>
+							<td>Purnia </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 08:32:23</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62627" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62627/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62627" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>23</td>
+							<td>2024-12-26</td>
+							<td>Dr Ankit Kumar</td>
+							<td><a href="tel:7903256314">7903256314</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-27 08:29:54</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62626" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62626/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62626" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>24</td>
+							<td>2024-12-23</td>
+							<td>Dr Amrendra Kumar</td>
+							<td><a href="tel:9835488434">9835488434</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-23 18:43:12</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62234" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62234/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62234" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>25</td>
+							<td>2024-12-21</td>
+							<td>Dr. R. N. Tagore</td>
+							<td><a href="tel:9204197442">9204197442</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-21 19:44:34</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62087" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62087/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62087" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>26</td>
+							<td>2024-12-21</td>
+							<td>Dr satyam Sinha</td>
+							<td><a href="tel:8084389522">8084389522</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-21 19:41:33</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62086" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62086/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62086" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>27</td>
+							<td>2024-12-21</td>
+							<td>Dr. Jamshed Anwer</td>
+							<td><a href="tel:9155494540">9155494540</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-21 19:39:01</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62085" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62085/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62085" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>28</td>
+							<td>2024-12-21</td>
+							<td>Dr Nazia Nigar</td>
+							<td><a href="tel:7903231213">7903231213</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-21 19:36:14</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62084" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62084/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62084" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>29</td>
+							<td>2024-12-21</td>
+							<td>Dr Avinash</td>
+							<td><a href="tel:7543015099">7543015099</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-21 19:33:14</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62083" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62083/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62083" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>30</td>
+							<td>2024-12-21</td>
+							<td>Dr. Abhimanyu Pandit</td>
+							<td><a href="tel:9711305640">9711305640</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-23 16:38:18</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/62082" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/62082/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=62082" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>31</td>
+							<td>2024-12-18</td>
+							<td>Dr Mani shankar pandey.</td>
+							<td><a href="tel:9801242091">9801242091</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-18 20:29:32</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61588" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61588/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61588" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>32</td>
+							<td>2024-12-17</td>
+							<td>Dr. Smiriti sinha.</td>
+							<td><a href="tel:8051466989">8051466989</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-17 19:05:21</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61412" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61412/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61412" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>33</td>
+							<td>2024-12-17</td>
+							<td>Kumar Gaurav.</td>
+							<td><a href="tel:9857219602">9857219602</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-17 19:01:29</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61411" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61411/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61411" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>34</td>
+							<td>2024-12-17</td>
+							<td>Dr. Priya Darshini</td>
+							<td><a href="tel:7763022008">7763022008</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-17 18:51:04</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61410" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61410/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61410" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>35</td>
+							<td>2024-12-17</td>
+							<td>Dr. Shyam Kishore.</td>
+							<td><a href="tel:9334125924">9334125924</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-17 18:45:00</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61409" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61409/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61409" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>36</td>
+							<td>2024-12-17</td>
+							<td>Dr. Manish Kumar</td>
+							<td><a href="tel:9431045043">9431045043</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-17 18:11:16</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61403" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61403/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61403" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>37</td>
+							<td>2024-12-16</td>
+							<td>Dr. Rajeev Ranjan</td>
+							<td><a href="tel:9801835440">9801835440</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 20:13:33</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61275" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61275/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61275" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>38</td>
+							<td>2024-12-16</td>
+							<td>Dr Prakash sinha</td>
+							<td><a href="tel:9431062640">9431062640</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 20:09:18</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61273" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61273/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61273" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>39</td>
+							<td>2024-12-16</td>
+							<td>Dr. Karan Bhargav</td>
+							<td><a href="tel:7004970224">7004970224</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 20:06:39</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61270" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61270/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61270" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>40</td>
+							<td>2024-12-16</td>
+							<td>Dr. Harihar Nath Tiwary</td>
+							<td><a href="tel:7050588507">7050588507</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 20:03:36</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61268" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61268/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61268" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>41</td>
+							<td>2024-12-15</td>
+							<td>Dr. Rajeev Ranjan</td>
+							<td><a href="tel:9874185492">9874185492</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 20:00:08</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61266" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61266/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61266" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>42</td>
+							<td>2024-12-16</td>
+							<td>Dr. Ambuj Kumar</td>
+							<td><a href="tel:9654170684">9654170684</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 19:56:28</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61265" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61265/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61265" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>43</td>
+							<td>2024-12-16</td>
+							<td>Dr. Rupesh</td>
+							<td><a href="tel:7905731584">7905731584</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-16 19:53:02</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61263" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61263/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61263" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>44</td>
+							<td>2024-12-14</td>
+							<td>Dr. Janki Sharan Bhadani.</td>
+							<td><a href="tel:7004626266">7004626266</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:37:44</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61075" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61075/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61075" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>45</td>
+							<td>2024-12-14</td>
+							<td>Dr Shahid Siddiqui</td>
+							<td><a href="tel:9386744412">9386744412</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:34:00</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61074" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61074/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61074" target="_blank"><strong>View Appointment(2)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>46</td>
+							<td>2024-12-14</td>
+							<td>Dr. Mafizur Rahman</td>
+							<td><a href="tel:7970600150">7970600150</a></td>
+							<td>Paras Hospital</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:24:51</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61073" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61073/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61073" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>47</td>
+							<td>2024-12-14</td>
+							<td>Dr. Anshu Rani</td>
+							<td><a href="tel:7060198805">7060198805</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:21:57</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61072" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61072/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61072" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>48</td>
+							<td>2024-12-14</td>
+							<td>Dr. Pintoo singh</td>
+							<td><a href="tel:9472245829">9472245829</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:18:49</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61071" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61071/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61071" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>49</td>
+							<td>2024-12-14</td>
+							<td>Dr. Vinod Thakur</td>
+							<td><a href="tel:9431041154">9431041154</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:16:10</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61070" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61070/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61070" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+											<tr class="gradeA">
+							<td>50</td>
+							<td>2024-12-14</td>
+							<td>Dr. Kumar Gaurav</td>
+							<td><a href="tel:8210346268">8210346268</a></td>
+							<td>Patna</td>
+							<td>Patna </td>
+							<td>Rakesh Kumar Sinha</td>
+							<td>2024-12-14 18:12:34</td>
+							
+							<!--<td>-->
+																<!--<br>-->
+								<!--<b>Update</b>: </td>-->
+							<td>
+								<a href="https://prescriibe.com/docland/admin/leads/addeditLeads/61069" target="_blank"><strong>Edit</strong></a> 
+                              |  <a href="https://prescriibe.com/docland/admin/leads/leads_proposal/61069/"><strong>Proposal</strong></a> |
+                              <a href="https://prescriibe.com/docland/admin/appointment?id=61069" target="_blank"><strong>View Appointment(1)</strong></a> 
+                                                            	
+                            </td>
+							
+						</tr>
+									  </tbody></table>
+				</div>
+				<!-- /.box-body -->
+				
+				<div class="box-footer clearfix">
+				  <ul class="pagination pagination-sm no-margin pull-right">
+					<li class="active"><a>1</a></li><li><a href="https://prescriibe.com/docland/admin/leads/index/2" data-ci-pagination-page="2">2</a></li><li><a href="https://prescriibe.com/docland/admin/leads/index/3" data-ci-pagination-page="3">3</a></li><li><a href="https://prescriibe.com/docland/admin/leads/index/2" data-ci-pagination-page="2" rel="next">»</a></li><li><a href="https://prescriibe.com/docland/admin/leads/index/6" data-ci-pagination-page="6">Last ›</a></li>					<input type="hidden" id="controller" value="leads">
+				  </ul>
+				</div>
+			  </div>
+			  <!-- /.box -->
+			
+			  </div>
+			  <!-- /.box -->
+			</div>
+		  </section></div>
+		
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  
+  <div class="modal fade" id="modalMemberDetail" tabindex="-1" role="dialog" aria-labelledby="modalMemberDetail">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+	  <div class="modal-header">
+          <b>Membership Detail</b> <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+         <input type="hidden" class="form-control" name="count_id" id="count_id" value="">
+		 <div class="box-body">
+		    <div class="form-group col-md-4">
+              <label><b>Membership Date</b></label>
+              <input type="text" class="form-control membership_date" name="membership_popup" id="membership_popup" placeholder="yyyy-mm-dd" value="">
+            </div>
+			
+			<div class="form-group col-md-4">
+              <label><b>Membership Renewal Date</b></label>
+              <input type="text" class="form-control membership_renewal_date" name="membership_renewal_popup" id="membership_renewal_popup" placeholder="yyyy-mm-dd" value="">
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label><b>Policy Renewal Date</b></label>
+              <input type="text" class="form-control policy_renewal_date" name="policy_renewal_popup" id="policy_renewal_popup" placeholder="yyyy-mm-dd" value="">
+            </div>
+            
+            
+			<div class="form-group col-md-4">
+              <label><b>Membership Amount</b></label>
+              <input type="text" class="form-control" name="membership_amount_popup" id="membership_amount_popup" value="">
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label><b>Total Premium Amount</b></label>
+              <input type="text" class="form-control" name="total_premium_amount_popup" id="total_premium_amount_popup" value="">
+            </div>
+
+			<div class="form-group col-md-4">
+              <label><b>Total Amount</b></label>
+              <input type="text" class="form-control" name="total_amount_popup" id="total_amount_popup" value="">
+            </div>
+            
+            <div class="form-group col-md-4" id="membershipTenureDiv1">
+              <label>Membership Tenure*</label>
+              <select class="form-control" name="tenure[]" id="tenure1" required="">
+                  <option value="">Select</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>    
+              </select>
+            </div>
+			
+			<div class="form-group col-md-4" id="policyDiv1">
+              <label>Policy Tenure*</label>
+              <select class="form-control" name="policy_tenure[]" id="policy_tenure1" required="">
+                  <option value="">Select</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>    
+              </select>
+            </div>
+            
+            <div class="form-group col-md-4" id="coverDiv1">
+              <label><b>Coverage</b></label>
+              <select class="form-control" id="cover_id1" name="cover_id[]" required="">
+				 <option value="">Select</option>
+				  
+                <option value="1" data-val="2">2 Lacs Yearly</option>
+                 
+                <option value="2" data-val="5">5 Lacs Yearly</option>
+                 
+                <option value="3" data-val="10">10 Lacs Yearly</option>
+                 
+                <option value="4" data-val="20">20 Lacs Yearly</option>
+                 
+                <option value="5" data-val="25">25 Lacs Yearly</option>
+                 
+                <option value="6" data-val="30">30 Lacs Yearly</option>
+                 
+                <option value="7" data-val="35">35 Lacs Yearly</option>
+                 
+                <option value="8" data-val="40">40 Lacs Yearly</option>
+                 
+                <option value="9" data-val="45">45 Lacs Yearly</option>
+                 
+                <option value="10" data-val="50">50 Lacs Yearly</option>
+                 
+                <option value="11" data-val="55">55 Lacs Yearly</option>
+                 
+                <option value="12" data-val="60">60 Lacs Yearly</option>
+                 
+                <option value="13" data-val="65">65 Lacs Yearly</option>
+                 
+                <option value="14" data-val="70">70 Lacs Yearly</option>
+                 
+                <option value="15" data-val="75">75 Lacs Yearly</option>
+                 
+                <option value="16" data-val="80">80 Lacs Yearly</option>
+                 
+                <option value="17" data-val="85">85 Lacs Yearly</option>
+                 
+                <option value="18" data-val="90">90 Lacs Yearly</option>
+                 
+                <option value="19" data-val="95">95 Lacs Yearly</option>
+                 
+                <option value="20" data-val="100">1 Crore Yearly</option>
+                 
+                <option value="21" data-val="15">15 Lacs Yearly</option>
+                 
+                <option value="22" data-val="4">4 Lacs Yearly</option>
+                 
+                <option value="24" data-val="7">7 Lacs Yearly</option>
+                 
+                <option value="25" data-val="3">3 Lacs Yearly</option>
+                 
+                <option value="26" data-val="8">8 Lacs Yearly</option>
+                 
+                <option value="27" data-val="2.5">2.5 Lacs Yearly</option>
+                 
+                <option value="28" data-val="200">2 Crores Yearly</option>
+                 
+                <option value="29" data-val="300">3 crores Yearly</option>
+                 
+                <option value="30" data-val="500">5 crores yearly</option>
+                 
+                <option value="31" data-val="1000">10 Crores Yearly</option>
+                 
+                <option value="32" data-val="24">24 Lacs Yearly</option>
+                 
+                <option value="35" data-val="12">12 Lacs Yearly</option>
+                 
+                <option value="36" data-val="6">6 Lacs Yearly</option>
+                 
+                <option value="37" data-val="28">28 Lacs Yearly</option>
+                 
+                <option value="38" data-val="18">18 Lacs Yearly</option>
+                 
+                <option value="1037" data-val="120">1 Crore 20 Lacs Yearly</option>
+                 
+                <option value="2037" data-val="150">1 Crore 50 Lacs</option>
+                 
+                <option value="2038" data-val="33">33 Lacs yearly</option>
+                 
+                <option value="2039" data-val="400">4 Crores Yearly</option>
+                 
+                <option value="2040" data-val="1.5">1.5 Lacs Yearly</option>
+                 
+                <option value="2041" data-val="1">1 Lacs Yearly</option>
+                 
+                <option value="2042" data-val="250">2.5 Crores yearly</option>
+                 
+                <option value="2043" data-val="150">1.5 Crores yearly</option>
+                 
+                <option value="2044" data-val="800">8 Crores Yearly</option>
+                              </select>
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label><b>Category</b></label>
+              <input type="text" class="form-control" name="category_popup" id="category_popup" value="">
+            </div>
+            
+		</div>
+		<div class="box-footer"></div>
+	<!--</form>-->
+    </div>
+  </div>
+</div>
+   
+   
+  {% comment %} <script src="/docland/assets/admin/plugins/select2/select2.min.js"></script>  
+
+
+<script>
+   $(document).ready(function(){
+      $('.pagination > li > a').on('click', function(){
+         link = $(this).attr('href');  
+         $('#searchFrm').attr('action', link);
+         $('#searchFrm').submit();
+         return false; 
+      });
+   });
+</script>
+<script src="/docland/assets/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="/docland/assets/admin/plugins/jquery.validate.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#from_date ,#to_date").datepicker({
+		format: 'dd/mm/yyyy',
+		clickInput:true, 
+		changeMonth: true,
+		changeYear: true,
+		numberOfMonths: 1,
+		autoclose: true
+	}); 
+	
+	$("body").on('click', '.view_membership', function(){
+	    var lead_id = $(this).attr('data-val');
+	    var category = $('#category_'+lead_id).val();
+
+	    var membership_renewal_date = $('#membership_renewal_date_'+lead_id).val();
+	    var policy_renewal_date = $('#policy_renewal_date_'+lead_id).val();
+	    var membership_date = $('#membership_date_'+lead_id).val();
+	    var membership_amount = $('#membership_amount_'+lead_id).val();
+	    var total_premium_amount = $('#total_premium_amount_'+lead_id).val();
+	    
+	    var total_amount = $('#total_amount_'+lead_id).val();
+	    var membership_tenure = $('#membership_tenure_'+lead_id).val();
+	    var policy_tenure = $('#policy_tenure_'+lead_id).val();
+	    var coverage_id = $('#coverage_id_'+lead_id).val();
+	    
+	    $("#membership_popup").val(membership_date);
+	    $("#membership_renewal_popup").val(membership_renewal_date);
+	    $("#policy_renewal_popup").val(policy_renewal_date);
+	    $("#membership_amount_popup").val(membership_amount);
+	    $("#total_premium_amount_popup").val(total_premium_amount);
+	    $("#total_amount_popup").val(total_amount);
+	    
+	    $("#tenure1").val(membership_tenure);
+
+	    $("#policy_tenure1").val(policy_tenure);
+	    $("#cover_id1").val(coverage_id);
+	    $("#category_popup").val(category);
+	    
+	    
+	    $("#modalMemberDetail").modal('show');
+	    
+	    
+	});
+});
+</script>
+<script type="text/javascript">
+
+function leads_form(id){
+     document.getElementById("hotDeals").value = id;
+     document.getElementById("searchFrm").submit();
+}
+
+function policy_form(id1){
+     document.getElementById("isPolicyType").value = id1;
+     document.getElementById("searchFrm").submit();
+}
+
+$(document).ready(function() {
+    $.validator.addMethod("greaterThanDate", function(value, max, min){
+    	return (value == '' || $(min).datepicker("getDate") < $(max).datepicker("getDate"));
+	});
+    $(function() {
+        $("form[name='search_data_view']").validate({
+            rules: {
+            from_date: {
+            },
+            to_date: {
+            //greaterThanDate:"#from_date"
+            }
+        },
+            messages: {
+            from_date: {
+            },
+            to_date: {
+            //greaterThanDate:"Your End Date must be greater than From Date"
+            }
+            },
+            submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
+	
+});
+
+$("#employe_id").select2({
+
+			placeholder: "Select Employe"
+
+		});
+
+
+
+</script><footer class="main-footer">
+	
+</footer>
+
+
+<script>
+        
+    function detectScreenshot() {
+        var roleId = parseInt("6");
+        var arrayVal = [2, 3, 9];
+        if(!arrayVal.includes(roleId)) {
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'PrintScreen' || (e.key === 's' && e.ctrlKey) || (e.key === 'S' && e.ctrlKey)) {
+                    // User attempted to take a screenshot (Print Screen key or Ctrl+S)
+                    // You can take some action here, like displaying a message
+                    alert('Screenshots are not allowed on this website.');
+                } 
+            });
+        }
+    }
+
+    // Call the function to start detection
+    detectScreenshot();
+    </script>
+    
+<!-- ./wrapper -->
+<script src="/docland/assets/admin/custom.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/docland/assets/admin/bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/docland/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="/docland/assets/admin/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<!-- FastClick -->
+<script src="/docland/assets/admin/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/docland/assets/admin/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/docland/assets/admin/dist/js/demo.js"></script>
+ <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> 
+    </script> 
+<script>
+  var roleIdNew = parseInt("6");
+    var arrayVal1 = [2, 3, 9];
+    
+    if(!arrayVal1.includes(roleIdNew)) {
+       document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+        
+      const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+    
+      const showAlert = e => {
+        e.preventDefault(); // preventing its default behaviour
+        // alert("Sorry, you can't view or copy source codes this way!")
+        return ;
+      }
+    
+      document.addEventListener("contextmenu", e => {
+        showAlert(e); // calling showAlert() function on mouse right click
+      });
+    
+      document.addEventListener("keydown", e => {
+        // calling showAlert() function, if the pressed key matched to disabled keys
+        if((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+          showAlert(e);
+        }
+      });
+    } 
+</script> {% endcomment %}
+<!-- sc-->
+{% include "include_footerjs.html" %}
+<!-- sc-->
+</body></html>
