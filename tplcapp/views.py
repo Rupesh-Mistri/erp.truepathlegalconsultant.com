@@ -635,7 +635,7 @@ def payment_add_new(request):
             saved_instance.user_id=request.user.id
             saved_instance.save()
             # Iterate over request.POST items correctly
-            print(request.POST)
+            # print(request.POST)
             for key, value in request.POST.items():
                 if "mul_tbl_payment_mode" in key:
                     num_part = key[20:]  # Extract the numeric part of the key
@@ -1169,6 +1169,37 @@ def terminal(request):
 
     return render(request, "terminal.html")
 
+# def data_according_to_member_reg_no(request){
+def data_according_to_member_reg_no_ajax(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid request method"}, status=405)
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            print(data)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON format"}, status=400)
+
+        member_reg_no = data.get("member_reg_no")
+        if not member_reg_no:
+            return JsonResponse({"error": "member_reg_no is required"}, status=400)
+
+        # Determine model based on prefix
+        if member_reg_no.startswith("TPD"):
+            qs = DoctorRegistration.objects.filter(app_registraction_no=member_reg_no)
+        elif member_reg_no.startswith("TPH"):
+            qs = HospitalAndNursingHomeRegistration.objects.filter(app_registraction_no=member_reg_no)
+        elif member_reg_no.startswith("TPL"):
+            qs = DiagnosticCentreRegistration.objects.filter(app_registraction_no=member_reg_no)
+        else:
+            return JsonResponse({"error": "Invalid registration number prefix"}, status=400)
+
+        # If no record found
+        if not qs.exists():
+            return JsonResponse({"error": "No record found"}, status=404)
+        # Convert to list for JSON
+        details = list(qs.values())
+    return JsonResponse(details, safe=False)
 
 @login_req
 def leads_report(request):

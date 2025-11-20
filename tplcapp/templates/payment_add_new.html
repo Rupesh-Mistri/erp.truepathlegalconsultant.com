@@ -601,13 +601,66 @@ document.getElementById('id_plan').addEventListener('change', function () {
         }
     </script>
 <script>
-  document.getElementById('id_member_reg_no').addEventListener('change', function () {
-    alert(this.value)
-    // Check the selected value of the dropdown
-   //if (this.value === 'Only Membership') {
-   //}
-  });
+    // Listen for dropdown change
+    document.getElementById('id_member_reg_no').addEventListener('change', function () {
+        data_according_to_member_reg_no_ajax(this.value);
+    });
+
+    // Get CSRF token from cookies
+    function getCSRFToken() {
+        let match = document.cookie.match(/csrftoken=([^;]+)/);
+        return match ? match[1] : '';
+    }
+
+    // AJAX call
+    function data_according_to_member_reg_no_ajax(member_reg_no) {
+
+        fetch('/data_according_to_member_reg_no_ajax/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken()
+            },
+            body: JSON.stringify({
+                'member_reg_no': member_reg_no
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Selected Data:', data);
+
+            if (Array.isArray(data) && data.length > 0) {
+                const item = data[0];
+
+                const doctor_name_or_established =
+                    item.doctor_name ? item.doctor_name :
+                    item.hospital_name ? item.hospital_name :
+                    item.establishment_name ? item.establishment_name :
+                    ""; // fallback
+
+                console.log(doctor_name_or_established);
+                alert(item.house_no)
+                document.getElementById('id_doctor_nameor_establised').value = doctor_name_or_established;
+                document.getElementById('id_house_no').value = item.house_no ;
+                document.getElementById('id_street').value = item.street ;
+                document.getElementById('id_state').value = item.state ;
+                //document.getElementById('id_city').value = item.city ;
+
+                //document.getElementById('id_state').value = item.state ;
+                document.getElementById('id_pincode').value = item.pin_code ;
+
+                document.getElementById('id_mobile1').value = item.mobile_number ;
+
+                document.getElementById('id_email').value = item.email ;
+
+            } else {
+                console.log("No data found");
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
 </script>
+
             </div>
           </div>
         </section>

@@ -122,6 +122,7 @@ urlpatterns = [
     path('menu_permission/', menu_permission, name="menu_permission"),
     path('menu_permission_ajax/', menu_permission_ajax, name="menu_permission_ajax"),
     path('terminal/', terminal, name="terminal"),
+    path('data_according_to_member_reg_no_ajax/',data_according_to_member_reg_no_ajax,name='data_according_to_member_reg_no_ajax'),
 ]
 
 

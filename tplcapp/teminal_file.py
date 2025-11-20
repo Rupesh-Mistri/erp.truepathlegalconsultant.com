@@ -215,12 +215,130 @@ def terminal_function(command):
         "ver", "set", "echo %PATH%"
     ]
     
+    allowed_commands_git = [
+    # Setup & config
+    "git help",
+    "git config",
+    "git init",
+    "git clone",
+
+    # Basic snapshotting
+    "git add",
+    "git status",
+    "git diff",
+    "git commit",
+    "git reset",
+    "git rm",
+    "git mv",
+
+    # Branching & merging
+    "git branch",
+    "git checkout",
+    "git switch",
+    "git merge",
+    "git mergetool",
+    "git rebase",
+    "git stash",
+    "git stash list",
+    "git stash pop",
+    "git stash drop",
+
+    # Sharing & updating
+    "git fetch",
+    "git pull",
+    "git push",
+    "git remote",
+    "git submodule",
+
+    # Inspection & comparison
+    "git log",
+    "git show",
+    "git diff",
+    "git shortlog",
+    "git describe",
+    "git blame",
+    "git bisect",
+    "git grep",
+    "git reflog",
+    "git tag",
+    "git notes",
+
+    # Patching & plumbing
+    "git apply",
+    "git cherry-pick",
+    "git revert",
+    "git archive",
+    "git bundle",
+    "git fast-export",
+    "git fast-import",
+
+    # Debugging & maintenance
+    "git fsck",
+    "git gc",
+    "git clean",
+    "git filter-branch",
+    "git instaweb",
+    "git replace",
+    "git verify-commit",
+    "git verify-tag",
+
+    # Advanced & low-level (plumbing)
+    "git cat-file",
+    "git check-attr",
+    "git check-ignore",
+    "git check-ref-format",
+    "git count-objects",
+    "git for-each-ref",
+    "git hash-object",
+    "git index-pack",
+    "git ls-files",
+    "git ls-remote",
+    "git ls-tree",
+    "git merge-base",
+    "git pack-objects",
+    "git rev-list",
+    "git rev-parse",
+    "git show-ref",
+    "git symbolic-ref",
+    "git update-index",
+    "git update-ref",
+    "git verify-pack",
+    "git write-tree",
+
+    # Email workflows
+    "git am",
+    "git format-patch",
+    "git send-email",
+    "git request-pull",
+    "git imap-send",
+    "git mailinfo",
+    "git mailsplit",
+
+    # Server-side
+    "git daemon",
+    "git upload-pack",
+    "git receive-pack",
+    "git upload-archive",
+    "git http-backend",
+    "git shell",
+
+    # Interactive tools
+    "git citool",
+    "git gui",
+    "gitk",
+
+    # Experimental (some builds only)
+    "git sparse-checkout",
+    "git worktree",
+    "git maintenance",
+]
+
 
     # Detect OS
     if os.name == "posix":  # Linux/macOS
-        allowed_commands = allowed_commands_linux
+        allowed_commands = allowed_commands_linux+allowed_commands_python+allowed_commands_git
     elif os.name == "nt":  # Windows
-        allowed_commands = allowed_commands_windows+allowed_commands_python
+        allowed_commands = allowed_commands_windows+allowed_commands_python+allowed_commands_git
     else:
         return JsonResponse({"status": "error", "message": "Unsupported OS"})
 
